@@ -23,6 +23,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -59,7 +60,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -69,22 +69,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="NaviService.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="NaviService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/NaviService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="5" selection-start="1701" selection-end="1701" vertical-scroll-proportion="0.73434126" vertical-offset="323" max-vertical-offset="1292">
+            <state line="37" column="8" selection-start="1412" selection-end="1412" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1496">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LocationListenerThread.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="LocationListenerThread.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/threads/LocationListenerThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="53" selection-start="902" selection-end="902" vertical-scroll-proportion="0.0" vertical-offset="795" max-vertical-offset="1292">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="20" column="63" selection-start="835" selection-end="835" vertical-scroll-proportion="0.38012958" vertical-offset="79" max-vertical-offset="1224">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -99,13 +97,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/example/logowanie/receivers/ConnectionReceiver.java" />
-        <option value="$PROJECT_DIR$/src/com/example/logowanie/SecondActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/example/logowanie/services/DateProvider.java" />
-        <option value="$PROJECT_DIR$/src/com/example/logowanie/models/Location.java" />
-        <option value="$PROJECT_DIR$/src/com/example/logowanie/listeners/MyLocationListener.java" />
-        <option value="$PROJECT_DIR$/src/com/example/logowanie/models/AdminModel.java" />
-        <option value="$PROJECT_DIR$/src/com/example/logowanie/providers/CacheProvider.java" />
         <option value="$PROJECT_DIR$/src/com/example/logowanie/models/MyCache.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/com/example/logowanie/models/MyLocation.java" />
@@ -113,8 +104,15 @@
         <option value="$PROJECT_DIR$/src/com/example/logowanie/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/com/example/logowanie/providers/PreferencesProvider.java" />
         <option value="$PROJECT_DIR$/src/com/example/logowanie/threads/LocatioListenerThread.java" />
-        <option value="$PROJECT_DIR$/src/com/example/logowanie/threads/LocationListenerThread.java" />
+        <option value="$PROJECT_DIR$/src/com/example/logowanie/services/LocationService.java" />
+        <option value="$PROJECT_DIR$/src/com/example/logowanie/services/DatabaseService.java" />
+        <option value="$PROJECT_DIR$/src/com/example/logowanie/providers/OnlineLocationProvider.java" />
+        <option value="$PROJECT_DIR$/src/com/example/logowanie/providers/LocalLocationProvider.java" />
+        <option value="$PROJECT_DIR$/src/com/example/logowanie/managers/MyLocationManager.java" />
+        <option value="$PROJECT_DIR$/src/com/example/logowanie/services/AppInfo.java" />
+        <option value="$PROJECT_DIR$/src/com/example/logowanie/listeners/MyLocationListener.java" />
         <option value="$PROJECT_DIR$/src/com/example/logowanie/NaviService.java" />
+        <option value="$PROJECT_DIR$/src/com/example/logowanie/threads/LocationListenerThread.java" />
       </list>
     </option>
   </component>
@@ -151,7 +149,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -212,6 +209,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -474,107 +472,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/models/MyLocation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="5" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="510">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/services/DateProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="5" selection-start="572" selection-end="572" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="544">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/receivers/ConnectionReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="30" selection-start="523" selection-end="523" vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="850">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/models/AdminModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="26" selection-start="286" selection-end="286" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/activity_main2.xml">
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1326">
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/application_main.xml">
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306" />
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/activity_main.xml">
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1411">
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/listeners/MyLocationListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="9" selection-start="1336" selection-end="1336" vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="1105">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="65" selection-start="666" selection-end="666" vertical-scroll-proportion="0.4773218" vertical-offset="0" max-vertical-offset="663">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/services/UsersService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="51" selection-start="569" selection-end="569" vertical-scroll-proportion="0.0" vertical-offset="98" max-vertical-offset="629">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/models/MyLocation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="43" selection-start="227" selection-end="227" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1156">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/receivers/LocationBroadcastReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="11" selection-start="618" selection-end="618" vertical-scroll-proportion="0.0" vertical-offset="64" max-vertical-offset="527">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/providers/PreferencesProvider.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="39" column="0" selection-start="1381" selection-end="1381" vertical-scroll-proportion="0.4859611" vertical-offset="421" max-vertical-offset="1190">
@@ -589,18 +486,86 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/threads/LocationListenerThread.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/models/MyLocation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="53" selection-start="902" selection-end="902" vertical-scroll-proportion="0.0" vertical-offset="795" max-vertical-offset="1292">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="9" column="43" selection-start="227" selection-end="227" vertical-scroll-proportion="0.03655914" vertical-offset="136" max-vertical-offset="1156" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/providers/LocalLocationProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="46" selection-start="1666" selection-end="1666" vertical-scroll-proportion="0.0" vertical-offset="79" max-vertical-offset="1309" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/services/DateProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="18" selection-start="173" selection-end="187" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/services/UsersService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="51" selection-start="569" selection-end="569" vertical-scroll-proportion="0.8129032" vertical-offset="98" max-vertical-offset="629">
+          <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/services/AppInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="18" selection-start="218" selection-end="218" vertical-scroll-proportion="0.40215054" vertical-offset="0" max-vertical-offset="544">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/receivers/ConnectionReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="22" selection-start="288" selection-end="288" vertical-scroll-proportion="-0.1827957" vertical-offset="204" max-vertical-offset="782">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/providers/OnlineLocationProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="16" selection-start="423" selection-end="423" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/services/DatabaseService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="77" column="0" selection-start="2894" selection-end="2894" vertical-scroll-proportion="0.0" vertical-offset="470" max-vertical-offset="1513" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/managers/MyLocationManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="18" selection-start="300" selection-end="300" vertical-scroll-proportion="0.3655914" vertical-offset="0" max-vertical-offset="527">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/services/LocationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="0" selection-start="177" selection-end="177" vertical-scroll-proportion="0.25591397" vertical-offset="0" max-vertical-offset="465" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/listeners/MyLocationListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="17" selection-start="675" selection-end="675" vertical-scroll-proportion="0.2924731" vertical-offset="51" max-vertical-offset="918">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/receivers/LocationBroadcastReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="11" selection-start="618" selection-end="618" vertical-scroll-proportion="0.51182795" vertical-offset="0" max-vertical-offset="465" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/NaviService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="5" selection-start="1701" selection-end="1701" vertical-scroll-proportion="0.73434126" vertical-offset="323" max-vertical-offset="1292">
+        <state line="37" column="8" selection-start="1412" selection-end="1412" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1496">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/threads/LocationListenerThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="63" selection-start="835" selection-end="835" vertical-scroll-proportion="0.38012958" vertical-offset="79" max-vertical-offset="1224">
           <folding />
         </state>
       </provider>

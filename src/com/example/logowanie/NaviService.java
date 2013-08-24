@@ -5,23 +5,25 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.Toast;
 
+import com.example.logowanie.managers.MyLocationManager;
+import com.example.logowanie.providers.LocalLocationProvider;
+import com.example.logowanie.providers.OnlineLocationProvider;
 import com.example.logowanie.providers.PreferencesProvider;
 import com.example.logowanie.receivers.ConnectionReceiver;
 import com.example.logowanie.services.AppInfo;
 import com.example.logowanie.services.UsersService;
 import com.example.logowanie.threads.LocationListenerThread;
 
-/**
- * Created by Barti on 23.08.13.
- */
+
 public class NaviService extends Service {
     private static final String START_SERVICE = "service started";
     private static final String STOP_SERVICE = "service stopped";
     private MyConnectionReceiver myConnectionReceiver;
     private boolean isServiceDestroyed = true;
     private PreferencesProvider preferencesProvider;
+    private LocalLocationProvider localLocationProvider;
+    private OnlineLocationProvider onlineLocationProvider;
     LocationListenerThread locationListenerThread;
 
     private Context getContext()
@@ -33,8 +35,11 @@ public class NaviService extends Service {
         myConnectionReceiver = new MyConnectionReceiver();
         UsersService.getInstance();
         preferencesProvider = new PreferencesProvider(getContext());
-        LocationListenerThread locationListenerThread  = new LocationListenerThread(getContext());
+        locationListenerThread  = new LocationListenerThread(getContext());
         locationListenerThread.setServiceDestroyed(isServiceDestroyed);
+
+        localLocationProvider = new LocalLocationProvider(getContext());
+        onlineLocationProvider = new OnlineLocationProvider();
 
 
     }
@@ -51,6 +56,7 @@ public class NaviService extends Service {
     {
         locationListenerThread.execute();
     }
+
     @Override
     public void onDestroy() {
         Log.d(AppInfo.getLogTag(), STOP_SERVICE);
@@ -66,15 +72,23 @@ public class NaviService extends Service {
     }
     private class MyConnectionReceiver extends ConnectionReceiver
     {
-
+        private boolean isConnected = false;
         @Override
         public void onConnected() {
-            Toast.makeText(getContext(),"Data connected",Toast.LENGTH_SHORT).show();
+            if(!isConnected)
+            {
+            MyLocationManager.getInstance().setService(onlineLocationProvider);
+            }
+            isConnected =true;
         }
 
         @Override
         public void onDisconnected() {
-            Toast.makeText(getContext(),"Data disconnected",Toast.LENGTH_SHORT).show();
+            if(isConnected)
+            {
+            MyLocationManager.getInstance().setService(localLocationProvider);
+            }
+            isConnected = false;
         }
     }
 

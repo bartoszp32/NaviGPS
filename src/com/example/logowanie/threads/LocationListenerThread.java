@@ -18,6 +18,7 @@ public class LocationListenerThread extends AsyncTask<Void,Void,Void> {
     public LocationListenerThread(Context context) {
         locationListener = new MyLocationListener(context);
         locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        preferencesProvider = new PreferencesProvider(context);
 
     }
     public void setServiceDestroyed(boolean isServiceDestroyed)

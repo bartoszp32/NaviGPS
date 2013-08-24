@@ -6,6 +6,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
 
+import com.example.logowanie.managers.MyLocationManager;
 import com.example.logowanie.models.MyLocation;
 import com.example.logowanie.receivers.LocationBroadcastReceiver;
 import com.example.logowanie.services.DateProvider;
@@ -16,27 +17,25 @@ import com.example.logowanie.services.UsersService;
  */
 public class MyLocationListener implements LocationListener {
     Context context;
-    MyLocation myLocation;
+
     public MyLocationListener(Context context) {
         this.context = context;
-         myLocation = new MyLocation();
+
 
 
     }
 
     @Override
     public void onLocationChanged(Location location) {
-        myLocation.locationLongitude = String.valueOf(location.getLongitude());
-        myLocation.locationLatitude = String.valueOf(location.getLatitude());
-        myLocation.locationAccuracy = String.valueOf(location.getAccuracy());
-        myLocation.locationVelocity = String.valueOf(location.getSpeed());
+        MyLocation  myLocation = new MyLocation();
+        myLocation.longitude = String.valueOf(location.getLongitude());
+        myLocation.latitude = String.valueOf(location.getLatitude());
+        myLocation.accuracy = String.valueOf(location.getAccuracy());
+        myLocation.velocity = String.valueOf(location.getSpeed());
         myLocation.userId = UsersService.getInstance().getUser().getUserId();
-        myLocation.locationDate = DateProvider.getInstance().getDate();
+        myLocation.date = DateProvider.getInstance().getDate();
         Intent intent = new Intent(LocationBroadcastReceiver.ACTION_BROADCAST_LOCATION);
-      // intent.putExtra(LocationReceiver.RECEIVE_ACCURACY,location.getAccuracy());
-     //   intent.putExtra(LocationReceiver.RECEIVE_LATITUDE,myLocation.latitude);
-     ///   intent.putExtra(LocationReceiver.RECEIVE_LONGITUDE,myLocation.longitude);
-     ///   intent.putExtra(LocationReceiver.RECEIVE_DATE,myLocation.date);
+        MyLocationManager.getInstance().getService().saveLocation(myLocation);
         context.sendBroadcast(intent);
 
     }
