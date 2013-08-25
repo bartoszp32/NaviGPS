@@ -20,17 +20,22 @@ public class LocationListenerThread extends AsyncTask<Void,Void,Void> {
         locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         preferencesProvider = new PreferencesProvider(context);
 
+
+
     }
     public void setServiceDestroyed(boolean isServiceDestroyed)
     {
         this.isServiceDestroyed = isServiceDestroyed;
 
+
     }
     private boolean isListener = false;
     @Override
     protected Void doInBackground(Void... voids) {
+
         while (!isServiceDestroyed)
         {
+
             if(preferencesProvider.isLocationEnabled())
             {
                 if(!isListener&&locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))

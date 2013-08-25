@@ -16,6 +16,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="USE_COMPILE_SERVER" value="false" />
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -23,6 +26,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -59,7 +63,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -69,39 +72,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="NaviService.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/NaviService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="0" selection-start="1187" selection-end="1187" vertical-scroll-proportion="0.07343412" vertical-offset="204" max-vertical-offset="1581">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="BatteryReceiver.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/receivers/BatteryReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="71" selection-start="906" selection-end="906" vertical-scroll-proportion="0.0" vertical-offset="489" max-vertical-offset="1173">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyLocationListener.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/listeners/MyLocationListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="28" selection-start="911" selection-end="911" vertical-scroll-proportion="0.0" vertical-offset="625" max-vertical-offset="1088">
+            <state line="46" column="80" selection-start="1516" selection-end="1516" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="1037">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LocationReceiver.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/receivers/LocationReceiver.java">
+      <file leaf-file-name="LocationListenerThread.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/threads/LocationListenerThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="46" selection-start="1363" selection-end="1363" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
+            <state line="24" column="5" selection-start="844" selection-end="844" vertical-scroll-proportion="-1.1068376" vertical-offset="841" max-vertical-offset="1309">
               <folding />
             </state>
           </provider>
@@ -126,7 +109,6 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/com/example/logowanie/services/AppInfo.java" />
-        <option value="$PROJECT_DIR$/src/com/example/logowanie/threads/LocationListenerThread.java" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/src/com/example/logowanie/providers/PreferencesProvider.java" />
         <option value="$PROJECT_DIR$/src/com/example/logowanie/services/ReceiverService.java" />
@@ -139,16 +121,17 @@
         <option value="$PROJECT_DIR$/src/com/example/logowanie/managers/ServicesManager.java" />
         <option value="$PROJECT_DIR$/src/com/example/logowanie/managers/MyActivityManager.java" />
         <option value="$PROJECT_DIR$/src/com/example/logowanie/listeners/MyLocationListener.java" />
-        <option value="$PROJECT_DIR$/src/com/example/logowanie/receivers/BatteryReceiver.java" />
         <option value="$PROJECT_DIR$/src/com/example/logowanie/NaviService.java" />
+        <option value="$PROJECT_DIR$/src/com/example/logowanie/receivers/BatteryReceiver.java" />
+        <option value="$PROJECT_DIR$/src/com/example/logowanie/threads/LocationListenerThread.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1456" />
-    <option name="height" value="886" />
+    <option name="x" value="-6" />
+    <option name="y" value="-6" />
+    <option name="width" value="1452" />
+    <option name="height" value="882" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -210,6 +193,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="logowanie" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Logowanie" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NaviGPS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="logowanie" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="threads" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -411,8 +416,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="886" extended-state="6" />
-    <editor active="false" />
+    <frame x="-6" y="-6" width="1452" height="882" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -423,18 +428,18 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32921812" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32921812" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32789117" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24964131" sideWeight="0.6707819" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24964131" sideWeight="0.6721088" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32921812" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32921812" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -500,6 +505,20 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/listeners/MyLocationListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="28" selection-start="911" selection-end="911" vertical-scroll-proportion="0.0" vertical-offset="625" max-vertical-offset="1088">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/receivers/LocationReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="46" selection-start="1363" selection-end="1363" vertical-scroll-proportion="0.0" vertical-offset="748" max-vertical-offset="935">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/services/LocationService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="0" selection-start="177" selection-end="177" vertical-scroll-proportion="0.25591397" vertical-offset="0" max-vertical-offset="465" />
@@ -507,9 +526,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="36" selection-start="88" selection-end="88" vertical-scroll-proportion="0.11015119" vertical-offset="0" max-vertical-offset="463">
-          <folding />
-        </state>
+        <state line="3" column="36" selection-start="88" selection-end="88" vertical-scroll-proportion="0.11015119" vertical-offset="0" max-vertical-offset="463" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
@@ -528,16 +545,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/services/ReceiverService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="43" selection-start="283" selection-end="283" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
-          <folding />
-        </state>
+        <state line="10" column="43" selection-start="283" selection-end="283" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/services/ClassService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="44" selection-start="540" selection-end="540" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
-          <folding />
-        </state>
+        <state line="18" column="44" selection-start="540" selection-end="540" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/receivers/ConnectionReceiver.java">
@@ -549,24 +562,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/models/Hash.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="5" selection-start="719" selection-end="719" vertical-scroll-proportion="0.0" vertical-offset="98" max-vertical-offset="680">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/threads/LocationListenerThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="63" selection-start="835" selection-end="835" vertical-scroll-proportion="0.03655914" vertical-offset="238" max-vertical-offset="1224">
-          <folding />
-        </state>
+        <state line="31" column="5" selection-start="719" selection-end="719" vertical-scroll-proportion="0.0" vertical-offset="98" max-vertical-offset="680" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/managers/ServicesManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="103" selection-start="389" selection-end="485" vertical-scroll-proportion="0.5612903" vertical-offset="28" max-vertical-offset="850">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="17" column="103" selection-start="389" selection-end="485" vertical-scroll-proportion="0.5612903" vertical-offset="28" max-vertical-offset="850" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/listeners/MyLocationListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="28" selection-start="911" selection-end="911" vertical-scroll-proportion="0.0" vertical-offset="625" max-vertical-offset="1088">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -577,25 +584,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/listeners/MyLocationListener.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/NaviService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="28" selection-start="911" selection-end="911" vertical-scroll-proportion="0.0" vertical-offset="625" max-vertical-offset="1088">
+        <state line="56" column="5" selection-start="2206" selection-end="2206" vertical-scroll-proportion="0.036324788" vertical-offset="935" max-vertical-offset="1802">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/receivers/BatteryReceiver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="71" selection-start="906" selection-end="906" vertical-scroll-proportion="0.0" vertical-offset="489" max-vertical-offset="1173">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="46" column="80" selection-start="1516" selection-end="1516" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="1037">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/NaviService.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/logowanie/threads/LocationListenerThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="0" selection-start="1187" selection-end="1187" vertical-scroll-proportion="0.07343412" vertical-offset="204" max-vertical-offset="1581">
+        <state line="24" column="5" selection-start="844" selection-end="844" vertical-scroll-proportion="-1.1068376" vertical-offset="841" max-vertical-offset="1309">
           <folding />
         </state>
       </provider>

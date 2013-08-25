@@ -51,7 +51,6 @@ public class NaviService extends Service {
         Log.d(AppInfo.getLogTag(), START_SERVICE);
         isServiceDestroyed = false;
         initialize();
-
         registerReceiver(myConnectionReceiver, myConnectionReceiver.getIntentFilter());
         registerReceiver(batteryReceiver, batteryReceiver.getIntentFilter());
         startLocationThread();

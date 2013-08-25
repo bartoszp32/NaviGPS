@@ -44,7 +44,7 @@ public class BatteryReceiver extends BroadcastReceiver implements ReceiverServic
     }
     private boolean isBatteryLevelLow()
     {
-        return batteryLevel < preferencesProvider.getLowBatteryLevel() && status == BatteryManager.BATTERY_STATUS_NOT_CHARGING;
+        return batteryLevel < preferencesProvider.getLowBatteryLevel() && batteryLevel%5 == 0 && status == BatteryManager.BATTERY_STATUS_NOT_CHARGING;
     }
     public IntentFilter getIntentFilter()
     {
