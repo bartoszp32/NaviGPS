@@ -8,7 +8,7 @@ import android.os.Bundle;
 
 import com.example.logowanie.managers.MyLocationManager;
 import com.example.logowanie.models.MyLocation;
-import com.example.logowanie.receivers.LocationBroadcastReceiver;
+import com.example.logowanie.receivers.LocationReceiver;
 import com.example.logowanie.services.DateProvider;
 import com.example.logowanie.services.UsersService;
 
@@ -34,7 +34,7 @@ public class MyLocationListener implements LocationListener {
         myLocation.velocity = String.valueOf(location.getSpeed());
         myLocation.userId = UsersService.getInstance().getUser().getUserId();
         myLocation.date = DateProvider.getInstance().getDate();
-        Intent intent = new Intent(LocationBroadcastReceiver.ACTION_BROADCAST_LOCATION);
+        Intent intent = new Intent(LocationReceiver.ACTION_BROADCAST_LOCATION);
         MyLocationManager.getInstance().getService().saveLocation(myLocation);
         context.sendBroadcast(intent);
 

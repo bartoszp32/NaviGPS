@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 
+import com.example.logowanie.services.ClassService;
+import com.example.logowanie.services.ReceiverService;
+
 /**
  * Created by Barti on 23.08.13.
  */
-public abstract class ConnectionReceiver extends BroadcastReceiver {
+public abstract class ConnectionReceiver extends BroadcastReceiver implements ReceiverService{
     public abstract void onConnected();
     public abstract void onDisconnected();
     private IntentFilter intentFilter;
@@ -25,6 +28,17 @@ public abstract class ConnectionReceiver extends BroadcastReceiver {
     {
         return intentFilter;
     }
+
+    @Override
+    public String getOnRegisterMessage() {
+        return ClassService.getRegisterText(this.getClass());
+    }
+
+    @Override
+    public String getOnUnregisterMessage() {
+        return ClassService.getUnregisterName(this.getClass());
+    }
+
     @Override
     public void onReceive(Context context, Intent intent) {
 

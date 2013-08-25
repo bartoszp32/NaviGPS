@@ -13,6 +13,7 @@ public class PreferencesProvider {
     private static final String MIN_DISTANCE_KEY = "min_distance";
     private static final String MIN_INTERVAL_KEY = "min_interval";
     private static final String CHECK_INTERVAL = "check_interval";
+    private static final String LOW_BATTERY_LEVEL = "low_battery_level";
 
 
     public PreferencesProvider(Context context) {
@@ -58,6 +59,16 @@ public class PreferencesProvider {
         editor.putInt(CHECK_INTERVAL,minCheckInterval);
         editor.commit();
 
+    }
+    public int getLowBatteryLevel()
+    {
+        return sharedPreferences.getInt(LOW_BATTERY_LEVEL,20);
+    }
+    public void setLowBatteryLevel(int level)
+    {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(LOW_BATTERY_LEVEL,level);
+        editor.commit();
     }
 
 
