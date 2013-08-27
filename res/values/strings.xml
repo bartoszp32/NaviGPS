@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Navi GPS</string>
+    <string name="app_name">NaviGPS</string>
     <string name="menu_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="navi_map">Mapa - nawigacja</string>
+    <string name="data_navi">Dane z GPS - nawigacja</string>
+    <string name="defined_route">Zdefiniowane trasy - nawigacja</string>
+    <string name="create_route">Stwórz nową trasę</string>
+    <string name="to_site">Do strony NaviGPS</string>
+    <string name="settings">Ustawienia</string>
 
 </resources>
