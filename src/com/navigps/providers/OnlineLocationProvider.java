@@ -11,9 +11,20 @@ public class OnlineLocationProvider implements LocationService {
     }
 
     @Override
-    public void saveLocation(MyLocation location) {
+    public boolean saveLocation(MyLocation location) {
        ///////
        // PUT YOUR CODE HERE
        /////////
+        return false;
+    }
+
+    @Override
+    public boolean updateLocation(MyLocation location) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteLocation(MyLocation location) {
+        return false;
     }
 }

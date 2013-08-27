@@ -21,11 +21,23 @@ public class LocalLocationProvider implements LocationService {
         databaseService = new DatabaseService(context);
     }
     @Override
-    public void saveLocation(MyLocation location) {
+    public boolean saveLocation(MyLocation location) {
         databaseService.open();
-        databaseService.db.insert(DatabaseService.DB_TABLE_LOCATIONS,"NULL",createContentValues(location));
+        boolean result = databaseService.db.insert(DatabaseService.DB_TABLE_LOCATIONS,"NULL",createContentValues(location)) != -1;
         databaseService.close();
+        return result;
     }
+
+    @Override
+    public boolean updateLocation(MyLocation location) {
+            return false;
+    }
+
+    @Override
+    public boolean deleteLocation(MyLocation location) {
+        return false;
+    }
+
     public List<MyLocation> getAllLocations()
     {
         List<MyLocation> locations = new ArrayList<MyLocation>();

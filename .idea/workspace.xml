@@ -69,22 +69,55 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <file leaf-file-name="OnlineLocationProvider.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/navigps/providers/OnlineLocationProvider.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="0" selection-start="835" selection-end="835" vertical-scroll-proportion="0.0" vertical-offset="169" max-vertical-offset="918">
-              <folding>
-                <element signature="e#776#794#0" expanded="true" />
-                <element signature="e#1001#1019#0" expanded="true" />
-              </folding>
+            <state line="27" column="21" selection-start="618" selection-end="618" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ServicesManager.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/navigps/managers/ServicesManager.java">
+      <file leaf-file-name="PreferencesProvider.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/navigps/providers/PreferencesProvider.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="5" selection-start="355" selection-end="371" vertical-scroll-proportion="0.22406639" vertical-offset="130" max-vertical-offset="816">
+            <state line="8" column="61" selection-start="196" selection-end="253" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1343">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DatabaseService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/navigps/services/DatabaseService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="29" column="56" selection-start="879" selection-end="1267" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1462">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LocalLocationProvider.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/navigps/providers/LocalLocationProvider.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="75" column="34" selection-start="2484" selection-end="2484" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1360">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MyLocationListener.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/navigps/listeners/MyLocationListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="37" column="8" selection-start="1260" selection-end="1260" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="918">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NaviService.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/navigps/NaviService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="80" column="0" selection-start="2698" selection-end="2698" vertical-scroll-proportion="0.29460582" vertical-offset="963" max-vertical-offset="1598">
               <folding />
             </state>
           </provider>
@@ -108,12 +141,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/example/logowanie/threads/LocationListenerThread.java" />
-        <option value="$PROJECT_DIR$/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/src/com/example/logowanie/providers/PreferencesProvider.java" />
-        <option value="$PROJECT_DIR$/src/com/example/logowanie/services/ReceiverService.java" />
-        <option value="$PROJECT_DIR$/src/com/example/logowanie/receivers/LocationBroadcastReceiver.java" />
-        <option value="$PROJECT_DIR$/src/com/example/logowanie/services/ClassService.java" />
         <option value="$PROJECT_DIR$/src/com/example/logowanie/receivers/LocationReceiver.java" />
         <option value="$PROJECT_DIR$/src/com/example/logowanie/receivers/ConnectionReceiver.java" />
         <option value="$PROJECT_DIR$/src/com/example/logowanie/models/Hash.java" />
@@ -124,6 +151,12 @@
         <option value="$PROJECT_DIR$/src/com/example/logowanie/receivers/BatteryReceiver.java" />
         <option value="$PROJECT_DIR$/src/com/example/logowanie/NaviService.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/com/navigps/threads/FromLocalToOnline.java" />
+        <option value="$PROJECT_DIR$/src/com/navigps/services/LocationService.java" />
+        <option value="$PROJECT_DIR$/src/com/navigps/providers/OnlineLocationProvider.java" />
+        <option value="$PROJECT_DIR$/src/com/navigps/providers/LocalLocationProvider.java" />
+        <option value="$PROJECT_DIR$/src/com/navigps/NaviService.java" />
+        <option value="$PROJECT_DIR$/src/com/navigps/threads/FromLocalToOnlineSenderThread.java" />
       </list>
     </option>
   </component>
@@ -215,29 +248,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="services" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Logowanie" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NaviGPS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="navigps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="managers" />
+              <option name="myItemId" value="threads" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -458,40 +469,37 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+    <entry file="file://$PROJECT_DIR$/src/com/navigps/models/MyLocation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="56" selection-start="1302" selection-end="1302" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="901">
-          <folding>
-            <element signature="e#776#794#0" expanded="true" />
-            <element signature="e#1001#1019#0" expanded="true" />
-          </folding>
+        <state line="5" column="13" selection-start="99" selection-end="99" vertical-scroll-proportion="0.14107884" vertical-offset="0" max-vertical-offset="1088">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+    <entry file="file://$PROJECT_DIR$/src/com/navigps/services/ReceiverService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="36" selection-start="88" selection-end="88" vertical-scroll-proportion="0.11015119" vertical-offset="0" max-vertical-offset="463" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/navigps/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="16" selection-start="514" selection-end="514" vertical-scroll-proportion="0.6293996" vertical-offset="2" max-vertical-offset="1326">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="5" column="17" selection-start="87" selection-end="87" vertical-scroll-proportion="0.17634855" vertical-offset="0" max-vertical-offset="482">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/navigps/services/ClassService.java">
+    <entry file="file://$PROJECT_DIR$/src/com/navigps/models/Hash.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="13" selection-start="85" selection-end="85" vertical-scroll-proportion="0.17598344" vertical-offset="0" max-vertical-offset="483">
+        <state line="7" column="13" selection-start="126" selection-end="126" vertical-scroll-proportion="0.24688797" vertical-offset="0" max-vertical-offset="680">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/navigps/managers/ServicesManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="13" selection-start="733" selection-end="733" vertical-scroll-proportion="0.8112033" vertical-offset="0" max-vertical-offset="816">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="835" selection-end="835" vertical-scroll-proportion="0.0" vertical-offset="169" max-vertical-offset="918">
+        <state line="19" column="0" selection-start="835" selection-end="835" vertical-scroll-proportion="0.3195021" vertical-offset="169" max-vertical-offset="918">
           <folding>
             <element signature="e#776#794#0" expanded="true" />
             <element signature="e#1001#1019#0" expanded="true" />
@@ -499,9 +507,81 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/navigps/managers/ServicesManager.java">
+    <entry file="file://$PROJECT_DIR$/src/com/navigps/managers/MyLocationManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="5" selection-start="355" selection-end="371" vertical-scroll-proportion="0.22406639" vertical-offset="130" max-vertical-offset="816">
+        <state line="5" column="13" selection-start="91" selection-end="91" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/navigps/receivers/LocationReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="14" selection-start="927" selection-end="927" vertical-scroll-proportion="0.47095436" vertical-offset="79" max-vertical-offset="765">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/navigps/receivers/ConnectionReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="19" selection-start="1310" selection-end="1310" vertical-scroll-proportion="0.59958506" vertical-offset="357" max-vertical-offset="935">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/navigps/services/LocationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="18" selection-start="178" selection-end="178" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/navigps/threads/FromLocalToOnlineSenderThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="7" selection-start="590" selection-end="590" vertical-scroll-proportion="0.5414938" vertical-offset="45" max-vertical-offset="731">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/navigps/services/DatabaseService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="56" selection-start="879" selection-end="1267" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1462">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/navigps/providers/PreferencesProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="61" selection-start="196" selection-end="253" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1343">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/navigps/providers/OnlineLocationProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="21" selection-start="618" selection-end="618" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/navigps/providers/LocalLocationProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="75" column="34" selection-start="2484" selection-end="2484" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1360">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/navigps/listeners/MyLocationListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="8" selection-start="1260" selection-end="1260" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="918">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/navigps/NaviService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="80" column="0" selection-start="2698" selection-end="2698" vertical-scroll-proportion="0.29460582" vertical-offset="963" max-vertical-offset="1598">
           <folding />
         </state>
       </provider>

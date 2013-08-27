@@ -14,6 +14,7 @@ import com.navigps.receivers.BatteryReceiver;
 import com.navigps.receivers.ConnectionReceiver;
 import com.navigps.services.AppInfo;
 import com.navigps.services.UsersService;
+import com.navigps.threads.FromLocalToOnlineSenderThread;
 import com.navigps.threads.LocationListenerThread;
 
 
@@ -84,6 +85,7 @@ public class NaviService extends Service {
         @Override
         public void onConnected() {
             if (!isConnected) {
+            new FromLocalToOnlineSenderThread(getContext()).execute();
                 MyLocationManager.getInstance().setService(onlineLocationProvider);
             }
             isConnected = true;
