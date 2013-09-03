@@ -31,6 +31,9 @@ public class SettingsActivity extends Activity implements OnClickListener{
 		editMinDistance	= (EditText)findViewById(id.editMinDistance);
 		buttonSave = (Button)findViewById(id.buttonSave);
 		buttonSave.setOnClickListener(saveListener);
+
+        editMinDistance.setText(String.valueOf(preferencesProvider.getMinDistance()));
+        editMinTime.setText(String.valueOf(preferencesProvider.getMinInterval()));
 		
 	}
 	

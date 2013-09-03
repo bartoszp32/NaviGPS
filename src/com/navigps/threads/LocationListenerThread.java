@@ -4,6 +4,7 @@ import android.content.Context;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Looper;
+import android.util.Log;
 
 import com.navigps.listeners.MyLocationListener;
 import com.navigps.providers.PreferencesProvider;
@@ -30,7 +31,7 @@ public class LocationListenerThread extends AsyncTask<Void,Void,Void> {
     protected Void doInBackground(Void... voids) {
         while (!isServiceDestroyed)
         {
-
+            Log.d("THREAD", "STARTING");
             if(preferencesProvider.isLocationEnabled())
             {
                 if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
@@ -54,7 +55,12 @@ public class LocationListenerThread extends AsyncTask<Void,Void,Void> {
                 e.printStackTrace();
             }
         }
-
+        if(isServiceDestroyed && isListener)
+        {
+            locationManager.removeUpdates(locationListener);
+            isListener = false;
+        }
+            Log.d("THREAD", "CLOSING");
 
         return null;
     }

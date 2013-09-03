@@ -128,6 +128,7 @@ public class MenuActivity extends Activity implements OnClickListener {
              {
                  getContext().stopService(getServiceIntent());
                  tbService.setChecked(false);
+                 tbGpsService.setChecked(false);
              }
             else
              {
