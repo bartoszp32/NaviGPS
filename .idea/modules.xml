@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Logowanie.iml" filepath="$PROJECT_DIR$/Logowanie.iml" />
+      <module fileurl="file://$PROJECT_DIR$/NaviGPS.iml" filepath="$PROJECT_DIR$/NaviGPS.iml" />
     </modules>
   </component>
 </project>
