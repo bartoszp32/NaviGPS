@@ -4,9 +4,7 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 
-/**
- * Created by Barti on 25.08.13.
- */
+
 public class ServicesManager {
     Context context;
     public ServicesManager(Context context)

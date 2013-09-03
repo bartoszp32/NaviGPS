@@ -1,8 +1,6 @@
 package com.navigps.models;
 
-/**
- * Created by Barti on 23.08.13.
- */
+
 public class User  {
 
     private int userId;

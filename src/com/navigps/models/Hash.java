@@ -2,9 +2,7 @@ package com.navigps.models;
 
 import android.content.BroadcastReceiver;
 
-/**
- * Created by Barti on 24.08.13.
- */
+
 public class Hash {
 
 

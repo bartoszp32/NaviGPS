@@ -32,7 +32,7 @@
         </activity>
         <activity android:name="com.navigps.MenuActivity"
             	  android:screenOrientation="portrait"/>
-        <activity android:name="com.navigps.MapNawigationActivity"
+        <activity android:name="com.navigps.MapNavigationActivity"
               	  android:screenOrientation="portrait"/>
         <activity android:name="com.navigps.SettingsActivity"
             	  android:screenOrientation="portrait"/>
@@ -40,7 +40,7 @@
             	  android:screenOrientation="portrait"/>
         <activity android:name="com.navigps.DefinedRouteActivity"
             	  android:screenOrientation="portrait"/>
-        <activity android:name="com.navigps.GpsNawigationActivity"
+        <activity android:name="com.navigps.GpsNavigationActivity"
             	  android:screenOrientation="portrait"/>		
 
         <service android:name="com.navigps.NaviService"/>

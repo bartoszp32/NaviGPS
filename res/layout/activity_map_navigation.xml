@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/tlo">
+    android:background="@drawable/tlo"
+    tools:context=".MapNavigationActivity">
 
 	<TextView
 	    android:id="@+id/titleText"

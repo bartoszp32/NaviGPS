@@ -45,12 +45,12 @@ public class LoginActivity extends Activity implements OnClickListener{
             Intent i = new Intent(LoginActivity.this, MenuActivity.class);
             startActivity(i);
             UsersService.getInstance().setUser(admin);
-            startService(getServiceIntent());
+            
         }
         else
         {
         	Toast.makeText(this, "Wpisz dane administaratora", Toast.LENGTH_SHORT).show();
-            stopService(getServiceIntent());
+            
         }
 
 		
@@ -62,10 +62,7 @@ public class LoginActivity extends Activity implements OnClickListener{
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
 	}
-    private Intent getServiceIntent()
-    {
-        return new Intent(this,NaviService.class);
-    }
+    
 	
 	
 

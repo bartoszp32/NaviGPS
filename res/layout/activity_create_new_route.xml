@@ -2,10 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/tlo" >
+    android:background="@drawable/tlo" 
+    tools:context=".CreateNewRouteActivity">
 
     <ToggleButton
-        android:id="@+id/toggleButton1"
+        android:id="@+id/toggleButtonOnOff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -19,7 +20,7 @@
         android:id="@+id/checkBoxWithTracking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/toggleButton1"
+        android:layout_above="@+id/toggleButtonOnOff"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:text="Nowa trasa + śledzenie w systemie" />

@@ -1,8 +1,6 @@
 package com.navigps.services;
 
-/**
- * Created by Barti on 23.08.13.
- */
+
 public class AppInfo {
     private static  AppInfo instance;
 

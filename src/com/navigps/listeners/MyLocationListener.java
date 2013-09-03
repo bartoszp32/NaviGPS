@@ -12,9 +12,7 @@ import com.navigps.receivers.LocationReceiver;
 import com.navigps.services.DateProvider;
 import com.navigps.services.UsersService;
 
-/**
- * Created by Barti on 24.07.13.
- */
+
 public class MyLocationListener implements LocationListener {
     Context context;
 

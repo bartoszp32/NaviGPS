@@ -7,9 +7,7 @@ import android.os.AsyncTask;
 import com.navigps.listeners.MyLocationListener;
 import com.navigps.providers.PreferencesProvider;
 
-/**
- * Created by Barti on 24.08.13.
- */
+
 public class LocationListenerThread extends AsyncTask<Void,Void,Void> {
     private MyLocationListener locationListener;
     private LocationManager locationManager;

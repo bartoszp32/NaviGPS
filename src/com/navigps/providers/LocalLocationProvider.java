@@ -11,9 +11,7 @@ import com.navigps.services.LocationService;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Barti on 24.08.13.
- */
+
 public class LocalLocationProvider implements LocationService {
     private DatabaseService databaseService;
     public LocalLocationProvider(Context context)

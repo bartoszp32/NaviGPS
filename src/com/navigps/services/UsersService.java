@@ -2,9 +2,7 @@ package com.navigps.services;
 
 import com.navigps.models.User;
 
-/**
- * Created by Barti on 23.08.13.
- */
+
 public class UsersService {
 
 

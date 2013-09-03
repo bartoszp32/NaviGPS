@@ -5,9 +5,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by Barti on 24.08.13.
- */
+
 public class DatabaseService {
     public SQLiteDatabase db;
     private Context mContext;
