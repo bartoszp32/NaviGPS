@@ -69,6 +69,7 @@ public class NaviService extends Service {
         unregisterReceiver(myConnectionReceiver);
         unregisterReceiver(batteryReceiver);
         isServiceDestroyed = true;
+        preferencesProvider.setLocationEnabled(false);
         locationListenerThread.setServiceDestroyed(isServiceDestroyed);
 
         super.onDestroy();

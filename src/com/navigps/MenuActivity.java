@@ -1,8 +1,10 @@
 package com.navigps;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +14,8 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.navigps.R.id;
+import com.navigps.managers.ServicesManager;
+import com.navigps.providers.PreferencesProvider;
 import com.navigps.services.UsersService;
 
 public class MenuActivity extends Activity implements OnClickListener {
@@ -23,10 +27,11 @@ public class MenuActivity extends Activity implements OnClickListener {
 	private Button buttonCreateRoute;
 	private Button buttonToSite;
 	private Button buttonSettings;
-
-	
 	private ToggleButton tbService;
 	private ToggleButton tbGpsService;
+    private ServicesManager servicesManager;
+    private PreferencesProvider preferencesProvider;
+    private LocationManager locationManager;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -45,8 +50,11 @@ public class MenuActivity extends Activity implements OnClickListener {
 		buttonCreateRoute = (Button) findViewById(id.buttonCreateNewRoute);
 		buttonToSite = (Button) findViewById(id.buttonToSite);
 		buttonSettings = (Button) findViewById(id.buttonSetting);
-	
-		
+
+        servicesManager = new ServicesManager(this);
+        preferencesProvider = new PreferencesProvider(this);
+		locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
 		buttonMapNavigation.setOnClickListener(mapListener);
 		buttonGpsNavigation.setOnClickListener(dataListener);
 		buttonDefinedRoute.setOnClickListener(definedRouteListener);
@@ -60,30 +68,47 @@ public class MenuActivity extends Activity implements OnClickListener {
 		
 		tbGpsService.setOnClickListener(tbGpsServiceListener);
 		tbService.setOnClickListener(tbServiceListener);
+
+
 		
 	}
 	
 	private Intent getServiceIntent()
     {
         return new Intent(this,NaviService.class);
-    } 
+    }
+    private Context getContext()
+    {
+        return this;
+    }
 	private OnClickListener tbGpsServiceListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			/*if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
-			{
-			 if(tbGpsService.getText()=="ON")
-			 {
-				 startService(getServiceIntent());
-				 
-				 
-			 }
-			 else if(tbGpsService.getText()=="OFF")
-			 {
-				 stopService(getServiceIntent());
-			 }
-			}*/
+            String className = NaviService.class.getName();
+			if(servicesManager.isServiceRunning(className))
+            {
+                if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
+                {
+                    if(preferencesProvider.isLocationEnabled())
+                    {
+                        preferencesProvider.setLocationEnabled(false);
+                        showToast("Disabling listener");
+                    }
+                    else
+                    {
+                        preferencesProvider.setLocationEnabled(true);
+                        showToast("Enabling listener");
+                    }
+                }
+                else
+                {
+                    showToast("GPS NOT enabled");
+                }
+            }
+            else {
+                showToast("Service NOT running");
+            }
 		}
 	};
 	
@@ -91,17 +116,15 @@ public class MenuActivity extends Activity implements OnClickListener {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			 if(tbService.getText()=="Serwice ON")
-			 {
-				 startService(getServiceIntent());
-				 showToast("Service w³¹czony");
-				 
-			 }
-			 else if(tbService.getText()=="OFF")
-			 {
-				 stopService(getServiceIntent());
-				 showToast("Service wy³¹czony");
-			 }
+            String className = NaviService.class.getName();
+			 if(servicesManager.isServiceRunning(className))
+             {
+                 getContext().stopService(getServiceIntent());
+             }
+            else
+             {
+                 getContext().startService(getServiceIntent());
+             }
 		}
 	};
 	

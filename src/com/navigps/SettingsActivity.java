@@ -26,7 +26,7 @@ public class SettingsActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings);
 	
-		
+		preferencesProvider = new PreferencesProvider(this);
 		editMinTime = (EditText)findViewById(id.editMinTime);
 		editMinDistance	= (EditText)findViewById(id.editMinDistance);
 		buttonSave = (Button)findViewById(id.buttonSave);
@@ -38,14 +38,13 @@ public class SettingsActivity extends Activity implements OnClickListener{
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			Integer minTime = Integer.parseInt(editMinTime.getText().toString());
-			Float minDistance = Float.valueOf(editMinDistance.getText().toString());
+            int minTime = Integer.parseInt(editMinTime.getText().toString());
+			float minDistance = Float.valueOf(editMinDistance.getText().toString());
 			
 			preferencesProvider.setMinInterval(minTime);
 			preferencesProvider.setMinDistance(minDistance);
 			
-			Intent i = new Intent(SettingsActivity.this, MenuActivity.class);
-			startActivity(i); 
+			finish();
 		}
 	};
 	

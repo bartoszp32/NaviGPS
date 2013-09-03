@@ -3,6 +3,7 @@ package com.navigps.threads;
 import android.content.Context;
 import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.os.Looper;
 
 import com.navigps.listeners.MyLocationListener;
 import com.navigps.providers.PreferencesProvider;
@@ -29,20 +30,23 @@ public class LocationListenerThread extends AsyncTask<Void,Void,Void> {
     protected Void doInBackground(Void... voids) {
         while (!isServiceDestroyed)
         {
+
             if(preferencesProvider.isLocationEnabled())
             {
-                if(!isListener&&locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
+                if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
                 {
-                    float minDistance = preferencesProvider.getMinDistance();
-                    int minInterval  = preferencesProvider.getMinInterval();
-                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,minInterval,minDistance,locationListener);
+                   // Looper.prepare();
+                    publishProgress();
                     isListener = true;
                 }
             }
             else
             {
+               if(isListener)
+               {
                 locationManager.removeUpdates(locationListener);
                 isListener = false;
+               }
             }
             try {
                 Thread.sleep(preferencesProvider.getCheckInterval());
@@ -65,5 +69,9 @@ public class LocationListenerThread extends AsyncTask<Void,Void,Void> {
     @Override
     protected void onProgressUpdate(Void... values) {
         super.onProgressUpdate(values);
+        float minDistance = preferencesProvider.getMinDistance();
+        int minInterval  = preferencesProvider.getMinInterval();
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,minInterval,minDistance,locationListener);
+
     }
 }
