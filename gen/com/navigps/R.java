@@ -11,10 +11,11 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
-        public static final int row_and_prze_small=0x7f020001;
-        public static final int row_and_small=0x7f020002;
-        public static final int tlo=0x7f020003;
+        public static final int copy_tlo=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
+        public static final int row_and_prze_small=0x7f020002;
+        public static final int row_and_small=0x7f020003;
+        public static final int tlo=0x7f020004;
     }
     public static final class id {
         public static final int TextView01=0x7f070009;
