@@ -82,7 +82,7 @@
             android:layout_marginRight="14dp"
             android:text="ToggleButton"
             android:textOff="Service OFF"
-            android:textOn="Serwice ON" />
+            android:textOn="Service ON" />
 
         <TextView
             android:id="@+id/textView1"
