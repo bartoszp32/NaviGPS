@@ -32,8 +32,8 @@ public class MenuActivity extends Activity implements OnClickListener {
     private ServicesManager servicesManager;
     private PreferencesProvider preferencesProvider;
     private LocationManager locationManager;
-
-	@Override
+    private String serviceClassName= "";
+    @Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_menu);
@@ -42,7 +42,7 @@ public class MenuActivity extends Activity implements OnClickListener {
 						: UsersService.getInstance().getUser().getUserName()),
 				Toast.LENGTH_SHORT);
 		infoText.show();
-		
+        serviceClassName = NaviService.class.getName();
 			
 		buttonMapNavigation = (Button) findViewById(id.buttonMap);
 		buttonGpsNavigation = (Button) findViewById(id.buttonData);
@@ -65,7 +65,10 @@ public class MenuActivity extends Activity implements OnClickListener {
 
 		tbGpsService = (ToggleButton) findViewById(id.toggleButtonGPS);
 		tbService = (ToggleButton) findViewById(id.toggleButtonService);
-		
+
+        tbService.setChecked(servicesManager.isServiceRunning(serviceClassName));
+        tbGpsService.setChecked(preferencesProvider.isLocationEnabled());
+
 		tbGpsService.setOnClickListener(tbGpsServiceListener);
 		tbService.setOnClickListener(tbServiceListener);
 
@@ -85,8 +88,8 @@ public class MenuActivity extends Activity implements OnClickListener {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-            String className = NaviService.class.getName();
-			if(servicesManager.isServiceRunning(className))
+
+			if(servicesManager.isServiceRunning(serviceClassName))
             {
                 if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
                 {
@@ -94,20 +97,24 @@ public class MenuActivity extends Activity implements OnClickListener {
                     {
                         preferencesProvider.setLocationEnabled(false);
                         showToast("Disabling listener");
+                        tbGpsService.setChecked(false);
                     }
                     else
                     {
                         preferencesProvider.setLocationEnabled(true);
                         showToast("Enabling listener");
+                        tbGpsService.setChecked(true);
                     }
                 }
                 else
                 {
                     showToast("GPS NOT enabled");
+                    tbGpsService.setChecked(false);
                 }
             }
             else {
                 showToast("Service NOT running");
+                tbGpsService.setChecked(false);
             }
 		}
 	};
@@ -116,14 +123,16 @@ public class MenuActivity extends Activity implements OnClickListener {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-            String className = NaviService.class.getName();
-			 if(servicesManager.isServiceRunning(className))
+
+			 if(servicesManager.isServiceRunning(serviceClassName))
              {
                  getContext().stopService(getServiceIntent());
+                 tbService.setChecked(false);
              }
             else
              {
                  getContext().startService(getServiceIntent());
+                 tbService.setChecked(true);
              }
 		}
 	};
