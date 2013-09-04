@@ -31,7 +31,7 @@ public class MyLocationListener implements LocationListener {
         myLocation.accuracy = String.valueOf(location.getAccuracy());
         myLocation.velocity = String.valueOf(location.getSpeed());
         myLocation.userId = UsersService.getInstance().getUser().getUserId();
-        myLocation.date = DateProvider.getInstance().getDate();
+        myLocation.date = DateProvider.getDate();
         Intent intent = new Intent(LocationReceiver.ACTION_BROADCAST_LOCATION);
         MyLocationManager.getInstance().getService().saveLocation(myLocation);
         context.sendBroadcast(intent);
