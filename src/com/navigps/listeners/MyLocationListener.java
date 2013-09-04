@@ -31,28 +31,9 @@ public class MyLocationListener implements LocationListener {
         myLocation.accuracy = String.valueOf(location.getAccuracy());
         myLocation.velocity = String.valueOf(location.getSpeed());
         myLocation.userId = UsersService.getInstance().getUser().getUserId();
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        myLocation.date = DateProvider.getInstance().getDate();
+        myLocation.date = DateProvider.getDate();
         myLocation.altitude = String.valueOf(location.getAltitude());
-=======
-        myLocation.date = DateProvider.getDate();
->>>>>>> 4cb2b0df5d0fcc0e80771e1fcf35c4770d2d3a43
-=======
-        myLocation.date = DateProvider.getDate();
->>>>>>> 4cb2b0df5d0fcc0e80771e1fcf35c4770d2d3a43
-=======
-        myLocation.date = DateProvider.getDate();
->>>>>>> 4cb2b0df5d0fcc0e80771e1fcf35c4770d2d3a43
-=======
-        myLocation.date = DateProvider.getDate();
->>>>>>> 4cb2b0df5d0fcc0e80771e1fcf35c4770d2d3a43
-=======
-        myLocation.date = DateProvider.getDate();
->>>>>>> 4cb2b0df5d0fcc0e80771e1fcf35c4770d2d3a43
+
         Intent intent = new Intent(LocationReceiver.ACTION_BROADCAST_LOCATION);
         intent.putExtra(MyLocation.LOCATION_KEY,myLocation);
         MyLocationManager.getInstance().getService().saveLocation(myLocation);
