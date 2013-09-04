@@ -35,8 +35,12 @@ public class MyLocationListener implements LocationListener {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         myLocation.date = DateProvider.getInstance().getDate();
         myLocation.altitude = String.valueOf(location.getAltitude());
+=======
+        myLocation.date = DateProvider.getDate();
+>>>>>>> 4cb2b0df5d0fcc0e80771e1fcf35c4770d2d3a43
 =======
         myLocation.date = DateProvider.getDate();
 >>>>>>> 4cb2b0df5d0fcc0e80771e1fcf35c4770d2d3a43
