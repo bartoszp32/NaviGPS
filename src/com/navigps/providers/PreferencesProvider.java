@@ -68,7 +68,7 @@ public class PreferencesProvider {
         editor.putInt(LOW_BATTERY_LEVEL,level);
         editor.commit();
     }
-
+   
 
 
 }

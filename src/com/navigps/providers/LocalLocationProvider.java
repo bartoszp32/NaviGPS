@@ -3,6 +3,7 @@ package com.navigps.providers;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.navigps.models.MyLocation;
 import com.navigps.services.DatabaseService;
@@ -21,7 +22,8 @@ public class LocalLocationProvider implements LocationService {
     @Override
     public boolean saveLocation(MyLocation location) {
         databaseService.open();
-        boolean result = databaseService.db.insert(DatabaseService.DB_TABLE_LOCATIONS,"NULL",createContentValues(location)) != -1;
+        boolean result = databaseService.db.insert(DatabaseService.DB_TABLE_LOCATIONS,null,insertContentValues(location)) != -1;
+        Log.d("LOACAL","sfsfasfsafasfasfasfasf");
         databaseService.close();
         return result;
     }
@@ -68,6 +70,19 @@ public class LocalLocationProvider implements LocationService {
     {
         ContentValues cv = new ContentValues();
         cv.put(DatabaseService.KEY_ID,location.id);
+        cv.put(DatabaseService.LOCATION_LONGITUDE,location.longitude);
+        cv.put(DatabaseService.LOCATION_LATITUDE,location.latitude);
+        cv.put(DatabaseService.LOCATION_ACCURACY,location.accuracy);
+        cv.put(DatabaseService.LOCATION_ALTITUDE,location.altitude);
+        cv.put(DatabaseService.LOCATION_DATE,location.date);
+        cv.put(DatabaseService.LOCATION_VELOCITY,location.velocity);
+        cv.put(DatabaseService.LOCATION_USER_ID,location.userId);
+        return cv;
+    }
+    private ContentValues insertContentValues(MyLocation location)
+    {
+        ContentValues cv = new ContentValues();
+
         cv.put(DatabaseService.LOCATION_LONGITUDE,location.longitude);
         cv.put(DatabaseService.LOCATION_LATITUDE,location.latitude);
         cv.put(DatabaseService.LOCATION_ACCURACY,location.accuracy);

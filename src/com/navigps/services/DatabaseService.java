@@ -23,9 +23,9 @@ public class DatabaseService {
     public static final String LOCATION_LATITUDE = "latitude";
     public static final String LOCATION_ACCURACY = "accuracy";
     public static final String LOCATION_DATE = "date";
-    public static final String LOCATION_ALTITUDE = "long";
-    public static final String LOCATION_VELOCITY = "lat";
-    public static final String LOCATION_USER_ID = "acc";
+    public static final String LOCATION_ALTITUDE = "altitude";
+    public static final String LOCATION_VELOCITY = "velocity";
+    public static final String LOCATION_USER_ID = "user_id";
 
     private static final String DB_CREATE_LOCATIONS = "CREATE TABLE " + DB_TABLE_LOCATIONS + "( "
             + KEY_ID + " " + ID_OPTIONS

@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.navigps.listeners.MyLocationListener;
 import com.navigps.providers.PreferencesProvider;
+import com.navigps.services.UsersService;
 
 
 public class LocationListenerThread extends AsyncTask<Void,Void,Void> {
@@ -49,7 +50,9 @@ public class LocationListenerThread extends AsyncTask<Void,Void,Void> {
                 isListener = false;
                }
             }
+            UsersService.getInstance().getUser();
             try {
+
                 Thread.sleep(preferencesProvider.getCheckInterval());
             } catch (InterruptedException e) {
                 e.printStackTrace();

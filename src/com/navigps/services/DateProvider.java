@@ -13,7 +13,7 @@ public class DateProvider {
 
     private DateProvider() {
     }
-    public String getDate() {
+    public static String getDate() {
         SimpleDateFormat simpleDateHere = new SimpleDateFormat(
                 "yyyy-MM-dd kk:mm:ss");
         String date = simpleDateHere.format(new Date());

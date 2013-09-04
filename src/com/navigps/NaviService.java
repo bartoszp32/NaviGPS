@@ -3,6 +3,7 @@ package com.navigps;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -52,10 +53,13 @@ public class NaviService extends Service {
         Log.d(AppInfo.getLogTag(), START_SERVICE);
         isServiceDestroyed = false;
         initialize();
-
         registerReceiver(myConnectionReceiver, myConnectionReceiver.getIntentFilter());
         registerReceiver(batteryReceiver, batteryReceiver.getIntentFilter());
         startLocationThread();
+      //  ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+
+            MyLocationManager.getInstance().setService(localLocationProvider);
+
         super.onCreate();
     }
 
