@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:text="Twoje położenie"
+            android:text="Twoje położenie "
             android:textSize="20dp"
             android:textStyle="bold|italic" />
 
@@ -43,7 +43,7 @@
             android:layout_below="@+id/textYourLocalization"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="15dp"
-            android:text="Długość:  00.00000"
+            android:text="Długość:  00.00000 E "
             android:textSize="20dp"
             android:textStyle="italic" />
 
@@ -51,11 +51,10 @@
             android:id="@+id/textSeqenceSettings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-          
             android:layout_below="@+id/textHeight"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:text="Dodatkowe informacje"
+            android:text="Dodatkowe informacje "
             android:textSize="20dp"
             android:textStyle="bold|italic" />
 
@@ -66,7 +65,7 @@
             android:layout_alignLeft="@+id/textLength"
             android:layout_below="@+id/textLength"
             android:layout_marginTop="15dp"
-            android:text="Szerokość:  00.00000"
+            android:text="Szerokość:  00.00000 N "
             android:textSize="20dp"
             android:textStyle="italic" />
 
@@ -88,7 +87,7 @@
             android:layout_alignLeft="@+id/textHeight"
             android:layout_below="@+id/textSeqenceSettings"
             android:layout_marginTop="15dp"
-            android:text="Przebyty dystans:  1.2km"
+            android:text="Przebyty dystans:  0.0 km "
             android:textSize="20dp"
             android:textStyle="italic" />
 

@@ -3,31 +3,32 @@ package com.navigps;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.navigps.R.id;
 import com.navigps.models.MyLocation;
 import com.navigps.receivers.LocationReceiver;
 
-
 public class GpsNavigationActivity extends Activity{
     private MyLocationReceiver locationReceiver;
-    private TextView editVelocity;
-	private TextView editWidth;
-	private TextView editLength;
-	private TextView editHight;
+    private TextView textVelocity;
+	private TextView textLatitude;
+	private TextView textLongitude;
+	private TextView textAltitude;
+	private TextView textDistance;
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gps_navigation);
-		editVelocity = (TextView)findViewById(id.textVelocity);
-		editWidth = (TextView)findViewById(id.textWidth);
-		editLength = (TextView)findViewById(id.textLength);
-		editHight = (TextView)findViewById(id.textHeight);
+		textVelocity = (TextView)findViewById(id.textVelocity);
+		textLatitude = (TextView)findViewById(id.textWidth);
+		textLongitude = (TextView)findViewById(id.textLength);
+		textAltitude = (TextView)findViewById(id.textHeight);
+		textDistance = (TextView)findViewById(id.textDistance);
         locationReceiver = new MyLocationReceiver();
         this.registerReceiver(locationReceiver,locationReceiver.getIntentFilter());
+        Toast.makeText(getContext(),"Wait on GPS data",Toast.LENGTH_SHORT).show();
 	}
     protected void onDestroy()
     {
@@ -42,41 +43,72 @@ public class GpsNavigationActivity extends Activity{
     {
 
         @Override
-        public void onLocationChange(MyLocation location) {
+        public void onLocationChange(MyLocation location, float distance) {
                 if(location == null)
                 {
-                    Toast.makeText(getContext(),"NULL",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),"Wait on GPS data",Toast.LENGTH_SHORT).show();
                 }
                 else 
                 {
-                    sendToScreen(location);
+                    sendToScreen(location, distance);
                 }
         }
     }
     
-    private void sendToScreen(MyLocation location)
+    private void sendToScreen(MyLocation location, float distance)
 	{
 		Double doubleVelocity = Double.valueOf(location.velocity)*3.6;
-		int intVelocity = (int) (doubleVelocity*10);
-		doubleVelocity = (double) intVelocity/10;
-		String velocity = doubleVelocity.toString();
+		String velocity = roundTo(doubleVelocity.toString(), ".", 1);
+		String longitude = roundTo(location.longitude, ".", 5);
+		String latitude = roundTo(location.latitude, ".", 5);
+		String way = roundTo(String.valueOf(distance), ".", 1); 
 		
-		Double doubleLongitude = Double.valueOf(location.longitude);
-		int intLongitude = (int) (doubleLongitude*100000);
-		doubleLongitude = (double) intLongitude/100000;
-		String longitude = doubleLongitude.toString();
+		textVelocity.setText(velocity + " km/h");
+		textLongitude.setText("Szerokosc:  "+whatLongitude(longitude));
+		textLatitude.setText("Dlugosc:  "+whatLatitude(latitude));
+		textAltitude.setText("Wysokosc:  "+location.altitude+" m n.p.m.");
+		textDistance.setText("Przebyty dystans:  "+way+" km ");
 		
-		Double doubleLatitude = Double.valueOf(location.latitude);
-		int intLatitude = (int) (doubleLatitude*100000);
-		doubleLatitude = (double) intLatitude/100000;
-		String latitude = doubleLatitude.toString();
-		
-		editVelocity.setText(velocity + " km/h");
-		editLength.setText("Szerokoœæ:  "+longitude);
-		editWidth.setText("D³ugoœæ:  "+latitude);
-		editHight.setText("Wysokoœæ:  "+location.altitude+" m n.p.m.");
 	}
 
+    public static String roundTo(String value, String symbol, int places){
+    	if(value.contains(symbol)){
+	    	String[] splitted = value.split(symbol);
+	    	if(splitted[1].length() > places){
+	    		return splitted[0] + "." + splitted[1].substring(0,places);
+	    	}
+	    	else{
+	    		return value;
+	    	}
+    	}
+    	else{
+    		throw new IllegalArgumentException("String " + value + " does not contain " + symbol);
+    	}
+    }
+    public static String whatLongitude(String longitude)
+    {
+    	double tempLongitude = Double.parseDouble(longitude);
+    	if(tempLongitude > 0.0)
+    	{
+    		return longitude+ " E ";
+    	}
+    	else
+    	{
+    		return String.valueOf(-tempLongitude)+ " W ";
+    	}
+    }
+    public static String whatLatitude(String latitude)
+    {
+    	double tempLatitude = Double.parseDouble(latitude);
+    	if(tempLatitude > 0.0)
+    	{
+    		return latitude+ " N ";
+    	}
+    	else
+    	{
+    		return String.valueOf(-tempLatitude)+ " S ";
+    	}
+    }
+    
 }
-
 
