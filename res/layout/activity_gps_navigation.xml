@@ -6,80 +6,91 @@
     tools:context=".GpsNavigationActivity">
 
     <TextView
-        android:id="@+id/textWidth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textYourLocalization"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="Szerokość:  43.322"
-        android:textSize="20dp"
-        android:textStyle="italic" />
-
-    <TextView
-        android:id="@+id/textHeight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textLength"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:text="Wysokość:  145"
-        android:textSize="20dp"
-        android:textStyle="italic" />
-
-    <TextView
-        android:id="@+id/textLength"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textWidth"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:text="Długość:  18.424"
-        android:textSize="20dp"
-        android:textStyle="italic" />
-
-    <TextView
-        android:id="@+id/textDistance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textSeqenceSettings"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp"
-        android:text="Przebyty dystans:  1.2km"
-        android:textSize="20dp"
-        android:textStyle="italic" />
-
-    <TextView
-        android:id="@+id/textYourLocalization"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textVelocity"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
-        android:text="Twoje położenie"
-        android:textSize="20dp"
-        android:textStyle="bold|italic" />
-
-    <TextView
         android:id="@+id/textVelocity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textWidth"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:text="12 km/h"
+        android:text="0.0 km/h"
         android:textSize="50dp"
         android:textStyle="bold|italic" />
 
-    <TextView
-        android:id="@+id/textSeqenceSettings"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textHeight"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="Dodatkowe informacje"
-        android:textSize="20dp"
-        android:textStyle="bold|italic" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textVelocity"
+        android:layout_marginTop="20dp" >
+
+        <TextView
+            android:id="@+id/textYourLocalization"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="Twoje położenie "
+            android:textSize="20dp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:id="@+id/textLength"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textYourLocalization"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="15dp"
+            android:text="Długość:  00.00000 E "
+            android:textSize="20dp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textSeqenceSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textHeight"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Dodatkowe informacje "
+            android:textSize="20dp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:id="@+id/textWidth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textLength"
+            android:layout_below="@+id/textLength"
+            android:layout_marginTop="15dp"
+            android:text="Szerokość:  00.00000 N "
+            android:textSize="20dp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textHeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textWidth"
+            android:layout_below="@+id/textWidth"
+            android:layout_marginTop="15dp"
+            android:text="Wysokość:  000.0 m n.p.m."
+            android:textSize="20dp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textHeight"
+            android:layout_below="@+id/textSeqenceSettings"
+            android:layout_marginTop="15dp"
+            android:text="Przebyty dystans:  0.0 km "
+            android:textSize="20dp"
+            android:textStyle="italic" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

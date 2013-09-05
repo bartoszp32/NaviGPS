@@ -91,7 +91,7 @@
             android:layout_above="@+id/toggleButtonGPS"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="14dp"
-            android:text="Stan aktywności systemowych"
+            android:text="Stan usług"
             android:textStyle="bold|italic" />
 
     </RelativeLayout>

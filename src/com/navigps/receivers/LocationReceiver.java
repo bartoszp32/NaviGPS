@@ -12,36 +12,37 @@ import com.navigps.services.ReceiverService;
 
 
 public abstract  class LocationReceiver extends BroadcastReceiver  implements ReceiverService{
-     public LocationReceiver() {
-        intentFilter = new IntentFilter(ACTION_BROADCAST_LOCATION);
-        }
+    public LocationReceiver() {
+       intentFilter = new IntentFilter(ACTION_BROADCAST_LOCATION);
+       }
 
-    public abstract void onLocationChange(MyLocation location);
-    public static final String ACTION_BROADCAST_LOCATION = "Location_action";
-    private IntentFilter intentFilter;
-    @Override
-    public void onReceive(Context context, Intent intent) {
+   public abstract void onLocationChange(MyLocation location, float distance);
+   public static final String ACTION_BROADCAST_LOCATION = "Location_action";
+   private IntentFilter intentFilter;
+   @Override
+   public void onReceive(Context context, Intent intent) {
 
-        Bundle bundle =  intent.getExtras();
-        MyLocation location = bundle.getParcelable(MyLocation.LOCATION_KEY);
-        onLocationChange(location);
+       Bundle bundle =  intent.getExtras();
+       MyLocation location = bundle.getParcelable(MyLocation.LOCATION_KEY);
+	   float distance = bundle.getFloat("distance");
+       onLocationChange(location, distance);
 
 
-    }
+   }
 
-    @Override
-    public IntentFilter getIntentFilter() {
-        return intentFilter;
-    }
+   @Override
+   public IntentFilter getIntentFilter() {
+       return intentFilter;
+   }
 
-    @Override
-    public String getOnRegisterMessage() {
-        return ClassService.getRegisterText(this.getClass());
-    }
+   @Override
+   public String getOnRegisterMessage() {
+       return ClassService.getRegisterText(this.getClass());
+   }
 
-    @Override
-    public String getOnUnregisterMessage() {
-        return ClassService.getUnregisterName(this.getClass());
-    }
+   @Override
+   public String getOnUnregisterMessage() {
+       return ClassService.getUnregisterName(this.getClass());
+   }
 
 }

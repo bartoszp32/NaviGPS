@@ -5,22 +5,19 @@ import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
-
 import com.navigps.managers.MyLocationManager;
 import com.navigps.models.MyLocation;
 import com.navigps.receivers.LocationReceiver;
 import com.navigps.services.DateProvider;
 import com.navigps.services.UsersService;
 
-
 public class MyLocationListener implements LocationListener {
     Context context;
-
+	Location lastLocation = null;
+	private static float distance;
     public MyLocationListener(Context context) {
         this.context = context;
-
-
-
+        distance = 0.0f;
     }
 
     @Override
@@ -32,12 +29,23 @@ public class MyLocationListener implements LocationListener {
         myLocation.velocity = String.valueOf(location.getSpeed());
         myLocation.userId = UsersService.getInstance().getUser().getUserId();
         myLocation.date = DateProvider.getDate();
+<<<<<<< HEAD
         myLocation.altitude = String.valueOf(location.getAltitude());
+=======
+        myLocation.altitude = String.valueOf(location.getAltitude()); 
+	   
+        MyLocationManager.getInstance().getService().saveLocation(myLocation);
+        
+        if(lastLocation != null)
+        {
+        	distance += location.distanceTo(lastLocation);
+        }
+>>>>>>> 3bb8bd05e8da140398b58677a9685722680b0adc
         Intent intent = new Intent(LocationReceiver.ACTION_BROADCAST_LOCATION);
         intent.putExtra(MyLocation.LOCATION_KEY,myLocation);
-        MyLocationManager.getInstance().getService().saveLocation(myLocation);
+        intent.putExtra("distance",distance);
         context.sendBroadcast(intent);
-
+        lastLocation = location;
     }
 
     @Override
@@ -56,3 +64,5 @@ public class MyLocationListener implements LocationListener {
     }
 
 }
+
+

@@ -159,8 +159,8 @@ public class MenuActivity extends Activity implements OnClickListener {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			Intent i = new Intent(MenuActivity.this, GpsNavigationActivity.class);
-			startActivity(i);
+				Intent i = new Intent(MenuActivity.this, GpsNavigationActivity.class);
+				startActivity(i);
 		}
 	};
 	private OnClickListener definedRouteListener = new OnClickListener() {
