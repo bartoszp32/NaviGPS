@@ -29,9 +29,8 @@ public class MyLocationListener implements LocationListener {
         myLocation.velocity = String.valueOf(location.getSpeed());
         myLocation.userId = UsersService.getInstance().getUser().getUserId();
         myLocation.date = DateProvider.getDate();
-<<<<<<< HEAD
         myLocation.altitude = String.valueOf(location.getAltitude());
-=======
+
         myLocation.altitude = String.valueOf(location.getAltitude()); 
 	   
         MyLocationManager.getInstance().getService().saveLocation(myLocation);
@@ -40,7 +39,7 @@ public class MyLocationListener implements LocationListener {
         {
         	distance += location.distanceTo(lastLocation);
         }
->>>>>>> 3bb8bd05e8da140398b58677a9685722680b0adc
+
         Intent intent = new Intent(LocationReceiver.ACTION_BROADCAST_LOCATION);
         intent.putExtra(MyLocation.LOCATION_KEY,myLocation);
         intent.putExtra("distance",distance);

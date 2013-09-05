@@ -61,19 +61,20 @@ public class GpsNavigationActivity extends Activity{
 		String velocity = roundTo(doubleVelocity.toString(), ".", 1);
 		String longitude = roundTo(location.longitude, ".", 5);
 		String latitude = roundTo(location.latitude, ".", 5);
-		String way = roundTo(String.valueOf(distance), ".", 1); 
-		
+		String way = roundTo(String.valueOf(distance), ".", 1);
+		String altitude = roundTo(location.altitude,".",2);
 		textVelocity.setText(velocity + " km/h");
 		textLongitude.setText("Szerokosc:  "+whatLongitude(longitude));
 		textLatitude.setText("Dlugosc:  "+whatLatitude(latitude));
-		textAltitude.setText("Wysokosc:  "+location.altitude+" m n.p.m.");
+		textAltitude.setText("Wysokosc:  "+altitude+" m n.p.m.");
 		textDistance.setText("Przebyty dystans:  "+way+" km ");
 		
 	}
 
     public static String roundTo(String value, String symbol, int places){
     	if(value.contains(symbol)){
-	    	String[] splitted = value.split(symbol);
+
+	    	String[] splitted = value.split("\\"+symbol);
 	    	if(splitted[1].length() > places){
 	    		return splitted[0] + "." + splitted[1].substring(0,places);
 	    	}
