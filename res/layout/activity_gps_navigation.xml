@@ -2,8 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/tlo" 
-    tools:context=".GpsNavigationActivity">
+    android:background="@drawable/tlo"
+    android:scrollbarAlwaysDrawHorizontalTrack="true"
+    tools:context=".GpsNavigationActivity" >
 
     <TextView
         android:id="@+id/textVelocity"
@@ -11,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:text="0.0 km/h"
         android:textSize="50dp"
         android:textStyle="bold|italic" />
@@ -23,7 +24,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/textVelocity"
-        android:layout_marginTop="20dp" >
+        android:layout_marginTop="10dp" >
 
         <TextView
             android:id="@+id/textYourLocalization"
@@ -42,7 +43,7 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/textYourLocalization"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:text="Długość:  00.00000 E "
             android:textSize="20dp"
             android:textStyle="italic" />
@@ -53,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textHeight"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:text="Dodatkowe informacje "
             android:textSize="20dp"
             android:textStyle="bold|italic" />
@@ -64,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/textLength"
             android:layout_below="@+id/textLength"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:text="Szerokość:  00.00000 N "
             android:textSize="20dp"
             android:textStyle="italic" />
@@ -75,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/textWidth"
             android:layout_below="@+id/textWidth"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:text="Wysokość:  000.0 m n.p.m."
             android:textSize="20dp"
             android:textStyle="italic" />
@@ -86,8 +87,52 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/textHeight"
             android:layout_below="@+id/textSeqenceSettings"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:text="Przebyty dystans:  0.0 km "
+            android:textSize="20dp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textAccuracy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textDistance"
+            android:layout_below="@+id/textDistance"
+            android:layout_marginTop="10dp"
+            android:text="Dokładność:  0.0 m "
+            android:textSize="20dp"
+            android:textStyle="italic"  />
+
+        <TextView
+            android:id="@+id/textTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textMaxVelocity"
+            android:layout_below="@+id/textMaxVelocity"
+            android:layout_marginTop="10dp"
+            android:text="Czas trasy:  00:00:00 "
+            android:textSize="20dp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textAverageVelocity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textAccuracy"
+            android:layout_below="@+id/textAccuracy"
+            android:layout_marginTop="10dp"
+            android:text="Średnia prędkość:  0.0 km/h "
+            android:textSize="20dp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textMaxVelocity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textAverageVelocity"
+            android:layout_below="@+id/textAverageVelocity"
+            android:layout_marginTop="10dp"
+            android:text="Max prędkość:  0.0 km/h "
             android:textSize="20dp"
             android:textStyle="italic" />
 

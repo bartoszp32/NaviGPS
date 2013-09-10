@@ -2,7 +2,6 @@ package com.navigps;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -10,9 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.navigps.R;
-import com.navigps.managers.MyLocationManager;
 import com.navigps.models.AdminModel;
 import com.navigps.models.User;
 import com.navigps.services.UsersService;

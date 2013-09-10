@@ -2,15 +2,12 @@ package com.navigps;
 
 import com.navigps.R.id;
 import com.navigps.providers.PreferencesProvider;
-
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ToggleButton;
 
 
 public class SettingsActivity extends Activity implements OnClickListener{

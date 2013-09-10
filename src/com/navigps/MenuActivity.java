@@ -3,16 +3,16 @@ package com.navigps;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.PowerManager.WakeLock;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-
 import com.navigps.R.id;
 import com.navigps.managers.ServicesManager;
 import com.navigps.providers.PreferencesProvider;
@@ -21,6 +21,7 @@ import com.navigps.services.UsersService;
 public class MenuActivity extends Activity implements OnClickListener {
 	private String login;
 	private String password;
+	private WakeLock wakeLock;
 	private Button buttonMapNavigation;
 	private Button buttonGpsNavigation;
 	private Button buttonDefinedRoute;
@@ -72,7 +73,7 @@ public class MenuActivity extends Activity implements OnClickListener {
 		tbGpsService.setOnClickListener(tbGpsServiceListener);
 		tbService.setOnClickListener(tbServiceListener);
 
-
+		
 		
 	}
 	
@@ -183,7 +184,7 @@ public class MenuActivity extends Activity implements OnClickListener {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			Uri uri = Uri.parse("http://www.sledz.webd.pl/ai");
+			Uri uri = Uri.parse("http://www.sledz.cba.pl");
             startActivity(new Intent(Intent.ACTION_VIEW, uri));
 		}
 	};
