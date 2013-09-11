@@ -30,13 +30,15 @@ public class LoginActivity extends Activity implements OnClickListener{
 		buttonLogin = (Button)findViewById(R.id.zaloguj);
 		
 		buttonLogin.setOnClickListener((OnClickListener) this);
+		loginText.setText("admin");
+		passwordText.setText("admin");
 
 	}
 
 	public void onClick(View v) {
 		// Pobieramy tekst z pola
-	    String writeLogin = "admin";//loginText.getText().toString();
-	    String writePassword = "admin";//passwordText.getText().toString();
+	    String writeLogin = loginText.getText().toString();
+	    String writePassword = passwordText.getText().toString();
 	    //String wpisanyText = "Login "+wpisanyLogin+"\nHaslo "+wpisanyHaslo;
         AdminModel adminModel = new AdminModel();
 	    User admin = adminModel.getAdmin();
