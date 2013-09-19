@@ -157,7 +157,7 @@ public class GpsNavigationActivity extends Activity{
     		time[0]-=1;
     		time[1]=(char) (time[1]+60);
     	}
-    	return (String) (time[0]==0?"00":time[0])+":"+(time[1]==0?"00":time[1])+":"+(time[2]==0?"00":time[2]);
+    	return String.valueOf(time[0]==0?"00":time[0])+":"+(time[1]==0?"00":time[1])+":"+(time[2]==0?"00":time[2]);
 	}
     public String avrVelocity(String time, String distance) {
     	double hour = Double.parseDouble(time.substring(0, 2))+Double.parseDouble(time.substring(3, 5))/60+Double.parseDouble(time.substring(6, 8))/3600;
