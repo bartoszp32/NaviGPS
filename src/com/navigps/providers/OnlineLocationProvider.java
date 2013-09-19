@@ -35,6 +35,7 @@ public class OnlineLocationProvider implements LocationService {
 		params.add(new BasicNameValuePair("Longitude", location.longitude));
 		params.add(new BasicNameValuePair("Latitude", location.latitude));
 		params.add(new BasicNameValuePair("Altitude", location.altitude));
+		params.add(new BasicNameValuePair("Accuracy", location.accuracy));
 		params.add(new BasicNameValuePair("Time", location.date));
 		
 

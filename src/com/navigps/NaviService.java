@@ -11,6 +11,7 @@ import com.navigps.providers.OnlineLocationProvider;
 import com.navigps.providers.PreferencesProvider;
 import com.navigps.receivers.BatteryReceiver;
 import com.navigps.receivers.ConnectionReceiver;
+import com.navigps.receivers.NotificationReceiver;
 import com.navigps.services.AppInfo;
 import com.navigps.services.UsersService;
 import com.navigps.threads.FromLocalToOnlineSenderThread;
@@ -26,6 +27,7 @@ public class NaviService extends Service {
     private LocalLocationProvider localLocationProvider;
     private OnlineLocationProvider onlineLocationProvider;
     private BatteryReceiver batteryReceiver;
+    private NotificationReceiver notificationReceiver;
 
     LocationListenerThread locationListenerThread;
 
@@ -42,6 +44,7 @@ public class NaviService extends Service {
         localLocationProvider = new LocalLocationProvider(getContext());
         onlineLocationProvider = new OnlineLocationProvider();
         batteryReceiver = new BatteryReceiver(getContext());
+        notificationReceiver = new NotificationReceiver(getContext());
 
 
     }
@@ -53,6 +56,7 @@ public class NaviService extends Service {
         initialize();
         registerReceiver(myConnectionReceiver, myConnectionReceiver.getIntentFilter());
         registerReceiver(batteryReceiver, batteryReceiver.getIntentFilter());
+        registerReceiver(notificationReceiver, notificationReceiver.getIntentFilter());
         startLocationThread();
       //  ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
 
@@ -70,6 +74,7 @@ public class NaviService extends Service {
         Log.d(AppInfo.getLogTag(), STOP_SERVICE);
         unregisterReceiver(myConnectionReceiver);
         unregisterReceiver(batteryReceiver);
+        unregisterReceiver(notificationReceiver);
         isServiceDestroyed = true;
         preferencesProvider.setLocationEnabled(false);
         locationListenerThread.setServiceDestroyed(isServiceDestroyed);

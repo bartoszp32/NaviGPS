@@ -8,7 +8,7 @@ public class AdminModel {
         admin = new User();
         admin.setUserName("admin");
         admin.setUserPassword("admin");
-        admin.setUserId(-1);
+        admin.setUserId(3);
         admin.setAdmin(true);
     }
     public User getAdmin()

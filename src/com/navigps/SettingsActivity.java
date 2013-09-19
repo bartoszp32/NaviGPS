@@ -3,18 +3,20 @@ package com.navigps;
 import com.navigps.R.id;
 import com.navigps.providers.PreferencesProvider;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class SettingsActivity extends Activity implements OnClickListener{
 	
-	private static final String DEFAULT_MIN_TIME = "200";
+	private static final String DEFAULT_MIN_TIME = "3000";
 	private static final String DEFAULT_MIN_DISTANCE = "100.0";
-	private static final String DEFAULT_MIN_TIME_CHECK = "300";
+	private static final String DEFAULT_MIN_TIME_CHECK = "3000";
 	private PreferencesProvider preferencesProvider;
 	private Button buttonSave;
 	private	Button buttonCancel;
@@ -48,6 +50,7 @@ public class SettingsActivity extends Activity implements OnClickListener{
         
 		
 	}
+
 	private OnClickListener cancelListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
@@ -68,7 +71,11 @@ public class SettingsActivity extends Activity implements OnClickListener{
 			preferencesProvider.setMinDistance(minDistance);
 			preferencesProvider.setCheckInterval(checkTime);
 			
-			finish();
+			editMinTime.setText(String.valueOf(preferencesProvider.getMinInterval()));
+			editMinDistance.setText(String.valueOf(preferencesProvider.getMinDistance()));
+			editCheckTime.setText(String.valueOf(preferencesProvider.getCheckInterval()));
+			
+			makeToast("Przywrócono domyœlne!");
 		}
 	};
 	
@@ -85,6 +92,7 @@ public class SettingsActivity extends Activity implements OnClickListener{
 			preferencesProvider.setCheckInterval(checkTime);
 			
 			finish();
+			
 		}
 	};
 	
@@ -99,7 +107,9 @@ public class SettingsActivity extends Activity implements OnClickListener{
 		// TODO Auto-generated method stub
 		
 	}
-
+	public void makeToast(String text) {
+		Toast.makeText(this, text, Toast.LENGTH_SHORT).show();		
+	}
 	
 
 }

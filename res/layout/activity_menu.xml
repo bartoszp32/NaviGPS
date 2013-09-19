@@ -1,99 +1,104 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/AbsoluteLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/tlo"
-    tools:context=".MenuActivity">
+    android:background="@drawable/tlo" >
 
-    <Button
-        android:id="@+id/buttonMap"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/navi_map" />
-    
-    <Button
-        android:id="@+id/buttonData"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:text="@string/data_navi" />
-    
-    <Button
-        android:id="@+id/buttonDefinedRoute"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/defined_route" />
-    
-    <Button
-        android:id="@+id/buttonCreateNewRoute"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/create_route" />
-    
-    <Button
-        android:id="@+id/buttonToSite"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:text="@string/to_site" />
-    
-    <Button
-        android:id="@+id/buttonSetting"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:text="@string/settings" />
-
-    <RelativeLayout
+    <CheckBox
+        android:id="@+id/myMap"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent" >
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="20dp"
+         android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:button="@drawable/btn_light_map"
+        android:minWidth="150dp" />
+    
+    <CheckBox
+        android:id="@+id/myGps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/myMap"
+        android:layout_alignBottom="@+id/myMap"
+        android:layout_alignRight="@+id/myRoute"
+        android:layout_toRightOf="@+id/myMap"
+        android:button="@drawable/btn_light_gps"
+        android:minWidth="150dp" />
+    
+    <CheckBox
+        android:id="@+id/myRoute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/myCreate"
+        android:layout_alignBottom="@+id/myCreate"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="18dp"
+        android:layout_toRightOf="@+id/myCreate"
+        android:button="@drawable/btn_light_route"
+        android:minWidth="150dp" />
+    
+    <CheckBox
+        android:id="@+id/mySettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/mySite"
+        android:layout_alignBottom="@+id/mySite"
+        android:layout_alignLeft="@+id/myRoute"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="18dp"
+        android:button="@drawable/btn_light_settings"
+        android:minWidth="150dp" />
 
-        <ToggleButton
-            android:id="@+id/toggleButtonGPS"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:text="ToggleButton"
-            android:textOff="GPS OFF"
-            android:textOn="GPS ON" />
+    <CheckBox
+        android:id="@+id/myCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/myMap"
+        android:layout_below="@+id/myMap"
+        android:layout_marginTop="20dp"
+        android:button="@drawable/btn_light_create"
+        android:minWidth="150dp" />
 
-        <ToggleButton
-            android:id="@+id/toggleButtonService"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="14dp"
-            android:text="ToggleButton"
-            android:textOff="Service OFF"
-            android:textOn="Service ON" />
+    <CheckBox
+        android:id="@+id/mySite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/myCreate"
+        android:layout_below="@+id/myCreate"
+        android:layout_marginTop="20dp"
+        android:button="@drawable/btn_light_site"
+        android:minWidth="150dp" />
 
-        <TextView
-            android:id="@+id/textAccuracy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/toggleButtonGPS"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="14dp"
-            android:text="Stan usług"
-            android:textStyle="bold|italic" />
+    <CheckBox
+        android:id="@+id/myBoxService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:button="@drawable/btn_service_service"
+        android:minHeight="96dp"
+        android:minWidth="96dp" />
 
-    </RelativeLayout>
+    <CheckBox
+        android:id="@+id/myBoxGps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/myBoxService"
+        android:button="@drawable/btn_service_gps"
+        android:minHeight="96dp"
+        android:minWidth="96dp" />
 
-</TableLayout>
+    <TextView
+        android:id="@+id/textServices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/myBoxGps"
+        android:layout_alignBottom="@+id/myBoxGps"
+        android:layout_alignLeft="@+id/mySite"
+        android:textStyle="bold|italic"
+        android:textSize="25sp"
+        android:text="USŁUGI:" />
+
+</RelativeLayout>
