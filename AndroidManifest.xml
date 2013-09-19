@@ -15,7 +15,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/ic_launcher_1"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
 
@@ -39,10 +39,16 @@
             	  android:screenOrientation="portrait"/>
         <activity android:name="com.navigps.CreateNewRouteActivity"
             	  android:screenOrientation="portrait"/>
-        <activity android:name="com.navigps.DefinedRouteActivity"
+        <activity android:name="com.navigps.DefinedRouteMapActivity"
             	  android:screenOrientation="portrait"/>
         <activity android:name="com.navigps.GpsNavigationActivity"
             	  android:screenOrientation="portrait"/>		
+        <activity android:name="com.navigps.DefinedRouteActivity"
+            	  android:screenOrientation="portrait"/>	
+        <activity android:name="com.navigps.EditProductActivity"
+            	  android:screenOrientation="portrait"/>
+        <activity android:name="com.navigps.NewProductActivity"	
+                  android:screenOrientation="portrait"/>	
 
         <service android:name="com.navigps.NaviService"/>
     </application>

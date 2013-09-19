@@ -3,6 +3,7 @@ package com.navigps;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,6 +44,9 @@ public class GpsNavigationActivity extends Activity{
         locationReceiver = new MyLocationReceiver();
         this.registerReceiver(locationReceiver,locationReceiver.getIntentFilter());
         Toast.makeText(getContext(),"Wait on GPS data",Toast.LENGTH_SHORT).show();
+        //String str = avrVelocity("01:00:00", "60.0"); 
+        //Log.d("AVR", str);
+        
 	}
     protected void onDestroy()
     {
@@ -87,7 +91,9 @@ public class GpsNavigationActivity extends Activity{
 			maxVelocity=Double.valueOf(velocity);
 		}
 		String thisTime = routeTime(dateFirst, location.date);
-		String average = roundTo(avrVelocity(thisTime, way), ".", 1);
+		String average = avrVelocity(thisTime, String.valueOf(distance/1000.0));
+		
+		average = roundTo(average, ".", 1);
 		
 		textVelocity.setText(velocity + " km/h");
 		textLongitude.setText("Szerokosc:  "+whatLongitude(longitude));
@@ -97,7 +103,7 @@ public class GpsNavigationActivity extends Activity{
 		textAccuracy.setText("Dokladnosc:  "+location.accuracy+" m ");
 		textMaxVelocity.setText("Max predkosc:  "+maxVelocity+" km/h ");
 		textAverageVelocity.setText("Srednia predkosc:  "+average+" km/h ");
-		textTime.setText("Czas trasy:  "+thisTime);
+		textTime.setText("Czas trasy:  "+thisTime+" ");
 	}
 
     public static String roundTo(String value, String symbol, int places){
@@ -140,29 +146,49 @@ public class GpsNavigationActivity extends Activity{
     	}
     }
     public String routeTime(String firstTime, String currentTime) {
-    	char[] timeFirst;
-    	char[] timeCurrent;
-    	char[] time = new char[3];
-    	timeFirst = firstTime.toCharArray();
-    	timeCurrent = currentTime.toCharArray();
-    	time[0] = (char) (timeCurrent[11]*10+timeCurrent[12]-timeFirst[11]+timeFirst[11]);
-    	time[1] = (char) (timeCurrent[14]*10+timeCurrent[15]-timeFirst[14]+timeFirst[15]);
-    	time[2] = (char) (timeCurrent[17]*10+timeCurrent[18]-timeFirst[17]+timeFirst[18]);
+    	int[] timeFirst = new int[3];
+    	int[] timeCurrent = new int[3];
+    	int[] time = new int[3];
+    	timeFirst[0] = Integer.parseInt(firstTime.substring(11, 13));
+    	timeFirst[1] = Integer.parseInt(firstTime.substring(14, 16));
+    	timeFirst[2] = Integer.parseInt(firstTime.substring(17, 19));
+    	timeCurrent[0] = Integer.parseInt(currentTime.substring(11, 13));
+    	timeCurrent[1] = Integer.parseInt(currentTime.substring(14, 16));
+    	timeCurrent[2] = Integer.parseInt(currentTime.substring(17, 19));
     	
+    	Log.d("TOOO Cu", String.valueOf(timeCurrent[0])+":"+String.valueOf(timeCurrent[1])+":"+String.valueOf(timeCurrent[2]));
+    	Log.d("TOOO Fi", String.valueOf(timeFirst[0])+":"+String.valueOf(timeFirst[1])+":"+String.valueOf(timeFirst[2]));
+    	time[0] = timeCurrent[0]-timeFirst[0];
+    	time[1] = timeCurrent[1]-timeFirst[1];
+    	time[2] = timeCurrent[2]-timeFirst[2];
+    	Log.d("TOOO", String.valueOf(time[0])+":"+String.valueOf(time[1])+":"+String.valueOf(time[2]));
     	if(time[2]<0){
     		time[1]-=1;
-    		time[2]=(char) (time[2]+60);
+    		time[2]=time[2]+60;
 		}
     	if(time[1]<0){
     		time[0]-=1;
-    		time[1]=(char) (time[1]+60);
+    		time[1]=time[1]+60;
     	}
+<<<<<<< HEAD
     	return String.valueOf(time[0]==0?"00":time[0])+":"+(time[1]==0?"00":time[1])+":"+(time[2]==0?"00":time[2]);
+=======
+    	return String.valueOf(time[0]<=9?"0"+time[0]:time[0])+":"+(time[1]<=9?"0"+time[1]:time[1])+":"+(time[2]<=9?"0"+time[2]:time[2]);
+>>>>>>> f30e812ed6275d23d876ddcc09aff7818e694338
 	}
     public String avrVelocity(String time, String distance) {
-    	double hour = Double.parseDouble(time.substring(0, 2))+Double.parseDouble(time.substring(3, 5))/60+Double.parseDouble(time.substring(6, 8))/3600;
-		double dist = Double.parseDouble(distance);
-    	return String.valueOf(hour/dist);
+    	double hour = Double.parseDouble(time.substring(0, 2))+Double.parseDouble(time.substring(3, 5))/60.0+Double.parseDouble(time.substring(6, 8))/3600.0;
+		Log.d("TIME", String.valueOf(hour));
+    	double dist = Double.parseDouble(distance);
+    	Log.d("DIST", String.valueOf(dist));
+    	double value = 0.0;
+    	Log.d("DIST", String.valueOf(value));
+    	if (dist>0.0&&hour>0.0) {
+			value = dist/hour;
+		}
+    	Log.d("DIST2", String.valueOf(value));
+    	return String.valueOf(value);
+    			
 	}
 }
 

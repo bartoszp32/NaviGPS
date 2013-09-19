@@ -11,25 +11,27 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 import com.navigps.R.id;
 import com.navigps.managers.ServicesManager;
 import com.navigps.providers.PreferencesProvider;
+import com.navigps.receivers.NotificationReceiver;
 import com.navigps.services.UsersService;
 
 public class MenuActivity extends Activity implements OnClickListener {
 	private String login;
 	private String password;
 	private WakeLock wakeLock;
-	private Button buttonMapNavigation;
-	private Button buttonGpsNavigation;
-	private Button buttonDefinedRoute;
-	private Button buttonCreateRoute;
-	private Button buttonToSite;
-	private Button buttonSettings;
-	private ToggleButton tbService;
-	private ToggleButton tbGpsService;
+	private CheckBox buttonMapNavigation;
+	private CheckBox buttonGpsNavigation;
+	private CheckBox buttonDefinedRoute;
+	private CheckBox buttonCreateRoute;
+	private CheckBox buttonToSite;
+	private CheckBox buttonSettings;
+	private CheckBox tbService;
+	private CheckBox tbGpsService;
     private ServicesManager servicesManager;
     private PreferencesProvider preferencesProvider;
     private LocationManager locationManager;
@@ -45,12 +47,12 @@ public class MenuActivity extends Activity implements OnClickListener {
 		infoText.show();
         serviceClassName = NaviService.class.getName();
 			
-		buttonMapNavigation = (Button) findViewById(id.buttonMap);
-		buttonGpsNavigation = (Button) findViewById(id.buttonData);
-		buttonDefinedRoute = (Button) findViewById(id.buttonDefinedRoute);
-		buttonCreateRoute = (Button) findViewById(id.buttonCreateNewRoute);
-		buttonToSite = (Button) findViewById(id.buttonToSite);
-		buttonSettings = (Button) findViewById(id.buttonSetting);
+		buttonMapNavigation = (CheckBox) findViewById(id.myMap);
+		buttonGpsNavigation = (CheckBox) findViewById(id.myGps);
+		buttonDefinedRoute = (CheckBox) findViewById(id.myRoute);
+		buttonCreateRoute = (CheckBox) findViewById(id.myCreate);
+		buttonToSite = (CheckBox) findViewById(id.mySite);
+		buttonSettings = (CheckBox) findViewById(id.mySettings);
 
         servicesManager = new ServicesManager(this);
         preferencesProvider = new PreferencesProvider(this);
@@ -64,8 +66,8 @@ public class MenuActivity extends Activity implements OnClickListener {
 		buttonSettings.setOnClickListener(settingsListener);
 		
 
-		tbGpsService = (ToggleButton) findViewById(id.toggleButtonGPS);
-		tbService = (ToggleButton) findViewById(id.toggleButtonService);
+		tbGpsService = (CheckBox) findViewById(id.myBoxGps);
+		tbService = (CheckBox) findViewById(id.myBoxService);
 
         tbService.setChecked(servicesManager.isServiceRunning(serviceClassName));
         tbGpsService.setChecked(preferencesProvider.isLocationEnabled());
@@ -130,6 +132,8 @@ public class MenuActivity extends Activity implements OnClickListener {
                  getContext().stopService(getServiceIntent());
                  tbService.setChecked(false);
                  preferencesProvider.setLocationEnabled(false);
+                 preferencesProvider.setNotification(!preferencesProvider.getNotification());
+                 getContext().sendBroadcast(NotificationReceiver.sendIntent());
                  tbGpsService.setChecked(false);
              }
             else
@@ -168,6 +172,7 @@ public class MenuActivity extends Activity implements OnClickListener {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
+	
 			Intent i = new Intent(MenuActivity.this, DefinedRouteActivity.class);
 			startActivity(i);
 		}
@@ -184,7 +189,7 @@ public class MenuActivity extends Activity implements OnClickListener {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			Uri uri = Uri.parse("http://www.sledz.cba.pl");
+			Uri uri = Uri.parse("http://www.navigps.cba.pl");
             startActivity(new Intent(Intent.ACTION_VIEW, uri));
 		}
 	};

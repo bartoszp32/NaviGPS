@@ -12,6 +12,7 @@ public class PreferencesProvider {
     private static final String MIN_INTERVAL_KEY = "min_interval";
     private static final String CHECK_INTERVAL = "check_interval";
     private static final String LOW_BATTERY_LEVEL = "low_battery_level";
+    private static final String NOTIFICATION = "notification";
 
 
     public PreferencesProvider(Context context) {
@@ -39,7 +40,7 @@ public class PreferencesProvider {
 
     }
     public int getMinInterval() {
-        return sharedPreferences.getInt(MIN_INTERVAL_KEY,2*1000);
+        return sharedPreferences.getInt(MIN_INTERVAL_KEY,3000);
     }
     public void setMinInterval(int minInterval)
     {
@@ -49,7 +50,7 @@ public class PreferencesProvider {
 
     }
     public int getCheckInterval() {
-        return sharedPreferences.getInt(CHECK_INTERVAL,3*1000);
+        return sharedPreferences.getInt(CHECK_INTERVAL,3000);
     }
     public void setCheckInterval(int minCheckInterval)
     {
@@ -70,5 +71,15 @@ public class PreferencesProvider {
     }
    
 
+    public boolean getNotification()
+    {
+       return sharedPreferences.getBoolean(NOTIFICATION,false);
+    }
+    public void setNotification(boolean notification)
+    {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(NOTIFICATION, notification);
+        editor.commit();
+    }
 
 }
