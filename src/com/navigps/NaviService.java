@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.location.LocationManager;
 import android.os.IBinder;
 import android.util.Log;
@@ -34,6 +35,7 @@ public class NaviService extends Service {
     private boolean isServiceDestroyed = true;
     private PreferencesProvider preferencesProvider;
     private LocalLocationProvider localLocationProvider;
+    private LocationListenerReceiver locationListenerReceiver;
     private OnlineLocationProvider onlineLocationProvider;
     private BatteryReceiver batteryReceiver;
     //private NotificationReceiver notificationReceiver;
@@ -48,6 +50,7 @@ public class NaviService extends Service {
 
     private void initialize() {
         myConnectionReceiver = new MyConnectionReceiver();
+        locationListenerReceiver = new LocationListenerReceiver();
         UsersService.getInstance();
         preferencesProvider = new PreferencesProvider(getContext());
         locationListenerThread = new LocationListenerThread(getContext());
@@ -56,6 +59,7 @@ public class NaviService extends Service {
         onlineLocationProvider = new OnlineLocationProvider();
         batteryReceiver = new BatteryReceiver(getContext());
         //notificationReceiver = new NotificationReceiver(getContext());
+        
         locationListener = new MyLocationListener(getContext());
         locationManager = (LocationManager)getContext().getSystemService(Context.LOCATION_SERVICE);
 
@@ -70,6 +74,7 @@ public class NaviService extends Service {
          MyLocationManager.getInstance().setService(localLocationProvider);
         registerReceiver(myConnectionReceiver, myConnectionReceiver.getIntentFilter());
         registerReceiver(batteryReceiver, batteryReceiver.getIntentFilter());
+        registerReceiver(locationListenerReceiver, new IntentFilter(REQUEST_LOCATION_UPDATE));
         //registerReceiver(notificationReceiver, notificationReceiver.getIntentFilter());
        // startLocationThread();
         super.onCreate();
@@ -83,6 +88,7 @@ public class NaviService extends Service {
     public void onDestroy() {
         Log.d(AppInfo.getLogTag(), STOP_SERVICE);
         unregisterReceiver(myConnectionReceiver);
+        unregisterReceiver(locationListenerReceiver);
         unregisterReceiver(batteryReceiver);
         //unregisterReceiver(notificationReceiver);
         isServiceDestroyed = true;
