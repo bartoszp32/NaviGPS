@@ -61,7 +61,7 @@ public class GpsNavigationActivity extends Activity{
     {
 
         @Override
-        public void onLocationChange(MyLocation location, float distance) {
+        public void onLocationChange(MyLocation location){//, float distance) {
                 if(location == null)
                 {
                     Toast.makeText(getContext(),"Wait on GPS data",Toast.LENGTH_SHORT).show();
@@ -73,37 +73,37 @@ public class GpsNavigationActivity extends Activity{
 						dateFirst = DateProvider.getDate();
 						flagTime = false;
 					}
-                    sendToScreen(location, distance);
+                    sendToScreen(location);//, distance);
                 }
         }
     }
     
-    private void sendToScreen(MyLocation location, float distance)
+    private void sendToScreen(MyLocation location)//, float distance)
 	{
 		Double doubleVelocity = Double.valueOf(location.velocity)*3.6;
 		String velocity = roundTo(doubleVelocity.toString(), ".", 1);
 		String longitude = roundTo(location.longitude, ".", 5);
 		String latitude = roundTo(location.latitude, ".", 5);
-		String way = roundTo(String.valueOf(distance/1000.0), ".", 1);
+		/*String way = roundTo(String.valueOf(distance/1000.0), ".", 1);*/
 		String altitude = roundTo(location.altitude,".",2);
-		if(maxVelocity<Double.valueOf(velocity))
+		/*if(maxVelocity<Double.valueOf(velocity))
 		{
 			maxVelocity=Double.valueOf(velocity);
 		}
 		String thisTime = routeTime(dateFirst, location.date);
 		String average = avrVelocity(thisTime, String.valueOf(distance/1000.0));
 		
-		average = roundTo(average, ".", 1);
+		average = roundTo(average, ".", 1);*/
 		
 		textVelocity.setText(velocity + " km/h");
 		textLongitude.setText("Szerokosc:  "+whatLongitude(longitude));
 		textLatitude.setText("Dlugosc:  "+whatLatitude(latitude));
 		textAltitude.setText("Wysokosc:  "+altitude+" m n.p.m.");
-		textDistance.setText("Przebyty dystans:  "+way+" km ");
+		//textDistance.setText("Przebyty dystans:  "+way+" km ");
 		textAccuracy.setText("Dokladnosc:  "+location.accuracy+" m ");
-		textMaxVelocity.setText("Max predkosc:  "+maxVelocity+" km/h ");
-		textAverageVelocity.setText("Srednia predkosc:  "+average+" km/h ");
-		textTime.setText("Czas trasy:  "+thisTime+" ");
+		//textMaxVelocity.setText("Max predkosc:  "+maxVelocity+" km/h ");
+		//textAverageVelocity.setText("Srednia predkosc:  "+average+" km/h ");
+		//textTime.setText("Czas trasy:  "+thisTime+" ");
 	}
 
     public static String roundTo(String value, String symbol, int places){
@@ -170,11 +170,11 @@ public class GpsNavigationActivity extends Activity{
     		time[0]-=1;
     		time[1]=time[1]+60;
     	}
-<<<<<<< HEAD
+
+    	Log.d("TOOO CF",String.valueOf(time[0]<=9?"0"+time[0]:time[0])+":"+(time[1]<=9?"0"+time[1]:time[1])+":"+(time[2]<=9?"0"+time[2]:time[2]));
+
     	return String.valueOf(time[0]==0?"00":time[0])+":"+(time[1]==0?"00":time[1])+":"+(time[2]==0?"00":time[2]);
-=======
-    	return String.valueOf(time[0]<=9?"0"+time[0]:time[0])+":"+(time[1]<=9?"0"+time[1]:time[1])+":"+(time[2]<=9?"0"+time[2]:time[2]);
->>>>>>> f30e812ed6275d23d876ddcc09aff7818e694338
+
 	}
     public String avrVelocity(String time, String distance) {
     	double hour = Double.parseDouble(time.substring(0, 2))+Double.parseDouble(time.substring(3, 5))/60.0+Double.parseDouble(time.substring(6, 8))/3600.0;

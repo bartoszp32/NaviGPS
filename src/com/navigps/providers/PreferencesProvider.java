@@ -30,7 +30,7 @@ public class PreferencesProvider {
 
     }
     public float getMinDistance() {
-        return sharedPreferences.getFloat(MIN_DISTANCE_KEY,100.0f) ;
+        return sharedPreferences.getFloat(MIN_DISTANCE_KEY,100.0f);
     }
     public void setMinDistance(float minDistance)
     {
@@ -40,7 +40,7 @@ public class PreferencesProvider {
 
     }
     public int getMinInterval() {
-        return sharedPreferences.getInt(MIN_INTERVAL_KEY,3000);
+        return sharedPreferences.getInt(MIN_INTERVAL_KEY,3*1000);
     }
     public void setMinInterval(int minInterval)
     {
@@ -50,7 +50,7 @@ public class PreferencesProvider {
 
     }
     public int getCheckInterval() {
-        return sharedPreferences.getInt(CHECK_INTERVAL,3000);
+        return sharedPreferences.getInt(CHECK_INTERVAL,3*1000);
     }
     public void setCheckInterval(int minCheckInterval)
     {

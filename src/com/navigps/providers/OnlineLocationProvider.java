@@ -59,8 +59,7 @@ public class OnlineLocationProvider implements LocationService {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		return true;
-        //return false;
+    	return true;
     }
 
     @Override

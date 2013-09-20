@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import com.navigps.managers.MyLocationManager;
 import com.navigps.models.MyLocation;
@@ -31,9 +32,10 @@ public class MyLocationListener implements LocationListener {
         myLocation.date = DateProvider.getDate();
         myLocation.altitude = String.valueOf(location.getAltitude());
 
-        myLocation.altitude = String.valueOf(location.getAltitude()); 
+      //  myLocation.altitude = String.valueOf(location.getAltitude()); 
 	   
-        MyLocationManager.getInstance().getService().saveLocation(myLocation);
+        //MyLocationManager.getInstance().getService().saveLocation(myLocation);
+        new SaveAsync(myLocation).execute();
         
         if(lastLocation != null)
         {
@@ -46,7 +48,8 @@ public class MyLocationListener implements LocationListener {
         context.sendBroadcast(intent);
         lastLocation = location;
     }
-
+   
+ 
     @Override
     public void onStatusChanged(String s, int i, Bundle bundle) {
 
@@ -61,7 +64,19 @@ public class MyLocationListener implements LocationListener {
     public void onProviderDisabled(String s) {
 
     }
+    private class SaveAsync extends AsyncTask<Void,Void,Void>{
+    	private MyLocation location;
+    	public SaveAsync(MyLocation location)
+    	{
+    		this.location = location;
+    	}
+    	protected Void doInBackground(Void... voids) {
+    		MyLocationManager.getInstance().getService().saveLocation(location);
+    		return null;
+    	}
+    }
 
 }
+
 
 

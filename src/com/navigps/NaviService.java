@@ -1,10 +1,14 @@
 package com.navigps;
 
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.os.IBinder;
 import android.util.Log;
+
+import com.navigps.listeners.MyLocationListener;
 import com.navigps.managers.MyLocationManager;
 import com.navigps.providers.LocalLocationProvider;
 import com.navigps.providers.OnlineLocationProvider;
@@ -19,6 +23,11 @@ import com.navigps.threads.LocationListenerThread;
 
 
 public class NaviService extends Service {
+	public static final String REQUEST_LOCATION_UPDATE = "com.barti.request.location";
+    public static final int LOCATION_UPDATE_START = 1;
+    public static final String LOCATION_UPDATE = "com.barti.location.extra";
+    public static final int LOCATION_UPDATE_STOP= 2;
+    public static boolean isLocListener = false;
     private static final String START_SERVICE = "service started";
     private static final String STOP_SERVICE = "service stopped";
     private MyConnectionReceiver myConnectionReceiver;
@@ -27,7 +36,9 @@ public class NaviService extends Service {
     private LocalLocationProvider localLocationProvider;
     private OnlineLocationProvider onlineLocationProvider;
     private BatteryReceiver batteryReceiver;
-    private NotificationReceiver notificationReceiver;
+    //private NotificationReceiver notificationReceiver;
+    private LocationManager locationManager;
+    private MyLocationListener locationListener;
 
     LocationListenerThread locationListenerThread;
 
@@ -44,7 +55,9 @@ public class NaviService extends Service {
         localLocationProvider = new LocalLocationProvider(getContext());
         onlineLocationProvider = new OnlineLocationProvider();
         batteryReceiver = new BatteryReceiver(getContext());
-        notificationReceiver = new NotificationReceiver(getContext());
+        //notificationReceiver = new NotificationReceiver(getContext());
+        locationListener = new MyLocationListener(getContext());
+        locationManager = (LocationManager)getContext().getSystemService(Context.LOCATION_SERVICE);
 
 
     }
@@ -54,27 +67,24 @@ public class NaviService extends Service {
         Log.d(AppInfo.getLogTag(), START_SERVICE);
         isServiceDestroyed = false;
         initialize();
+         MyLocationManager.getInstance().setService(localLocationProvider);
         registerReceiver(myConnectionReceiver, myConnectionReceiver.getIntentFilter());
         registerReceiver(batteryReceiver, batteryReceiver.getIntentFilter());
-        registerReceiver(notificationReceiver, notificationReceiver.getIntentFilter());
-        startLocationThread();
-      //  ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
-
-            MyLocationManager.getInstance().setService(localLocationProvider);
-
+        //registerReceiver(notificationReceiver, notificationReceiver.getIntentFilter());
+       // startLocationThread();
         super.onCreate();
     }
 
-    private void startLocationThread() {
+/*    private void startLocationThread() {
         locationListenerThread.execute();
-    }
+    }*/
 
     @Override
     public void onDestroy() {
         Log.d(AppInfo.getLogTag(), STOP_SERVICE);
         unregisterReceiver(myConnectionReceiver);
         unregisterReceiver(batteryReceiver);
-        unregisterReceiver(notificationReceiver);
+        //unregisterReceiver(notificationReceiver);
         isServiceDestroyed = true;
         preferencesProvider.setLocationEnabled(false);
         locationListenerThread.setServiceDestroyed(isServiceDestroyed);
@@ -87,24 +97,47 @@ public class NaviService extends Service {
         return null;
     }
 
+    private class LocationListenerReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if(REQUEST_LOCATION_UPDATE.equals(intent.getAction()))
+            {
+               int extra =  intent.getIntExtra(LOCATION_UPDATE,-1);
+               if(extra==LOCATION_UPDATE_START)
+               {
+                   if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
+                   {
+                	   float minDistance = preferencesProvider.getMinDistance();
+                       int minInterval  = preferencesProvider.getMinInterval();
+                   locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, minInterval, minDistance , locationListener);
+                       isLocListener = true;
+                   }
+               }
+                else if(extra == LOCATION_UPDATE_STOP)
+               {
+                   locationManager.removeUpdates(locationListener);
+                   isLocListener = false;
+               }
+
+            }
+        }
+    }
     private class MyConnectionReceiver extends ConnectionReceiver {
         private boolean isConnected = false;
 
         @Override
         public void onConnected() {
-            if (!isConnected) {
+          
             new FromLocalToOnlineSenderThread(getContext()).execute();
                 MyLocationManager.getInstance().setService(onlineLocationProvider);
-            }
-            isConnected = true;
+        
         }
 
         @Override
         public void onDisconnected() {
-            if (isConnected) {
+           
                 MyLocationManager.getInstance().setService(localLocationProvider);
-            }
-            isConnected = false;
+         
         }
     }
 

@@ -16,7 +16,7 @@ public abstract  class LocationReceiver extends BroadcastReceiver  implements Re
        intentFilter = new IntentFilter(ACTION_BROADCAST_LOCATION);
        }
 
-   public abstract void onLocationChange(MyLocation location, float distance);
+   public abstract void onLocationChange(MyLocation location);//, float distance);
    public static final String ACTION_BROADCAST_LOCATION = "Location_action";
    private IntentFilter intentFilter;
    @Override
@@ -25,7 +25,7 @@ public abstract  class LocationReceiver extends BroadcastReceiver  implements Re
        Bundle bundle =  intent.getExtras();
        MyLocation location = bundle.getParcelable(MyLocation.LOCATION_KEY);
 	   float distance = bundle.getFloat("distance");
-       onLocationChange(location, distance);
+       onLocationChange(location);//, distance);
 
 
    }

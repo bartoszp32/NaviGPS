@@ -24,6 +24,7 @@ public class MenuActivity extends Activity implements OnClickListener {
 	private String login;
 	private String password;
 	private WakeLock wakeLock;
+	private boolean notify; 
 	private CheckBox buttonMapNavigation;
 	private CheckBox buttonGpsNavigation;
 	private CheckBox buttonDefinedRoute;
@@ -77,6 +78,7 @@ public class MenuActivity extends Activity implements OnClickListener {
 
 		
 		
+    
 	}
 	
 	private Intent getServiceIntent()
@@ -87,60 +89,67 @@ public class MenuActivity extends Activity implements OnClickListener {
     {
         return this;
     }
+    private class OnStartListenClick implements View.OnClickListener
+    {
+        @Override
+        public void onClick(View view) {
+            if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
+            {   Intent i = new Intent(NaviService.REQUEST_LOCATION_UPDATE);
+                if(!NaviService.isLocListener){
+                    i.putExtra(NaviService.LOCATION_UPDATE,NaviService.LOCATION_UPDATE_START);
+                } else {
+                    i.putExtra(NaviService.LOCATION_UPDATE,NaviService.LOCATION_UPDATE_STOP);
+                }
+                sendBroadcast(i);
+            }
+            else {
+                Toast.makeText(getBaseContext(), "Uruchom GPS", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 	private OnClickListener tbGpsServiceListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 
-			if(servicesManager.isServiceRunning(serviceClassName))
-            {
-                if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
-                {
-                    if(preferencesProvider.isLocationEnabled())
-                    {
-                        preferencesProvider.setLocationEnabled(false);
-                        showToast("Disabling listener");
-                        tbGpsService.setChecked(false);
-                    }
-                    else
-                    {
-                        preferencesProvider.setLocationEnabled(true);
-                        showToast("Enabling listener");
-                        tbGpsService.setChecked(true);
-                    }
-                }
-                else
-                {
-                    showToast("GPS NOT enabled");
-                    tbGpsService.setChecked(false);
-                }
-            }
-            else {
-                showToast("Service NOT running");
-                tbGpsService.setChecked(false);
-            }
+			if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+				Intent i = new Intent(NaviService.REQUEST_LOCATION_UPDATE);
+				if (!NaviService.isLocListener) {
+					i.putExtra(NaviService.LOCATION_UPDATE,
+							NaviService.LOCATION_UPDATE_START);
+					tbGpsService.setChecked(true);
+				} else {
+					i.putExtra(NaviService.LOCATION_UPDATE,
+							NaviService.LOCATION_UPDATE_STOP);
+					tbGpsService.setChecked(false);
+				}
+				sendBroadcast(i);
+			} else {
+				Toast.makeText(getBaseContext(), "Uruchom GPS",
+						Toast.LENGTH_SHORT).show();
+			}
 		}
 	};
-	
+
 	private OnClickListener tbServiceListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 
-			 if(servicesManager.isServiceRunning(serviceClassName))
-             {
-                 getContext().stopService(getServiceIntent());
-                 tbService.setChecked(false);
-                 preferencesProvider.setLocationEnabled(false);
-                 preferencesProvider.setNotification(!preferencesProvider.getNotification());
-                 getContext().sendBroadcast(NotificationReceiver.sendIntent());
-                 tbGpsService.setChecked(false);
-             }
-            else
-             {
-                 getContext().startService(getServiceIntent());
-                 tbService.setChecked(true);
-             }
+			if (servicesManager.isServiceRunning(serviceClassName)) {
+				getContext().stopService(getServiceIntent());
+				tbService.setChecked(false);
+				preferencesProvider.setLocationEnabled(false);
+				// tbGpsService.setChecked(false);
+
+			} else {
+
+				getContext().startService(getServiceIntent());
+				tbService.setChecked(true);
+
+			}
+
 		}
 	};
 	
