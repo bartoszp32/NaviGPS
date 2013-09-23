@@ -1,9 +1,11 @@
 package com.navigps.receivers;
 
+import com.navigps.MenuActivity;
 import com.navigps.R;
 import com.navigps.providers.PreferencesProvider;
 
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -38,7 +40,7 @@ public class NotificationReceiver extends BroadcastReceiver {
     }
     public void startNotification() {
         String title = context.getString(R.string.app_name);
-        String text = "text";//context.getString(R.string.notification_text);
+        String text = "Us³uga programu uruchomiona.";//context.getString(R.string.notification_text);
         NotificationCompat.Builder mBuilder =  new NotificationCompat.Builder(context)
                 .setSmallIcon(R.drawable.ic_notification)
                 .setContentTitle(title)

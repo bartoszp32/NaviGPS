@@ -20,7 +20,9 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="17dp"
-        android:text="Logowanie do systemu NavGPS"
+        android:layout_marginBottom="15dp"
+        android:textColor="@android:color/black"
+        android:text="System NaviGPS"
 
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -30,6 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/imageView1"
+        android:textColor="@android:color/black"
         android:text="LOGIN:"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -48,6 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textAccuracy"
         android:layout_below="@+id/loginText"
+        android:textColor="@android:color/black"
         android:layout_marginTop="14dp"
         android:text="HASŁO:"
         android:textAppearance="?android:attr/textAppearanceMedium" />

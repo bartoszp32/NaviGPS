@@ -38,7 +38,8 @@ public class OnlineLocationProvider implements LocationService {
 		params.add(new BasicNameValuePair("Accuracy", location.accuracy));
 		params.add(new BasicNameValuePair("Time", location.date));
 		
-
+		Log.d("DANE", params.toString());
+		
 		// getting JSON Object
 		// Note that create product url accepts POST method
 		JSONObject json = jsonParser.makeHttpRequest(url_add_data, "POST", params);

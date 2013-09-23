@@ -75,7 +75,7 @@ public class NaviService extends Service {
         registerReceiver(myConnectionReceiver, myConnectionReceiver.getIntentFilter());
         registerReceiver(batteryReceiver, batteryReceiver.getIntentFilter());
         registerReceiver(locationListenerReceiver, new IntentFilter(REQUEST_LOCATION_UPDATE));
-        //registerReceiver(notificationReceiver, notificationReceiver.getIntentFilter());
+       // registerReceiver(notificationReceiver, notificationReceiver.getIntentFilter());
        // startLocationThread();
         super.onCreate();
     }

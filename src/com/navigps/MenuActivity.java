@@ -119,16 +119,21 @@ public class MenuActivity extends Activity implements OnClickListener {
 					i.putExtra(NaviService.LOCATION_UPDATE,
 							NaviService.LOCATION_UPDATE_START);
 					tbGpsService.setChecked(true);
+					//preferencesProvider.setNotification(true);
 				} else {
 					i.putExtra(NaviService.LOCATION_UPDATE,
 							NaviService.LOCATION_UPDATE_STOP);
 					tbGpsService.setChecked(false);
+					//preferencesProvider.setNotification(false);
 				}
 				sendBroadcast(i);
 			} else {
 				Toast.makeText(getBaseContext(), "Uruchom GPS",
 						Toast.LENGTH_SHORT).show();
+				preferencesProvider.setNotification(false);
 			}
+			
+			//getContext().sendBroadcast(NotificationReceiver.sendIntent());
 		}
 	};
 
@@ -136,12 +141,19 @@ public class MenuActivity extends Activity implements OnClickListener {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-
+			
+			Intent i = new Intent(NaviService.REQUEST_LOCATION_UPDATE);
 			if (servicesManager.isServiceRunning(serviceClassName)) {
+				//preferencesProvider.setNotification(false);
+				//getContext().sendBroadcast(NotificationReceiver.sendIntent());
+				i.putExtra(NaviService.LOCATION_UPDATE,
+						NaviService.LOCATION_UPDATE_STOP);
+						tbGpsService.setChecked(false);
+						sendBroadcast(i);
 				getContext().stopService(getServiceIntent());
 				tbService.setChecked(false);
-				preferencesProvider.setLocationEnabled(false);
-				// tbGpsService.setChecked(false);
+				//preferencesProvider.setLocationEnabled(false);
+				
 
 			} else {
 
@@ -149,6 +161,7 @@ public class MenuActivity extends Activity implements OnClickListener {
 				tbService.setChecked(true);
 
 			}
+			
 
 		}
 	};
