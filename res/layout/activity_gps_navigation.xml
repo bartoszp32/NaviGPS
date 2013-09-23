@@ -7,14 +7,15 @@
     tools:context=".GpsNavigationActivity" >
 
     <TextView
-        android:id="@+id/textVelocity"
+        android:id="@+id/textCreateAltitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="0.0 km/h"
-        android:textSize="50dp"
+        android:text="@string/velocity"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="50sp"
         android:textStyle="bold|italic" />
 
     <RelativeLayout
@@ -23,7 +24,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textVelocity"
+        android:layout_below="@+id/textCreateAltitude"
         android:layout_marginTop="10dp" >
 
         <TextView
@@ -32,76 +33,76 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:text="Twoje położenie "
-            android:textSize="20dp"
+            android:text="@string/your_localizationo"
+            android:textSize="20sp"
             android:textStyle="bold|italic" />
 
         <TextView
-            android:id="@+id/textLength"
+            android:id="@+id/textCreateLatitude"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/textYourLocalization"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="10dp"
-            android:text="Długość:  00.00000 E "
-            android:textSize="20dp"
+            android:text="@string/longitude"
+            android:textSize="20sp"
             android:textStyle="italic" />
 
         <TextView
             android:id="@+id/textSeqenceSettings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textHeight"
+            android:layout_below="@+id/textCreateLongitude"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
-            android:text="Dodatkowe informacje "
-            android:textSize="20dp"
+            android:text="@string/additional_information"
+            android:textSize="20sp"
             android:textStyle="bold|italic" />
 
         <TextView
-            android:id="@+id/textWidth"
+            android:id="@+id/textCreateVelocity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textLength"
-            android:layout_below="@+id/textLength"
+            android:layout_alignLeft="@+id/textCreateLatitude"
+            android:layout_below="@+id/textCreateLatitude"
             android:layout_marginTop="10dp"
-            android:text="Szerokość:  00.00000 N "
-            android:textSize="20dp"
+            android:text="@string/latitude"
+            android:textSize="20sp"
             android:textStyle="italic" />
 
         <TextView
-            android:id="@+id/textHeight"
+            android:id="@+id/textCreateLongitude"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textWidth"
-            android:layout_below="@+id/textWidth"
+            android:layout_alignLeft="@+id/textCreateVelocity"
+            android:layout_below="@+id/textCreateVelocity"
             android:layout_marginTop="10dp"
-            android:text="Wysokość:  000.0 m n.p.m."
-            android:textSize="20dp"
+            android:text="@string/altitude"
+            android:textSize="20sp"
             android:textStyle="italic" />
 
         <TextView
-            android:id="@+id/textDistance"
+            android:id="@+id/textCreateDistance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textHeight"
+            android:layout_alignLeft="@+id/textCreateLongitude"
             android:layout_below="@+id/textSeqenceSettings"
             android:layout_marginTop="10dp"
-            android:text="Przebyty dystans:  0.0 km "
-            android:textSize="20dp"
+            android:text="@string/distance"
+            android:textSize="20sp"
             android:textStyle="italic" />
 
         <TextView
             android:id="@+id/textAccuracy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textDistance"
-            android:layout_below="@+id/textDistance"
+            android:layout_alignLeft="@+id/textCreateDistance"
+            android:layout_below="@+id/textCreateDistance"
             android:layout_marginTop="10dp"
-            android:text="Dokładność:  0.0 m "
-            android:textSize="20dp"
-            android:textStyle="italic"  />
+            android:text="@string/accuracy"
+            android:textSize="20sp"
+            android:textStyle="italic" />
 
         <TextView
             android:id="@+id/textTime"
@@ -110,8 +111,8 @@
             android:layout_alignLeft="@+id/textMaxVelocity"
             android:layout_below="@+id/textMaxVelocity"
             android:layout_marginTop="10dp"
-            android:text="Czas trasy:  00:00:00 "
-            android:textSize="20dp"
+            android:text="@string/time"
+            android:textSize="20sp"
             android:textStyle="italic" />
 
         <TextView
@@ -121,8 +122,8 @@
             android:layout_alignLeft="@+id/textAccuracy"
             android:layout_below="@+id/textAccuracy"
             android:layout_marginTop="10dp"
-            android:text="Średnia prędkość:  0.0 km/h "
-            android:textSize="20dp"
+            android:text="@string/avg_velocity"
+            android:textSize="20sp"
             android:textStyle="italic" />
 
         <TextView
@@ -132,8 +133,8 @@
             android:layout_alignLeft="@+id/textAverageVelocity"
             android:layout_below="@+id/textAverageVelocity"
             android:layout_marginTop="10dp"
-            android:text="Max prędkość:  0.0 km/h "
-            android:textSize="20dp"
+            android:text="@string/max_velocity"
+            android:textSize="20sp"
             android:textStyle="italic" />
 
     </RelativeLayout>

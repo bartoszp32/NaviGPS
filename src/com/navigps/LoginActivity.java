@@ -27,7 +27,7 @@ public class LoginActivity extends Activity implements OnClickListener{
 		Button buttonLogin;
 		loginText = (EditText)findViewById(R.id.loginText);
 		passwordText = (EditText) findViewById(R.id.passText);
-		buttonLogin = (Button)findViewById(R.id.zaloguj);
+		buttonLogin = (Button)findViewById(R.id.log_in);
 		
 		buttonLogin.setOnClickListener((OnClickListener) this);
 		loginText.setText("admin");

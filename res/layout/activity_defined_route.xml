@@ -4,6 +4,17 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:background="@drawable/tlo">
+
+    <TextView
+        android:id="@+id/textViewRouteTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="@string/cycling_route"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold|italic" />
+
 	<!-- Main ListView 
 		 Always give id value as list(@android:id/list)
 	-->

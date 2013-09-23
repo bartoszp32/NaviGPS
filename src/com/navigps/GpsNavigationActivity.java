@@ -31,11 +31,11 @@ public class GpsNavigationActivity extends Activity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gps_navigation);
-		textVelocity = (TextView)findViewById(id.textVelocity);
-		textLatitude = (TextView)findViewById(id.textWidth);
-		textLongitude = (TextView)findViewById(id.textLength);
-		textAltitude = (TextView)findViewById(id.textHeight);
-		textDistance = (TextView)findViewById(id.textDistance);
+		textVelocity = (TextView)findViewById(id.textCreateAltitude);
+		textLatitude = (TextView)findViewById(id.textCreateVelocity);
+		textLongitude = (TextView)findViewById(id.textCreateLatitude);
+		textAltitude = (TextView)findViewById(id.textCreateLongitude);
+		textDistance = (TextView)findViewById(id.textCreateDistance);
 		textAccuracy = (TextView)findViewById(id.textAccuracy);
 		textMaxVelocity = (TextView)findViewById(id.textMaxVelocity);
 		textAverageVelocity = (TextView)findViewById(id.textAverageVelocity);

@@ -38,7 +38,7 @@ public class NaviService extends Service {
     private LocationListenerReceiver locationListenerReceiver;
     private OnlineLocationProvider onlineLocationProvider;
     private BatteryReceiver batteryReceiver;
-    //private NotificationReceiver notificationReceiver;
+    private NotificationReceiver notificationReceiver;
     private LocationManager locationManager;
     private MyLocationListener locationListener;
 
@@ -58,7 +58,7 @@ public class NaviService extends Service {
         localLocationProvider = new LocalLocationProvider(getContext());
         onlineLocationProvider = new OnlineLocationProvider();
         batteryReceiver = new BatteryReceiver(getContext());
-        //notificationReceiver = new NotificationReceiver(getContext());
+        notificationReceiver = new NotificationReceiver(getContext());
         
         locationListener = new MyLocationListener(getContext());
         locationManager = (LocationManager)getContext().getSystemService(Context.LOCATION_SERVICE);
@@ -75,7 +75,7 @@ public class NaviService extends Service {
         registerReceiver(myConnectionReceiver, myConnectionReceiver.getIntentFilter());
         registerReceiver(batteryReceiver, batteryReceiver.getIntentFilter());
         registerReceiver(locationListenerReceiver, new IntentFilter(REQUEST_LOCATION_UPDATE));
-       // registerReceiver(notificationReceiver, notificationReceiver.getIntentFilter());
+        registerReceiver(notificationReceiver, notificationReceiver.getIntentFilter());
        // startLocationThread();
         super.onCreate();
     }
@@ -90,7 +90,7 @@ public class NaviService extends Service {
         unregisterReceiver(myConnectionReceiver);
         unregisterReceiver(locationListenerReceiver);
         unregisterReceiver(batteryReceiver);
-        //unregisterReceiver(notificationReceiver);
+        unregisterReceiver(notificationReceiver);
         isServiceDestroyed = true;
         preferencesProvider.setLocationEnabled(false);
         locationListenerThread.setServiceDestroyed(isServiceDestroyed);

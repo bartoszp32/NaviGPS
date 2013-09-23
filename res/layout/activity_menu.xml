@@ -88,17 +88,17 @@
         android:layout_toLeftOf="@+id/myBoxService"
         android:button="@drawable/btn_service_gps"
         android:minHeight="96dp"
-        android:minWidth="96dp" />
+        android:minWidth="96dp"
+        android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/textServices"
+    <CheckBox
+        android:id="@+id/myLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/myBoxGps"
-        android:layout_alignBottom="@+id/myBoxGps"
         android:layout_alignLeft="@+id/mySite"
-        android:textStyle="bold|italic"
-        android:textSize="25sp"
-        android:text="USŁUGI:" />
+        android:layout_alignParentBottom="true"
+        android:button="@drawable/btn_light_logout"
+        android:minHeight="96dp"
+        android:minWidth="96dp" />
 
 </RelativeLayout>

@@ -10,5 +10,24 @@
     <string name="create_route">Stwórz nową trasę</string>
     <string name="to_site">Do strony NaviGPS</string>
     <string name="settings">Ustawienia</string>
+    <string name="your_localizationo">Twoje położenie </string>
+    <string name="longitude">Długość:  00.00000 E </string>
+    <string name="latitude">Szerokość:  00.00000 N </string>
+    <string name="altitude">Wysokość:  000.0 m n.p.m.</string>
+    <string name="velocity">0.0 km/h</string>
+    <string name="accuracy">Dokładność:  0.0 m </string>
+    <string name="time">Czas trasy:  00:00:00 </string>
+    <string name="distance">Przebyty dystans:  0.0 km </string>
+    <string name="max_velocity">Max prędkość:  0.0 km/h </string>
+    <string name="avg_velocity">Średnia prędkość:  0.0 km/h </string>
+    <string name="additional_information">Dodatkowe informacje </string>
+    <string name="velocity_text">Prędkość:  0.0 km/h </string>
+    <string name="application_image">Application image</string>
+    <string name="system_navigps">System NaviGPS</string>
+    <string name="login">LOGIN:</string>
+    <string name="password">HASŁO:</string>
+    <string name="log_in">ZALOGUJ</string>
+    <string name="cycling_route">ŚCIEŻKI ROWEROWE</string>
+    <string name="route_tracking">Nowa trasa + śledzenie w systemie</string>
 
 </resources>

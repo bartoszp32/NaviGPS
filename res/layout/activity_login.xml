@@ -5,73 +5,72 @@
     android:background="@drawable/tlo"
     tools:context=".LoginActivity" >
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_below="@+id/textView3"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/row_and_prze_small" />
-
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="17dp"
-        android:layout_marginBottom="15dp"
-        android:textColor="@android:color/black"
-        android:text="System NaviGPS"
+        android:layout_marginTop="35dp"
+        android:text="@string/system_navigps"
 
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/textAccuracy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/imageView1"
-        android:textColor="@android:color/black"
-        android:text="LOGIN:"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
         android:id="@+id/loginText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textAccuracy"
+        android:layout_below="@+id/textViewLogin"
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:inputType="text" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textAccuracy"
+        android:layout_alignLeft="@+id/textViewLogin"
         android:layout_below="@+id/loginText"
-        android:textColor="@android:color/black"
         android:layout_marginTop="14dp"
-        android:text="HASŁO:"
+        android:text="@string/password"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Button
-        android:id="@+id/zaloguj"
+        android:id="@+id/log_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/passText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
-        android:text="ZALOGUJ" />
+        android:text="@string/log_in" />
 
     <EditText
         android:id="@+id/passText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/loginText"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/textViewPassword"
         android:ems="10"
         android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/textViewLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageViewLogo"
+        android:layout_marginTop="34dp"
+        android:layout_toLeftOf="@+id/imageViewLogo"
+        android:text="@string/login"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageView
+        android:id="@+id/imageViewLogo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/textViewTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/application_image"
+        android:src="@drawable/row_and_prze_small" />
 
 </RelativeLayout>

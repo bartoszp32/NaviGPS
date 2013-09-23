@@ -21,10 +21,10 @@ import com.navigps.receivers.NotificationReceiver;
 import com.navigps.services.UsersService;
 
 public class MenuActivity extends Activity implements OnClickListener {
-	private String login;
-	private String password;
-	private WakeLock wakeLock;
-	private boolean notify; 
+	//private String login;
+	//private String password;
+	//private WakeLock wakeLock;
+	//private boolean notify; 
 	private CheckBox buttonMapNavigation;
 	private CheckBox buttonGpsNavigation;
 	private CheckBox buttonDefinedRoute;
@@ -32,7 +32,8 @@ public class MenuActivity extends Activity implements OnClickListener {
 	private CheckBox buttonToSite;
 	private CheckBox buttonSettings;
 	private CheckBox tbService;
-	private CheckBox tbGpsService;
+	//private CheckBox tbGpsService;
+	private CheckBox buttonLogout;
     private ServicesManager servicesManager;
     private PreferencesProvider preferencesProvider;
     private LocationManager locationManager;
@@ -54,7 +55,8 @@ public class MenuActivity extends Activity implements OnClickListener {
 		buttonCreateRoute = (CheckBox) findViewById(id.myCreate);
 		buttonToSite = (CheckBox) findViewById(id.mySite);
 		buttonSettings = (CheckBox) findViewById(id.mySettings);
-
+		buttonLogout = (CheckBox) findViewById(id.myLogout);
+		
         servicesManager = new ServicesManager(this);
         preferencesProvider = new PreferencesProvider(this);
 		locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
@@ -65,15 +67,15 @@ public class MenuActivity extends Activity implements OnClickListener {
 		buttonCreateRoute.setOnClickListener(createRouteListener);
 		buttonToSite.setOnClickListener(siteListener);
 		buttonSettings.setOnClickListener(settingsListener);
-		
+		buttonLogout.setOnClickListener(logoutListener);
 
-		tbGpsService = (CheckBox) findViewById(id.myBoxGps);
+		//tbGpsService = (CheckBox) findViewById(id.myBoxGps);
 		tbService = (CheckBox) findViewById(id.myBoxService);
 
         tbService.setChecked(servicesManager.isServiceRunning(serviceClassName));
-        tbGpsService.setChecked(preferencesProvider.isLocationEnabled());
+        //tbGpsService.setChecked(preferencesProvider.isLocationEnabled());
 
-		tbGpsService.setOnClickListener(tbGpsServiceListener);
+		//tbGpsService.setOnClickListener(tbGpsServiceListener);
 		tbService.setOnClickListener(tbServiceListener);
 
 		
@@ -89,26 +91,8 @@ public class MenuActivity extends Activity implements OnClickListener {
     {
         return this;
     }
-    private class OnStartListenClick implements View.OnClickListener
-    {
-        @Override
-        public void onClick(View view) {
-            if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
-            {   Intent i = new Intent(NaviService.REQUEST_LOCATION_UPDATE);
-                if(!NaviService.isLocListener){
-                    i.putExtra(NaviService.LOCATION_UPDATE,NaviService.LOCATION_UPDATE_START);
-                } else {
-                    i.putExtra(NaviService.LOCATION_UPDATE,NaviService.LOCATION_UPDATE_STOP);
-                }
-                sendBroadcast(i);
-            }
-            else {
-                Toast.makeText(getBaseContext(), "Uruchom GPS", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
 
-	private OnClickListener tbGpsServiceListener = new OnClickListener() {
+	/*private OnClickListener tbGpsServiceListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
@@ -119,12 +103,12 @@ public class MenuActivity extends Activity implements OnClickListener {
 					i.putExtra(NaviService.LOCATION_UPDATE,
 							NaviService.LOCATION_UPDATE_START);
 					tbGpsService.setChecked(true);
-					//preferencesProvider.setNotification(true);
+					preferencesProvider.setNotification(true);
 				} else {
 					i.putExtra(NaviService.LOCATION_UPDATE,
 							NaviService.LOCATION_UPDATE_STOP);
 					tbGpsService.setChecked(false);
-					//preferencesProvider.setNotification(false);
+					preferencesProvider.setNotification(false);
 				}
 				sendBroadcast(i);
 			} else {
@@ -133,9 +117,9 @@ public class MenuActivity extends Activity implements OnClickListener {
 				preferencesProvider.setNotification(false);
 			}
 			
-			//getContext().sendBroadcast(NotificationReceiver.sendIntent());
+			getContext().sendBroadcast(NotificationReceiver.sendIntent());
 		}
-	};
+	};*/
 
 	private OnClickListener tbServiceListener = new OnClickListener() {
 		@Override
@@ -144,15 +128,15 @@ public class MenuActivity extends Activity implements OnClickListener {
 			
 			Intent i = new Intent(NaviService.REQUEST_LOCATION_UPDATE);
 			if (servicesManager.isServiceRunning(serviceClassName)) {
-				//preferencesProvider.setNotification(false);
-				//getContext().sendBroadcast(NotificationReceiver.sendIntent());
+				preferencesProvider.setNotification(false);
+				getContext().sendBroadcast(NotificationReceiver.sendIntent());
 				i.putExtra(NaviService.LOCATION_UPDATE,
 						NaviService.LOCATION_UPDATE_STOP);
-						tbGpsService.setChecked(false);
+						//tbGpsService.setChecked(false);
 						sendBroadcast(i);
 				getContext().stopService(getServiceIntent());
 				tbService.setChecked(false);
-				//preferencesProvider.setLocationEnabled(false);
+				preferencesProvider.setLocationEnabled(false);
 				
 
 			} else {
@@ -170,6 +154,7 @@ public class MenuActivity extends Activity implements OnClickListener {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
+			
 			
 		}
 	};
@@ -233,4 +218,9 @@ public class MenuActivity extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 
 	}
+	@Override
+    protected void onDestroy() {
+        // TODO Auto-generated method stub
+        super.onDestroy();
+    }
 }

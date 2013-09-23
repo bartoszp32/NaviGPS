@@ -5,26 +5,6 @@
     android:background="@drawable/tlo" 
     tools:context=".CreateNewRouteActivity">
 
-    <ToggleButton
-        android:id="@+id/toggleButtonOnOff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="17dp"
-        android:text="ToggleButton"
-        android:textOff="Koniec trasy"
-        android:textOn="Start trasy" />
-
-    <CheckBox
-        android:id="@+id/checkBoxWithTracking"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/toggleButtonOnOff"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:text="Nowa trasa + śledzenie w systemie" />
-
     <TextView
         android:id="@+id/textYourLocalization"
         android:layout_width="wrap_content"
@@ -32,63 +12,84 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:text="Twoje położenie"
-        android:textSize="20dp"
+        android:text="@string/your_localizationo"
+        android:textSize="20sp"
         android:textStyle="bold|italic" />
 
     <TextView
-        android:id="@+id/textWidth"
+        android:id="@+id/textCreateVelocity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textYourLocalization"
-        android:layout_centerHorizontal="true"
+        android:layout_centerHorizontal="false"
         android:layout_marginTop="20dp"
-        android:text="Szerokość:  43.322"
-        android:textSize="20dp"
+        android:layout_marginLeft="40dp"
+
+        android:text="@string/velocity_text"
+        android:textSize="20sp"
+        android:textStyle="italic" />
+
+    <CheckBox
+        android:id="@+id/checkBoxWithTracking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textCreateDistance"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="49dp"
+        android:text="@string/route_tracking" />
+
+    <TextView
+        android:id="@+id/textCreateLongitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textCreateVelocity"
+        android:layout_below="@+id/textCreateVelocity"
+        android:layout_marginTop="15dp"
+        android:text="@string/longitude"
+        android:textSize="20sp"
         android:textStyle="italic" />
 
     <TextView
-        android:id="@+id/textHeight"
+        android:id="@+id/textCreateLatitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textWidth"
-        android:layout_centerHorizontal="true"
+        android:layout_alignLeft="@+id/textCreateLongitude"
+        android:layout_below="@+id/textCreateLongitude"
         android:layout_marginTop="15dp"
-        android:text="Wysokość:  145"
-        android:textSize="20dp"
+        android:text="@string/latitude"
+        android:textSize="20sp"
         android:textStyle="italic" />
 
     <TextView
-        android:id="@+id/textLength"
+        android:id="@+id/textCreateAltitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textHeight"
-        android:layout_centerHorizontal="true"
+        android:layout_alignLeft="@+id/textCreateLatitude"
+        android:layout_below="@+id/textCreateLatitude"
         android:layout_marginTop="15dp"
-        android:text="Długość:  18.424"
-        android:textSize="20dp"
+        android:text="@string/altitude"
+        android:textSize="20sp"
         android:textStyle="italic" />
 
     <TextView
-        android:id="@+id/textVelocity"
+        android:id="@+id/textCreateDistance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textLength"
-        android:layout_centerHorizontal="true"
+        android:layout_alignLeft="@+id/textCreateAltitude"
+        android:layout_below="@+id/textCreateAltitude"
         android:layout_marginTop="15dp"
-        android:text="Prędkość:  12km/h"
-        android:textSize="20dp"
+        android:text="@string/distance"
+        android:textSize="20sp"
         android:textStyle="italic" />
 
-    <TextView
-        android:id="@+id/textDistance"
+    <ToggleButton
+        android:id="@+id/tbOnOff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textVelocity"
+        android:layout_below="@+id/checkBoxWithTracking"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:text="Przebyty dystans:  1.2km"
-        android:textSize="20dp"
-        android:textStyle="italic" />
+        android:layout_marginTop="60dp"
+        android:textOff="Zapis zatrzymany"
+        android:textOn="Zapis w toku" />
 
 </RelativeLayout>
