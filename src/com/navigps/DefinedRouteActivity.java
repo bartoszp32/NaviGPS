@@ -10,6 +10,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.navigps.providers.JSONParser;
+import com.navigps.providers.PreferencesProvider;
+import com.navigps.providers.ScreenProvider;
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;
@@ -27,7 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class DefinedRouteActivity extends ListActivity{
-
+	private PreferencesProvider preferencesProvider;
 	// Progress Dialog
 	private ProgressDialog pDialog;
 
@@ -58,7 +60,8 @@ public class DefinedRouteActivity extends ListActivity{
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_defined_route);
-
+		preferencesProvider = new PreferencesProvider(this);
+		ScreenProvider.setScreenOn(this, preferencesProvider.getScreenOn());
 		// Hashmap for ListView
 		routeList = new ArrayList<HashMap<String, String>>();
 		

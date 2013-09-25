@@ -2,12 +2,15 @@ package com.navigps;
 
 import com.navigps.R.id;
 import com.navigps.providers.PreferencesProvider;
+import com.navigps.providers.ScreenProvider;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -24,6 +27,7 @@ public class SettingsActivity extends Activity implements OnClickListener{
 	private EditText editMinTime;
 	private EditText editMinDistance;
 	private EditText editCheckTime;
+	private CheckBox checkBoxScreen;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +36,17 @@ public class SettingsActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_settings);
 	
 		preferencesProvider = new PreferencesProvider(this);
-		
+		ScreenProvider.setScreenOn(this, preferencesProvider.getScreenOn());
 		editMinTime = (EditText)findViewById(id.editMinTime);
 		editMinTime.setText(String.valueOf(preferencesProvider.getMinInterval()));
 		editMinDistance	= (EditText)findViewById(id.editMinDistance);
 		editMinDistance.setText(String.valueOf(preferencesProvider.getMinDistance()));
 		editCheckTime = (EditText)findViewById(id.editSequenceSettings);
 		editCheckTime.setText(String.valueOf(preferencesProvider.getCheckInterval()));
+		
+		checkBoxScreen = (CheckBox) findViewById(id.checkBoxScreenOn);
+		checkBoxScreen.setChecked(preferencesProvider.getScreenOn());
+		checkBoxScreen.setOnClickListener(screenListener);
 		
 		buttonSave = (Button)findViewById(id.buttonSave);
 		buttonSave.setOnClickListener(saveListener);
@@ -50,7 +58,14 @@ public class SettingsActivity extends Activity implements OnClickListener{
         
 		
 	}
-
+	private OnClickListener screenListener = new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+   			//preferencesProvider.setScreenOn(!preferencesProvider.getScreenOn());
+   			//checkBoxScreen.setChecked(preferencesProvider.getScreenOn());
+		}
+	};
 	private OnClickListener cancelListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
@@ -70,10 +85,13 @@ public class SettingsActivity extends Activity implements OnClickListener{
 			preferencesProvider.setMinInterval(minTime);
 			preferencesProvider.setMinDistance(minDistance);
 			preferencesProvider.setCheckInterval(checkTime);
+			preferencesProvider.setScreenOn(false);
+			
 			
 			editMinTime.setText(String.valueOf(preferencesProvider.getMinInterval()));
 			editMinDistance.setText(String.valueOf(preferencesProvider.getMinDistance()));
 			editCheckTime.setText(String.valueOf(preferencesProvider.getCheckInterval()));
+			checkBoxScreen.setChecked(false);
 			
 			makeToast("Przywrócono domyœlne!");
 		}
@@ -90,6 +108,7 @@ public class SettingsActivity extends Activity implements OnClickListener{
 			preferencesProvider.setMinInterval(minTime);
 			preferencesProvider.setMinDistance(minDistance);
 			preferencesProvider.setCheckInterval(checkTime);
+			preferencesProvider.setScreenOn(checkBoxScreen.isChecked());
 			
 			finish();
 			

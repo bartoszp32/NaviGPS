@@ -29,15 +29,6 @@
         android:textSize="20sp"
         android:textStyle="italic" />
 
-    <CheckBox
-        android:id="@+id/checkBoxWithTracking"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textCreateDistance"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="49dp"
-        android:text="@string/route_tracking" />
-
     <TextView
         android:id="@+id/textCreateLongitude"
         android:layout_width="wrap_content"
@@ -72,13 +63,13 @@
         android:textStyle="italic" />
 
     <TextView
-        android:id="@+id/textCreateDistance"
+        android:id="@+id/textCreateAccuracy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textCreateAltitude"
         android:layout_below="@+id/textCreateAltitude"
         android:layout_marginTop="15dp"
-        android:text="@string/distance"
+        android:text="@string/accuracy"
         android:textSize="20sp"
         android:textStyle="italic" />
 
@@ -91,5 +82,25 @@
         android:layout_marginTop="60dp"
         android:textOff="Zapis zatrzymany"
         android:textOn="Zapis w toku" />
+
+    <TextView
+        android:id="@+id/textCreateDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textCreateAccuracy"
+        android:layout_below="@+id/textCreateAccuracy"
+        android:layout_marginTop="15dp"
+        android:text="@string/distance"
+        android:textSize="20sp"
+        android:textStyle="italic" />
+
+    <CheckBox
+        android:id="@+id/checkBoxWithTracking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textCreateDistance"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
+        android:text="@string/route_tracking" />
 
 </RelativeLayout>

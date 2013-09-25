@@ -24,9 +24,9 @@ import com.navigps.threads.LocationListenerThread;
 
 
 public class NaviService extends Service {
-	public static final String REQUEST_LOCATION_UPDATE = "com.barti.request.location";
+	public static final String REQUEST_LOCATION_UPDATE = "com.navigps.location";
     public static final int LOCATION_UPDATE_START = 1;
-    public static final String LOCATION_UPDATE = "com.barti.location.extra";
+    public static final String LOCATION_UPDATE = "com.navigps.extra";
     public static final int LOCATION_UPDATE_STOP= 2;
     public static boolean isLocListener = false;
     private static final String START_SERVICE = "service started";

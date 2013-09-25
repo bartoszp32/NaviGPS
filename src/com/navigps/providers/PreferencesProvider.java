@@ -13,10 +13,42 @@ public class PreferencesProvider {
     private static final String CHECK_INTERVAL = "check_interval";
     private static final String LOW_BATTERY_LEVEL = "low_battery_level";
     private static final String NOTIFICATION = "notification";
+    private static final String LOG_IN_STRING = "log_in";
+    private static final String LAST_USER_LOGIN = "user_login";
+    public static final String UNKNOWN_USER = "Unknown";
+    private static final String SCREEN_ON = "screen_on";
 
 
     public PreferencesProvider(Context context) {
         sharedPreferences = context.getSharedPreferences(prefsName,0);
+    }
+    public boolean getScreenOn()
+    {
+        return sharedPreferences.getBoolean(SCREEN_ON,false);
+    }
+    public void setScreenOn(boolean screenOn)
+    {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(SCREEN_ON, screenOn);
+        editor.commit();
+    }
+    public void setLogIn(boolean logIn) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(LOG_IN_STRING, logIn);
+        editor.commit();
+    }
+
+    public boolean getLogIn() {
+        return sharedPreferences.getBoolean(LOG_IN_STRING, false);
+    }
+    public void setUserLogin(String login) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(LAST_USER_LOGIN, login);
+        editor.commit();
+    }
+
+    public String getUserLogin() {
+        return sharedPreferences.getString(LAST_USER_LOGIN, UNKNOWN_USER);
     }
     public boolean isLocationEnabled()
     {

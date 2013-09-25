@@ -2,14 +2,21 @@ package com.navigps;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.WindowManager.LayoutParams;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.navigps.R.id;
 import com.navigps.models.MyLocation;
+import com.navigps.providers.PreferencesProvider;
+import com.navigps.providers.ScreenProvider;
 import com.navigps.receivers.LocationReceiver;
+import com.navigps.receivers.NotificationReceiver;
 import com.navigps.services.DateProvider;
 
 public class GpsNavigationActivity extends Activity{
@@ -26,37 +33,77 @@ public class GpsNavigationActivity extends Activity{
 	private TextView textMaxVelocity;
 	private TextView textAverageVelocity;
 	private TextView textTime;	
+	private PreferencesProvider preferencesProvider;
+	private LocationManager locationManager;
+	private CheckBox myGps;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gps_navigation);
+		preferencesProvider = new PreferencesProvider(this);
 		textVelocity = (TextView)findViewById(id.textCreateAltitude);
 		textLatitude = (TextView)findViewById(id.textCreateVelocity);
 		textLongitude = (TextView)findViewById(id.textCreateLatitude);
 		textAltitude = (TextView)findViewById(id.textCreateLongitude);
-		textDistance = (TextView)findViewById(id.textCreateDistance);
+		textDistance = (TextView)findViewById(id.textCreateAccuracy);
 		textAccuracy = (TextView)findViewById(id.textAccuracy);
 		textMaxVelocity = (TextView)findViewById(id.textMaxVelocity);
 		textAverageVelocity = (TextView)findViewById(id.textAverageVelocity);
 		textTime = (TextView)findViewById(id.textTime);
-		getWindow().addFlags(LayoutParams.FLAG_KEEP_SCREEN_ON);
-        locationReceiver = new MyLocationReceiver();
+		myGps = (CheckBox)findViewById(id.myBoxGps);
+		myGps.setChecked(preferencesProvider.isLocationEnabled());
+		myGps.setOnClickListener(tbGpsServiceListener);
+		
+		
+		preferencesProvider = new PreferencesProvider(this);
+		ScreenProvider.setScreenOn(this, preferencesProvider.getScreenOn());
+		locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+		locationReceiver = new MyLocationReceiver();
         this.registerReceiver(locationReceiver,locationReceiver.getIntentFilter());
-        Toast.makeText(getContext(),"Wait on GPS data",Toast.LENGTH_SHORT).show();
         //String str = avrVelocity("01:00:00", "60.0"); 
         //Log.d("AVR", str);
         
 	}
+
+    private Context getContext()
+    {
+        return this;
+    }
+	private OnClickListener tbGpsServiceListener = new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+
+			if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+				Intent i = new Intent(NaviService.REQUEST_LOCATION_UPDATE);
+				if (!NaviService.isLocListener) {
+					i.putExtra(NaviService.LOCATION_UPDATE,
+							NaviService.LOCATION_UPDATE_START);
+					myGps.setChecked(true);
+					preferencesProvider.setNotification(true);
+				} else {
+					i.putExtra(NaviService.LOCATION_UPDATE,
+							NaviService.LOCATION_UPDATE_STOP);
+					myGps.setChecked(false);
+					preferencesProvider.setNotification(false);
+				}
+				sendBroadcast(i);
+			} else {
+				Toast.makeText(getBaseContext(), "Uruchom GPS",
+						Toast.LENGTH_SHORT).show();
+				preferencesProvider.setNotification(false);
+			}
+
+			getContext().sendBroadcast(NotificationReceiver.sendIntent());
+		}
+	};
     protected void onDestroy()
     {
         super.onDestroy();
         this.unregisterReceiver(locationReceiver);
     }
-    private Context getContext()
-    {
-        return this;
-    }
+
     private class MyLocationReceiver extends LocationReceiver
     {
 

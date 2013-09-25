@@ -10,20 +10,26 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.navigps.R;
-import com.navigps.models.AdminModel;
+import com.navigps.models.UserModel;
 import com.navigps.models.User;
+import com.navigps.providers.PreferencesProvider;
+import com.navigps.providers.ScreenProvider;
 import com.navigps.services.UsersService;
 
 public class LoginActivity extends Activity implements OnClickListener{
 	private EditText loginText;
 	private EditText passwordText;
+	private String userName;
+	private String userPassword;
+	private int userId;
+	private PreferencesProvider preferencesProvider;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-
-
+		preferencesProvider = new PreferencesProvider(this);
+		ScreenProvider.setScreenOn(this, preferencesProvider.getScreenOn());
 		Button buttonLogin;
 		loginText = (EditText)findViewById(R.id.loginText);
 		passwordText = (EditText) findViewById(R.id.passText);
@@ -39,33 +45,33 @@ public class LoginActivity extends Activity implements OnClickListener{
 		// Pobieramy tekst z pola
 	    String writeLogin = loginText.getText().toString();
 	    String writePassword = passwordText.getText().toString();
-	    //String wpisanyText = "Login "+wpisanyLogin+"\nHaslo "+wpisanyHaslo;
-        AdminModel adminModel = new AdminModel();
-	    User admin = adminModel.getAdmin();
+        UserModel userAdmin = new UserModel();
+        User admin = userAdmin.getUser();
+        UserModel userModel = new UserModel(userName, userPassword, userId);
+        User user = userModel.getUser();
+        
+	   
 	    if(writeLogin.equals(admin.getUserName())&&writePassword.equals(admin.getUserPassword()))
         {
             Intent i = new Intent(LoginActivity.this, MenuActivity.class);
             startActivity(i);
             UsersService.getInstance().setUser(admin);
+            preferencesProvider.setLogIn(true);
+            preferencesProvider.setUserLogin(admin.getUserName());
             
         }
-        else
+	    else if(writeLogin.equals(user.getUserName())&&writePassword.equals(user.getUserPassword()))
+	    {
+	    	Intent i = new Intent(LoginActivity.this, MenuActivity.class);
+            startActivity(i);
+	    	UsersService.getInstance().setUser(user);
+	    	preferencesProvider.setLogIn(true);
+	    	preferencesProvider.setUserLogin(user.getUserName());
+	    }
+	    else
         {
-        	Toast.makeText(this, "Wpisz dane administaratora", Toast.LENGTH_SHORT).show();
+        	Toast.makeText(this, "Wpisz poprawne dane u¿ytkownika", Toast.LENGTH_SHORT).show();
             
         }
-
-		
 	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_main, menu);
-		return true;
-	}
-    
-	
-	
-
 }

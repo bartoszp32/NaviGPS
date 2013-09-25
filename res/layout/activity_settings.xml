@@ -22,12 +22,12 @@
         android:id="@+id/textMinTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp"
         android:layout_below="@+id/titleText"
         android:layout_toLeftOf="@+id/editMinTime"
         android:lines="2"
         android:text="Minimalny czas, pobieranych danych z GPS (ms)"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/editMinDistance"
@@ -43,13 +43,13 @@
         android:id="@+id/textMinDistance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp"
         android:layout_alignRight="@+id/textMinTime"
         android:layout_below="@+id/textMinTime"
         android:layout_marginTop="20dp"
         android:lines="2"
         android:text="Minimalny dystans, nizbędny do aktualizacji danych z GPS (m)"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/editMinTime"
@@ -67,9 +67,10 @@
         android:layout_alignRight="@+id/textMinDistance"
         android:layout_below="@+id/editMinDistance"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
         android:lines="2"
         android:text="Częstotliwość sprawdzania ustawień systemowych (ms)"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/editSequenceSettings"
@@ -92,16 +93,6 @@
         android:text="Anuluj" />
 
     <Button
-        android:id="@+id/buttonSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/editSequenceSettings"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="20dp"
-        android:text="Zapisz" />
-
-    <Button
         android:id="@+id/buttonSetDefault"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -109,5 +100,34 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:text="Ustaw domyślne" />
+
+    <TextView
+        android:id="@+id/textCreateDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editSequenceSettings"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_toLeftOf="@+id/buttonCancel"
+        android:lines="2"
+        android:text="Ekran włączony podczas działania programu"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textCreateDistance"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:text="Zapisz" />
+
+    <CheckBox
+        android:id="@+id/checkBoxScreenOn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonSave"
+        android:layout_alignRight="@+id/buttonCancel" />
 
 </RelativeLayout>

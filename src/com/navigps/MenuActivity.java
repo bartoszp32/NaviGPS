@@ -17,6 +17,7 @@ import android.widget.ToggleButton;
 import com.navigps.R.id;
 import com.navigps.managers.ServicesManager;
 import com.navigps.providers.PreferencesProvider;
+import com.navigps.providers.ScreenProvider;
 import com.navigps.receivers.NotificationReceiver;
 import com.navigps.services.UsersService;
 
@@ -59,6 +60,7 @@ public class MenuActivity extends Activity implements OnClickListener {
 		
         servicesManager = new ServicesManager(this);
         preferencesProvider = new PreferencesProvider(this);
+        ScreenProvider.setScreenOn(this, preferencesProvider.getScreenOn());
 		locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
 		buttonMapNavigation.setOnClickListener(mapListener);
@@ -154,7 +156,7 @@ public class MenuActivity extends Activity implements OnClickListener {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			
+			onBackPressed();
 			
 		}
 	};
