@@ -3,75 +3,89 @@ package com.navigps;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.navigps.R;
+import com.navigps.managers.LocalDataManager;
+import com.navigps.managers.UserManager;
+import com.navigps.managers.UserManager.LogonResult;
 import com.navigps.models.UserModel;
 import com.navigps.models.User;
+import com.navigps.providers.LocalDataProvider;
 import com.navigps.providers.PreferencesProvider;
 import com.navigps.providers.ScreenProvider;
 import com.navigps.services.UsersService;
+import com.navigps.tools.Globals;
 
 public class LoginActivity extends Activity implements OnClickListener{
 	private EditText loginText;
 	private EditText passwordText;
-	private String userName;
-	private String userPassword;
-	private int userId;
+	private Button buttonLogin;
+	private Button buttonNewAccount;
+
 	private PreferencesProvider preferencesProvider;
+	private LocalDataManager localDataManager;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		preferencesProvider = new PreferencesProvider(this);
+		localDataManager = new LocalDataManager(this);
+		localDataManager.cleanUserTablesToStartupApp();
 		ScreenProvider.setScreenOn(this, preferencesProvider.getScreenOn());
-		Button buttonLogin;
+		
 		loginText = (EditText)findViewById(R.id.loginText);
 		passwordText = (EditText) findViewById(R.id.passText);
 		buttonLogin = (Button)findViewById(R.id.log_in);
+		buttonNewAccount = (Button)findViewById(R.id.new_account);
 		
 		buttonLogin.setOnClickListener((OnClickListener) this);
+		buttonNewAccount.setOnClickListener(newAccountListener);
+		
+		/////----TO WYWALIÆ-----------------------------
 		loginText.setText("admin");
 		passwordText.setText("admin");
-
+		/////----TO WYWALIÆ-----------------------------
+	}
+	
+	private OnClickListener newAccountListener = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			Intent i = new Intent(LoginActivity.this, NewAccountActivity.class);
+			startActivityForResult(i, 1);
+		}
+	};
+	
+	
+	public void onClick(View v) {
+		String userName = loginText.getText().toString();
+	    String userPassword = passwordText.getText().toString();
+	    
+	    UserManager userManager = new UserManager(this, userName, userPassword);
+	    if (userManager.TryLoginUser() == Globals.LOGIN_RESULT.LOGGED){
+	    	User user = localDataManager.GetUser(userName);
+			UsersService.getInstance().setUser(new UserModel().getUser());//admin
+			preferencesProvider.setLogIn(true);
+			preferencesProvider.setUserLogin(user.getUserLogin(), user.getUserName(), String.valueOf(user.getUserId()), user.isAdmin());
+			
+			Intent i = new Intent(this, MenuActivity.class);
+	    	startActivity(i);
+	    }
 	}
 
-	public void onClick(View v) {
-		// Pobieramy tekst z pola
-	    String writeLogin = loginText.getText().toString();
-	    String writePassword = passwordText.getText().toString();
-        UserModel userAdmin = new UserModel();
-        User admin = userAdmin.getUser();
-        UserModel userModel = new UserModel(userName, userPassword, userId);
-        User user = userModel.getUser();
-        
-	   
-	    if(writeLogin.equals(admin.getUserName())&&writePassword.equals(admin.getUserPassword()))
-        {
-            Intent i = new Intent(LoginActivity.this, MenuActivity.class);
-            startActivity(i);
-            UsersService.getInstance().setUser(admin);
-            preferencesProvider.setLogIn(true);
-            preferencesProvider.setUserLogin(admin.getUserName());
-            
-        }
-	    else if(writeLogin.equals(user.getUserName())&&writePassword.equals(user.getUserPassword()))
-	    {
-	    	Intent i = new Intent(LoginActivity.this, MenuActivity.class);
-            startActivity(i);
-	    	UsersService.getInstance().setUser(user);
-	    	preferencesProvider.setLogIn(true);
-	    	preferencesProvider.setUserLogin(user.getUserName());
-	    }
-	    else
-        {
-        	Toast.makeText(this, "Wpisz poprawne dane u¿ytkownika", Toast.LENGTH_SHORT).show();
-            
-        }
+	public void StartMenuActivity(){
+		Intent i = new Intent(LoginActivity.this, MenuActivity.class);
+		startActivityForResult(i, 1);
+	}
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		this.finish();
 	}
 }

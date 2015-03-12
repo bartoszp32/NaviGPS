@@ -18,6 +18,7 @@ import com.navigps.providers.ScreenProvider;
 import com.navigps.receivers.LocationReceiver;
 import com.navigps.receivers.NotificationReceiver;
 import com.navigps.services.DateProvider;
+import com.navigps.tools.DataTools;
 
 public class GpsNavigationActivity extends Activity{
     private MyLocationReceiver locationReceiver;
@@ -120,19 +121,19 @@ public class GpsNavigationActivity extends Activity{
 						dateFirst = DateProvider.getDate();
 						flagTime = false;
 					}
-                    sendToScreen(location);//, distance);
+                    sendToScreen(location);
                 }
         }
     }
     
-    private void sendToScreen(MyLocation location)//, float distance)
+    private void sendToScreen(MyLocation location)
 	{
 		Double doubleVelocity = Double.valueOf(location.velocity)*3.6;
-		String velocity = roundTo(doubleVelocity.toString(), ".", 1);
-		String longitude = roundTo(location.longitude, ".", 5);
-		String latitude = roundTo(location.latitude, ".", 5);
+		String velocity = DataTools.RoundTo(doubleVelocity.toString(), ".", 1);
+		String longitude = DataTools.RoundTo(location.longitude, ".", 5);
+		String latitude = DataTools.RoundTo(location.latitude, ".", 5);
 		/*String way = roundTo(String.valueOf(distance/1000.0), ".", 1);*/
-		String altitude = roundTo(location.altitude,".",2);
+		String altitude = DataTools.RoundTo(location.altitude,".",2);
 		/*if(maxVelocity<Double.valueOf(velocity))
 		{
 			maxVelocity=Double.valueOf(velocity);
@@ -142,9 +143,9 @@ public class GpsNavigationActivity extends Activity{
 		
 		average = roundTo(average, ".", 1);*/
 		
-		textVelocity.setText(velocity + " km/h");
-		textLongitude.setText("Szerokosc:  "+whatLongitude(longitude));
-		textLatitude.setText("Dlugosc:  "+whatLatitude(latitude));
+		textVelocity.setText(velocity);
+		textLongitude.setText("Szerokosc:  "+DataTools.WhatLongitude(longitude));
+		textLatitude.setText("Dlugosc:  "+DataTools.WhatLatitude(latitude));
 		textAltitude.setText("Wysokosc:  "+altitude+" m n.p.m.");
 		//textDistance.setText("Przebyty dystans:  "+way+" km ");
 		textAccuracy.setText("Dokladnosc:  "+location.accuracy+" m ");

@@ -22,7 +22,7 @@ public class LocalLocationProvider implements LocationService {
     @Override
     public boolean saveLocation(MyLocation location) {
         databaseService.open();
-        boolean result = databaseService.db.insert(DatabaseService.DB_TABLE_LOCATIONS,null,insertContentValues(location)) != -1;
+        boolean result = databaseService.db.insert(DatabaseService.TABLE_LOCATIONS, null, insertContentValues(location)) != -1;
         Log.d("LOACAL","sfsfasfsafasfasfasfasf");
         databaseService.close();
         return result;
@@ -42,7 +42,7 @@ public class LocalLocationProvider implements LocationService {
     {
         List<MyLocation> locations = new ArrayList<MyLocation>();
         databaseService.open();
-        Cursor c = databaseService.db.rawQuery("SELECT * FROM " + DatabaseService.DB_TABLE_LOCATIONS + ";",null);
+        Cursor c = databaseService.db.rawQuery("SELECT * FROM " + DatabaseService.TABLE_LOCATIONS + ";",null);
         if(c!=null && c.moveToFirst())
         {
             do

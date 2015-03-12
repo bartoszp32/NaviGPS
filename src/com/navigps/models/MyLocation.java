@@ -1,5 +1,7 @@
 package com.navigps.models;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -40,6 +42,10 @@ public class MyLocation implements Parcelable{
         parcel.writeString(date);
 
     }
+    public LatLng getLatLng(){
+    	return new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
+    }
+    
     private void readFromParcel(Parcel parcel)
     {
         id = parcel.readInt();
@@ -51,9 +57,12 @@ public class MyLocation implements Parcelable{
         date = parcel.readString();
     }
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator()
-    { public MyLocation createFromParcel(Parcel in)
-        { return new MyLocation(in); }
-        public MyLocation[] newArray(int size)
-        { return new MyLocation[size]; } };
-
+    { 
+    	public MyLocation createFromParcel(Parcel in){ 
+    		return new MyLocation(in); 
+    	}
+        public MyLocation[] newArray(int size){ 
+        	return new MyLocation[size]; 
+        } 
+    };
 }

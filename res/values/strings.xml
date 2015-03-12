@@ -14,7 +14,7 @@
     <string name="longitude">Długość:  00.00000 E </string>
     <string name="latitude">Szerokość:  00.00000 N </string>
     <string name="altitude">Wysokość:  000.0 m n.p.m.</string>
-    <string name="velocity">0.0 km/h</string>
+    <string name="velocity">0.0</string>
     <string name="accuracy">Dokładność:  0.0 m </string>
     <string name="time">Czas trasy:  00:00:00 </string>
     <string name="distance">Przebyty dystans:  0.0 km </string>
@@ -29,5 +29,17 @@
     <string name="log_in">ZALOGUJ</string>
     <string name="cycling_route">ŚCIEŻKI ROWEROWE</string>
     <string name="route_tracking">Nowa trasa + śledzenie w systemie</string>
+    
+    <string name="drag_melbourne">Drag Melbourne</string>
+    <string name="flat">Flat</string>
+    <string name="rotation">Rotation:</string>
+    <string name="clear_map">Clear</string>
+    <string name="reset_map">Reset</string>
+    <string name="default_info_window">Default info window</string>
+    <string name="custom_info_contents">Custom info contents</string>
+    <string name="custom_info_window">Custom info window</string>
+    <string name="map_not_ready">Map is not ready yet</string>
+    
+   
 
 </resources>

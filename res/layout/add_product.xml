@@ -1,66 +1,217 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
-    <!-- Name Label -->
-    <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Product Name"
-        android:paddingLeft="10dip"
-        android:paddingRight="10dip"
-        android:paddingTop="10dip"
-        android:textSize="17dip"/>
-    
-    <!-- Input Name -->
-	<EditText android:id="@+id/inputName"
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+<LinearLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@drawable/tlo">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="10">
+
+        <TextView
+            android:id="@+id/TextView02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="SYSTEM NaviGPS"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/myLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="10dp"
+            android:button="@drawable/btn_light_logout" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/TextView02"
+            android:layout_marginTop="12dp"
+            android:layout_centerHorizontal="true"
+            android:text="naimad7" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView1"
+            android:layout_alignBottom="@+id/textView1"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/textView1"
+            android:text="Zalogowany:" />
+
+    </RelativeLayout>
+
+    <ScrollView
+	    android:id="@+id/scroller"
 	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_margin="5dip"
-	    android:layout_marginBottom="15dip"
-	    android:singleLine="true"/>
-	
-	<!-- Price Label -->
-    <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Price"
-        android:paddingLeft="10dip"
-        android:paddingRight="10dip"
-        android:paddingTop="10dip"
-        android:textSize="17dip"/>
+	    android:layout_height="0dip"
+	    android:layout_weight="90"
+	    android:fillViewport="true" >
+	    
+        <RelativeLayout 
+		    android:id="@+id/AbsoluteLayout1"
+		    android:layout_width="fill_parent"
+	        android:layout_height="wrap_content">
+		
+		    <CheckBox
+		        android:id="@+id/myMap"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="18dp"
+		        android:layout_marginTop="20dp"
+		         android:layout_alignParentLeft="true"
+		        android:layout_alignParentTop="true"
+		        android:button="@drawable/btn_light_map"
+		        android:minWidth="150dp" />
+		    
+		    <CheckBox
+		        android:id="@+id/myGps"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignBaseline="@+id/myMap"
+		        android:layout_alignBottom="@+id/myMap"
+		        android:layout_alignRight="@+id/myRoute"
+		        android:layout_toRightOf="@+id/myMap"
+		        android:button="@drawable/btn_light_gps"
+		        android:minWidth="150dp" />
+		    
+		    <CheckBox
+		        android:id="@+id/myRoute"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignBaseline="@+id/myCreate"
+		        android:layout_alignBottom="@+id/myCreate"
+		        android:layout_alignParentRight="true"
+		        android:layout_marginRight="18dp"
+		        android:layout_toRightOf="@+id/myCreate"
+		        android:button="@drawable/btn_light_route"
+		        android:minWidth="150dp" />
+		    
+		    <CheckBox
+		        android:id="@+id/myCreate"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignLeft="@+id/myMap"
+		        android:layout_below="@+id/myMap"
+		        android:layout_marginTop="20dp"
+		        android:button="@drawable/btn_light_create"
+		        android:minWidth="150dp" />
+		    
+		    <CheckBox
+		        android:id="@+id/myTraces"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignBaseline="@+id/myRouteDescription"
+		        android:layout_alignBottom="@+id/myRouteDescription"
+		        android:layout_alignLeft="@+id/myRoute"
+		        android:layout_alignParentRight="true"
+		        android:layout_marginRight="18dp"
+		        android:button="@drawable/btn_light_my_traces"
+		        android:minWidth="150dp" />
+		
+		    <CheckBox
+		        android:id="@+id/myRouteDescription"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignLeft="@+id/myCreate"
+		        android:layout_below="@+id/myCreate"
+		        android:layout_marginTop="20dp"
+		        android:button="@drawable/btn_light_route_description"
+		        android:minWidth="150dp" />
+		    
+		    <CheckBox
+		        android:id="@+id/mySettings"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignBaseline="@+id/mySite"
+		        android:layout_alignBottom="@+id/mySite"
+		        android:layout_alignLeft="@+id/myTraces"
+		        android:layout_alignParentRight="true"
+		        android:layout_marginRight="18dp"
+		        android:button="@drawable/btn_light_settings"
+		        android:minWidth="150dp" />
+		
+		    <CheckBox
+		        android:id="@+id/mySite"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignLeft="@+id/myRouteDescription"
+		        android:layout_below="@+id/myRouteDescription"
+		        android:layout_marginTop="20dp"
+		        android:button="@drawable/btn_light_site"
+		        android:minWidth="150dp" />
+		
+		
+		</RelativeLayout>
+	    
+	</ScrollView>
+
     
-    <!-- Input Price -->
-	<EditText android:id="@+id/inputPrice" 
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_margin="5dip"
-	    android:layout_marginBottom="15dip"
-	    android:singleLine="true"
-	    android:inputType="numberDecimal"/>
-	
-	<!-- Description Label -->
-    <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Description"
-        android:paddingLeft="10dip"
-        android:paddingRight="10dip"
-        android:paddingTop="10dip"
-        android:textSize="17dip"/>
-    
-    <!-- Input description -->
-	<EditText android:id="@+id/inputDesc" 
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_margin="5dip"
-	    android:layout_marginBottom="15dip"
-	    android:lines="4"
-	    android:gravity="top"/>
-	
-	<!-- Button Create Product -->
-	<Button android:id="@+id/btnCreateProduct" 
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:text="Create Product"/>
-	
 </LinearLayout>
+<LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#D000"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:visibility="gone" >
+
+    <CheckBox
+        android:id="@+id/checkBox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@drawable/btn_hide"
+        android:layout_gravity="right"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:onClick="onClearMap"
+                android:text="@string/clear_map" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:onClick="onResetMap"
+                android:text="@string/reset_map" />
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/custom_info_window_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/default_info_window"
+                android:checked="true"
+                android:text="@string/default_info_window" />
+
+            <RadioButton
+                android:id="@+id/custom_info_contents"
+                android:text="@string/custom_info_contents" />
+
+            <RadioButton
+                android:id="@+id/custom_info_window"
+                android:text="@string/custom_info_window" />
+        </RadioGroup>
+    </LinearLayout>
+  </FrameLayout>

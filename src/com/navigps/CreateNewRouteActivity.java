@@ -96,7 +96,7 @@ public class CreateNewRouteActivity extends Activity {
 		public void onLocationChange(MyLocation location) {// , float distance)
 															// {
 			if (location == null) {
-				Toast.makeText(getContext(), "Wait on GPS data",
+				Toast.makeText(getContext(), "Zaczekaj na wspó³rzêdne GPS",
 						Toast.LENGTH_SHORT).show();
 			} else {
 				if (flagTime) {

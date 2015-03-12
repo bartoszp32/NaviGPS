@@ -3,22 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/tlo"
+    android:gravity="center_horizontal"
     android:scrollbarAlwaysDrawHorizontalTrack="true"
     tools:context=".GpsNavigationActivity" >
 
-    <TextView
-        android:id="@+id/textCreateAltitude"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="@string/velocity"
-        android:textColor="@android:color/holo_red_light"
-        android:textSize="50sp"
-        android:textStyle="bold|italic" />
-
     <RelativeLayout
+        android:id="@+id/relativeLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -147,7 +137,31 @@
             android:minHeight="96dp"
             android:minWidth="96dp"
             android:visibility="visible" />
-
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/relativeLayout1"
+        android:layout_toRightOf="@+id/textCreateAltitude"
+        android:text=" km/h"
+        android:textColor="@color/Red"
+        android:textSize="50sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/textCreateAltitude"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:gravity="right"
+        android:text="@string/velocity"
+        android:textColor="@color/Red"
+        android:textSize="50sp"
+        android:textStyle="bold|italic" />
 
 </RelativeLayout>

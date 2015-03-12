@@ -15,6 +15,9 @@ public class PreferencesProvider {
     private static final String NOTIFICATION = "notification";
     private static final String LOG_IN_STRING = "log_in";
     private static final String LAST_USER_LOGIN = "user_login";
+    private static final String LAST_USER_LOGIN_ID = "user_id";
+    private static final String LAST_USER_NAME = "user_name";
+    private static final String LAST_USER_IS_ADMIN = "user_is_admin";
     public static final String UNKNOWN_USER = "Unknown";
     private static final String SCREEN_ON = "screen_on";
 
@@ -41,14 +44,26 @@ public class PreferencesProvider {
     public boolean getLogIn() {
         return sharedPreferences.getBoolean(LOG_IN_STRING, false);
     }
-    public void setUserLogin(String login) {
+    public void setUserLogin(String userId, String login, String name, boolean isAdmin) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(LAST_USER_LOGIN_ID, userId);
         editor.putString(LAST_USER_LOGIN, login);
+        editor.putString(LAST_USER_NAME, name);
+        editor.putBoolean(LAST_USER_IS_ADMIN, isAdmin);
         editor.commit();
     }
 
     public String getUserLogin() {
         return sharedPreferences.getString(LAST_USER_LOGIN, UNKNOWN_USER);
+    }
+    public String getUserId() {
+        return sharedPreferences.getString(LAST_USER_LOGIN_ID, "");
+    }
+    public String getUserName() {
+        return sharedPreferences.getString(LAST_USER_NAME, UNKNOWN_USER);
+    }
+    public boolean getUserIsAdmin() {
+        return sharedPreferences.getBoolean(LAST_USER_IS_ADMIN, false);
     }
     public boolean isLocationEnabled()
     {

@@ -1,43 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-     Copyright (C) 2012 The Android Open Source Project
-
-     Licensed under the Apache License, Version 2.0 (the "License");
-     you may not use this file except in compliance with the License.
-     You may obtain a copy of the License at
-
-          http://www.apache.org/licenses/LICENSE-2.0
-
-     Unless required by applicable law or agreed to in writing, software
-     distributed under the License is distributed on an "AS IS" BASIS,
-     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     See the License for the specific language governing permissions and
-     limitations under the License.
--->
-<!-- This can go anywhere in your layout (see other demos for some examples). -->
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:orientation="vertical">
-
-  <TextView
-      android:id="@+id/title_text"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center_horizontal"
-      android:textSize="15sp"
-      android:text="@string/app_name" />
-
-  <RelativeLayout
- 
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <fragment
-      
-      android:id="@+id/map"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      class="com.google.android.gms.maps.SupportMapFragment"/>
-  </RelativeLayout>
-</LinearLayout>
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/tlo"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="20"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="12"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <CheckBox
+                        android:id="@+id/btnShowOptions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:button="@drawable/btn_show" />
+
+                    <TextView
+                        android:id="@+id/routeName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_toRightOf="@+id/btnShowOptions"
+                        android:gravity="center"
+                        android:text="* * * *" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="18"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/tvSpeed"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="right"
+                        android:text="100.0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvSpeedUnit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/tvSpeed"
+                        android:layout_toRightOf="@+id/tvSpeed"
+                        android:text=" km/h"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvTxtDistance"
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_toRightOf="@+id/tvSpeedUnit"
+                        android:text="Dystans "
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <TextView
+                        android:id="@+id/tvDistance"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/tvTxtDistance"
+                        android:layout_below="@+id/tvTxtDistance"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="0dp"
+                        android:gravity="right"
+                        android:text="000.0"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <TextView
+                        android:id="@+id/tvUnit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/tvDistance"
+                        android:layout_toRightOf="@+id/tvDistance"
+                        android:text=" km"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <fragment
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="80"
+            class="com.google.android.gms.maps.SupportMapFragment" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollerPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/optionsPanel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:background="#EFFF"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <CheckBox
+                android:id="@+id/btnHideOptions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:button="@drawable/btn_hide" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Typ mapy"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/mapType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" >
+
+                <RadioButton
+                    android:id="@+id/map_normal"
+                    android:checked="true"
+                    android:text="Normalna" />
+
+                <RadioButton
+                    android:id="@+id/map_satelite"
+                    android:text="Satelita" />
+
+                <RadioButton
+                    android:id="@+id/map_terrain"
+                    android:text="Teren" />
+
+                <RadioButton
+                    android:id="@+id/map_hybrid"
+                    android:text="Hybryda" />
+            </RadioGroup>
+
+            <Switch
+                android:id="@+id/switchTraffic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Natężenie ruchu"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnNewTrace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Nowa trasa" />
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>
