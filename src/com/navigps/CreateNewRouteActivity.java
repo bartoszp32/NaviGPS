@@ -7,6 +7,7 @@ import com.navigps.providers.ScreenProvider;
 import com.navigps.receivers.LocationReceiver;
 import com.navigps.receivers.NotificationReceiver;
 import com.navigps.services.DateProvider;
+import com.navigps.services.UsersService;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,6 +16,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -30,6 +32,8 @@ public class CreateNewRouteActivity extends Activity {
 	private TextView textAltitude;
 	private TextView textAccuracy;
 	private TextView textDistance;
+	private CheckBox btnStart;
+	private CheckBox btnStop;
 	private boolean flagTime = true;
 	private String dateFirst;
 
@@ -45,9 +49,12 @@ public class CreateNewRouteActivity extends Activity {
 		textLatitude = (TextView)findViewById(id.textCreateLatitude);
 		textLongitude = (TextView)findViewById(id.textCreateLongitude);
 		textVelocity = (TextView)findViewById(id.textCreateVelocity);
+		btnStart = (CheckBox)findViewById(id.btnStart);
+		btnStop = (CheckBox)findViewById(id.btnStop);
 		
 		tbStartStop.setOnClickListener(startStopListener);
-		
+		btnStart.setOnClickListener(startListener);
+		btnStop.setOnClickListener(stopListener);
 		
 		preferencesProvider = new PreferencesProvider(this);
 		tbStartStop.setChecked(NaviService.isLocListener);
@@ -55,12 +62,62 @@ public class CreateNewRouteActivity extends Activity {
 		locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 		locationReceiver = new MyLocationReceiver();
         this.registerReceiver(locationReceiver,locationReceiver.getIntentFilter());
+        UsersService.getInstance().getUser().setUserReuestDefined(true);
 	}
 
 	private Context getContext() {
 		return this;
 	}
 
+	private OnClickListener startListener = new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+
+			if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+				Intent i = new Intent(NaviService.REQUEST_LOCATION_UPDATE);
+				if (!NaviService.isLocListener) {
+					i.putExtra(NaviService.LOCATION_UPDATE,
+					NaviService.LOCATION_UPDATE_START);
+					tbStartStop.setChecked(true);
+					preferencesProvider.setNotification(true);
+				} else
+					Toast.makeText(getBaseContext(), "Nie mo¿na rozpocz¹æ nowej trasy. Tworzenie trasy w toku...", Toast.LENGTH_LONG).show();
+				sendBroadcast(i);
+			} else {
+				Toast.makeText(getBaseContext(), "Uruchom GPS",	Toast.LENGTH_LONG).show();
+				preferencesProvider.setNotification(false);
+				UsersService.getInstance().getUser().setUserLastRouteId(UsersService.getInstance().getUser().getUserLastRouteId() + 1);
+			}
+
+			getContext().sendBroadcast(NotificationReceiver.sendIntent());
+		}
+	};
+	
+	private OnClickListener stopListener = new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+
+			if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+				Intent i = new Intent(NaviService.REQUEST_LOCATION_UPDATE);
+				if (NaviService.isLocListener) {
+					i.putExtra(NaviService.LOCATION_UPDATE,
+					NaviService.LOCATION_UPDATE_STOP);
+					tbStartStop.setChecked(false);
+					preferencesProvider.setNotification(false);
+				} else
+					Toast.makeText(getBaseContext(), "Nie mo¿na zakoñczyæ nie ropoczêtej trasy!", Toast.LENGTH_LONG).show();
+				sendBroadcast(i);
+			} else {
+				Toast.makeText(getBaseContext(), "Uruchom GPS",	Toast.LENGTH_LONG).show();
+				preferencesProvider.setNotification(false);
+			}
+
+			getContext().sendBroadcast(NotificationReceiver.sendIntent());
+		}
+	};
+	
 	private OnClickListener startStopListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
@@ -84,6 +141,8 @@ public class CreateNewRouteActivity extends Activity {
 				Toast.makeText(getBaseContext(), "Uruchom GPS",
 						Toast.LENGTH_SHORT).show();
 				preferencesProvider.setNotification(false);
+				///tu siê zastanowiæ
+				UsersService.getInstance().getUser().setUserLastRouteId(UsersService.getInstance().getUser().getUserLastRouteId() + 1);
 			}
 
 			getContext().sendBroadcast(NotificationReceiver.sendIntent());

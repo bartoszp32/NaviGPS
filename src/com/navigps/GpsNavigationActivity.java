@@ -18,6 +18,7 @@ import com.navigps.providers.ScreenProvider;
 import com.navigps.receivers.LocationReceiver;
 import com.navigps.receivers.NotificationReceiver;
 import com.navigps.services.DateProvider;
+import com.navigps.services.UsersService;
 import com.navigps.tools.DataTools;
 
 public class GpsNavigationActivity extends Activity{
@@ -62,9 +63,32 @@ public class GpsNavigationActivity extends Activity{
 		locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 		locationReceiver = new MyLocationReceiver();
         this.registerReceiver(locationReceiver,locationReceiver.getIntentFilter());
+        
+        setUpService();
         //String str = avrVelocity("01:00:00", "60.0"); 
         //Log.d("AVR", str);
+        UsersService.getInstance().getUser().setUserReuestDefined(false);
+        UsersService.getInstance().getUser().setUserLastRouteId(UsersService.getInstance().getUser().getUserLastRouteId() + 1);
         
+	}
+	
+	private void setUpService(){
+		if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+			Intent i = new Intent(NaviService.REQUEST_LOCATION_UPDATE);
+			if (!NaviService.isLocListener) {
+				i.putExtra(NaviService.LOCATION_UPDATE, NaviService.LOCATION_UPDATE_START);
+				preferencesProvider.setNotification(true);
+			} 
+//			else {
+//				i.putExtra(NaviService.LOCATION_UPDATE, NaviService.LOCATION_UPDATE_STOP);
+//				preferencesProvider.setNotification(false);
+//			}
+			sendBroadcast(i);
+		} else {
+			Toast.makeText(getBaseContext(), "Uruchom GPS",	Toast.LENGTH_SHORT).show();
+			preferencesProvider.setNotification(false);
+		}
+		getContext().sendBroadcast(NotificationReceiver.sendIntent());
 	}
 
     private Context getContext()

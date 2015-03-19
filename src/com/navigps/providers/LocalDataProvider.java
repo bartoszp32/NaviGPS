@@ -110,9 +110,9 @@ public class LocalDataProvider {
     }
 	
 	public List<Trace> getAllTraces() {
-		
         List<Trace> traces = new ArrayList<Trace>();
         databaseService.open();
+        
         Cursor c = databaseService.db.rawQuery("SELECT * FROM " + DatabaseService.TABLE_TRACE + ";",null);
         if(c!=null && c.moveToFirst())
         {
@@ -305,8 +305,11 @@ public class LocalDataProvider {
         {
         	user = new User();
         	user.setUserId(c.getInt(1));
-        	user.setUserName(c.getString(2));
-        	user.setUserPassword(c.getString(3));
+        	user.setUserLogin(c.getString(2));
+        	user.setUserName(c.getString(3));
+        	user.setUserPassword(c.getString(4));
+        	user.setAdmin("Y".equals(c.getString(5)));
+        	user.setUserLastRouteId(c.getInt(6));
 
         }
         c.close();

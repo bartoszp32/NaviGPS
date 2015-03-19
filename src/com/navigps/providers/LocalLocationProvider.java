@@ -56,6 +56,8 @@ public class LocalLocationProvider implements LocationService {
                 location.velocity = c.getString(5);
                 location.date = c.getString(6);
                 location.userId = c.getInt(7);
+                location.userRouteId = c.getInt(8);
+                location.reuestDefined = c.getString(9);
 
                 locations.add(location);
             }
@@ -77,6 +79,8 @@ public class LocalLocationProvider implements LocationService {
         cv.put(DatabaseService.LOCATION_DATE,location.date);
         cv.put(DatabaseService.LOCATION_VELOCITY,location.velocity);
         cv.put(DatabaseService.LOCATION_USER_ID,location.userId);
+        cv.put(DatabaseService.LOCATION_ROUTE_ID,location.userRouteId);
+        cv.put(DatabaseService.LOCATION_REQUEST_DEF,location.reuestDefined);
         return cv;
     }
     private ContentValues insertContentValues(MyLocation location)
@@ -90,6 +94,8 @@ public class LocalLocationProvider implements LocationService {
         cv.put(DatabaseService.LOCATION_DATE,location.date);
         cv.put(DatabaseService.LOCATION_VELOCITY,location.velocity);
         cv.put(DatabaseService.LOCATION_USER_ID,location.userId);
+        cv.put(DatabaseService.LOCATION_ROUTE_ID,location.userRouteId);
+        cv.put(DatabaseService.LOCATION_REQUEST_DEF,location.reuestDefined);
         return cv;
     }
 

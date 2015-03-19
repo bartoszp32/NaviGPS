@@ -56,10 +56,14 @@ public class NewAccountActivity extends Activity{
 		
 		@Override
 		public void onClick(View v) {
-			UserManager userManager = new UserManager(getContext(), etLogin.getText().toString(), etPassword.getText().toString(), 
-					etPassword2.getText().toString(), etEmail.getText().toString(), etUserName.getText().toString());
-			if (userManager.TryCreateUser() == Globals.CREATE_USER_RESULT.CREATED){
-				onBackPressed();
+			if (!preferencesProvider.isNetworkOnline()) {
+				Toast.makeText(getBaseContext(), "Uruchom dane mobilne", Toast.LENGTH_SHORT).show();
+			} else {
+				UserManager userManager = new UserManager(getContext(), etLogin.getText().toString(), etPassword.getText().toString(), 
+						etPassword2.getText().toString(), etEmail.getText().toString(), etUserName.getText().toString());
+				if (userManager.TryCreateUser() == Globals.CREATE_USER_RESULT.CREATED){
+					onBackPressed();
+				}
 			}
 		}
 	};

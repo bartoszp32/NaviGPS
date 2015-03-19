@@ -29,8 +29,10 @@ public class MyLocationListener implements LocationListener {
         myLocation.accuracy = String.valueOf(location.getAccuracy());
         myLocation.velocity = String.valueOf(location.getSpeed());
         myLocation.userId = UsersService.getInstance().getUser().getUserId();
+        myLocation.userRouteId = UsersService.getInstance().getUser().getUserLastRouteId();
         myLocation.date = DateProvider.getDate();
         myLocation.altitude = String.valueOf(location.getAltitude());
+        myLocation.reuestDefined = UsersService.getInstance().getUser().getUserReuestDefined() ? "Y" : "N";
 
       //  myLocation.altitude = String.valueOf(location.getAltitude()); 
 	   

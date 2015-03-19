@@ -1,106 +1,129 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroller"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/tlo" 
-    tools:context=".CreateNewRouteActivity">
+    android:background="@drawable/tlo"
+    android:fillViewport="true"
+    tools:context=".CreateNewRouteActivity" >
 
-    <TextView
-        android:id="@+id/textYourLocalization"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="@string/your_localizationo"
-        android:textSize="20sp"
-        android:textStyle="bold|italic" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
-    <TextView
-        android:id="@+id/textCreateVelocity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textYourLocalization"
-        android:layout_centerHorizontal="false"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="40dp"
+        <TextView
+            android:id="@+id/textYourLocalization"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="@string/your_localizationo"
+            android:textSize="20sp"
+            android:textStyle="bold|italic" />
 
-        android:text="@string/velocity_text"
-        android:textSize="20sp"
-        android:textStyle="italic" />
+        <TextView
+            android:id="@+id/textCreateVelocity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textYourLocalization"
+            android:layout_centerHorizontal="false"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/velocity_text"
+            android:textSize="20sp"
+            android:textStyle="italic" />
 
-    <TextView
-        android:id="@+id/textCreateLongitude"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textCreateVelocity"
-        android:layout_below="@+id/textCreateVelocity"
-        android:layout_marginTop="15dp"
-        android:text="@string/longitude"
-        android:textSize="20sp"
-        android:textStyle="italic" />
+        <TextView
+            android:id="@+id/textCreateLongitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textCreateVelocity"
+            android:layout_below="@+id/textCreateVelocity"
+            android:layout_marginTop="15dp"
+            android:text="@string/longitude"
+            android:textSize="20sp"
+            android:textStyle="italic" />
 
-    <TextView
-        android:id="@+id/textCreateLatitude"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textCreateLongitude"
-        android:layout_below="@+id/textCreateLongitude"
-        android:layout_marginTop="15dp"
-        android:text="@string/latitude"
-        android:textSize="20sp"
-        android:textStyle="italic" />
+        <TextView
+            android:id="@+id/textCreateLatitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textCreateLongitude"
+            android:layout_below="@+id/textCreateLongitude"
+            android:layout_marginTop="15dp"
+            android:text="@string/latitude"
+            android:textSize="20sp"
+            android:textStyle="italic" />
 
-    <TextView
-        android:id="@+id/textCreateAltitude"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textCreateLatitude"
-        android:layout_below="@+id/textCreateLatitude"
-        android:layout_marginTop="15dp"
-        android:text="@string/altitude"
-        android:textSize="20sp"
-        android:textStyle="italic" />
+        <TextView
+            android:id="@+id/textCreateAltitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textCreateLatitude"
+            android:layout_below="@+id/textCreateLatitude"
+            android:layout_marginTop="15dp"
+            android:text="@string/altitude"
+            android:textSize="20sp"
+            android:textStyle="italic" />
 
-    <TextView
-        android:id="@+id/textCreateAccuracy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textCreateAltitude"
-        android:layout_below="@+id/textCreateAltitude"
-        android:layout_marginTop="15dp"
-        android:text="@string/accuracy"
-        android:textSize="20sp"
-        android:textStyle="italic" />
+        <TextView
+            android:id="@+id/textCreateAccuracy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textCreateAltitude"
+            android:layout_below="@+id/textCreateAltitude"
+            android:layout_marginTop="15dp"
+            android:text="@string/accuracy"
+            android:textSize="20sp"
+            android:textStyle="italic" />
 
-    <ToggleButton
-        android:id="@+id/tbOnOff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/checkBoxWithTracking"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:textOff="Zapis zatrzymany"
-        android:textOn="Zapis w toku" />
+        <ToggleButton
+            android:id="@+id/tbOnOff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textCreateDistance"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:textOff="Zapis zatrzymany"
+            android:textOn="Zapis w toku" 
+            android:visibility="gone"/>
 
-    <TextView
-        android:id="@+id/textCreateDistance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textCreateAccuracy"
-        android:layout_below="@+id/textCreateAccuracy"
-        android:layout_marginTop="15dp"
-        android:text="@string/distance"
-        android:textSize="20sp"
-        android:textStyle="italic" />
+        <TextView
+            android:id="@+id/textCreateDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textCreateAccuracy"
+            android:layout_below="@+id/textCreateAccuracy"
+            android:layout_marginTop="15dp"
+            android:text="@string/distance"
+            android:textSize="20sp"
+            android:textStyle="italic" />
 
-    <CheckBox
-        android:id="@+id/checkBoxWithTracking"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textCreateDistance"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp"
-        android:text="@string/route_tracking" />
+        <CheckBox
+            android:id="@+id/btnStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="30dp"
+            android:button="@drawable/btn_start"
+            android:minHeight="100dp"
+            android:minWidth="100dp" />
 
-</RelativeLayout>
+        <CheckBox
+            android:id="@+id/btnStop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/btnStart"
+            android:layout_alignBottom="@+id/btnStart"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
+            android:button="@drawable/btn_stop"
+            android:minHeight="100dp"
+            android:minWidth="100dp" />
+
+    </RelativeLayout>
+
+</ScrollView>

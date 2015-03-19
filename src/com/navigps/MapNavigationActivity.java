@@ -52,6 +52,7 @@ import com.navigps.providers.ScreenProvider;
 import com.navigps.receivers.LocationReceiver;
 import com.navigps.receivers.NotificationReceiver;
 import com.navigps.services.DateProvider;
+import com.navigps.services.UsersService;
 import com.navigps.tools.DataTools;
 import com.navigps.tools.TransparentProgressDialog;
 
@@ -75,12 +76,14 @@ public class MapNavigationActivity extends FragmentActivity {
 	private Switch btnTraffic;
 	private TextView routeName; 
 	private Button btnNewTrace;
+	private CheckBox btnShowTrace;
 	
 	private boolean flagTime = true;
 	private boolean startMarker = true;
 	private String dateFirst;
 	private double distance = 0;
 	private String userRouteName;
+	private LatLngBounds.Builder builder;
 	
 	private MyLocation currentLocation = null;
 	private MyLocation lastLocation = null;
@@ -104,6 +107,7 @@ public class MapNavigationActivity extends FragmentActivity {
 		mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
 		new LoadUserRoute().execute();
+		UsersService.getInstance().getUser().setUserReuestDefined(false);
 	}
 	
 	@Override
@@ -130,12 +134,14 @@ public class MapNavigationActivity extends FragmentActivity {
 		btnTraffic = (Switch) findViewById(id.switchTraffic);
 		routeName = (TextView) findViewById(R.id.routeName);
 		btnNewTrace = (Button) findViewById(id.btnNewTrace);
+		btnShowTrace = (CheckBox) findViewById(id.btnShowTrace);
 		
 		btnShowOptions.setOnClickListener(showOptionsListener);
 		btnHideOptions.setOnClickListener(hideOptionsListener);
 		btnMapType.setOnCheckedChangeListener(mapTypeListener);
 		btnTraffic.setOnCheckedChangeListener(trafficListener);
 		btnNewTrace.setOnClickListener(newTraceListener);
+		btnShowTrace.setOnClickListener(showTraceListener);
 		
 		tvSpeed.setText("0");
 		tvDistance.setText("0.0");
@@ -145,18 +151,16 @@ public class MapNavigationActivity extends FragmentActivity {
 		if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 			Intent i = new Intent(NaviService.REQUEST_LOCATION_UPDATE);
 			if (!NaviService.isLocListener) {
-				i.putExtra(NaviService.LOCATION_UPDATE,
-						NaviService.LOCATION_UPDATE_START);
+				i.putExtra(NaviService.LOCATION_UPDATE, NaviService.LOCATION_UPDATE_START);
 				preferencesProvider.setNotification(true);
-			} else {
-				i.putExtra(NaviService.LOCATION_UPDATE,
-						NaviService.LOCATION_UPDATE_STOP);
-				preferencesProvider.setNotification(false);
-			}
+			} 
+//			else {
+//				i.putExtra(NaviService.LOCATION_UPDATE, NaviService.LOCATION_UPDATE_STOP);
+//				preferencesProvider.setNotification(false);
+//			}
 			sendBroadcast(i);
 		} else {
-			Toast.makeText(getBaseContext(), "Uruchom GPS",
-					Toast.LENGTH_SHORT).show();
+			Toast.makeText(getBaseContext(), "Uruchom GPS",	Toast.LENGTH_SHORT).show();
 			preferencesProvider.setNotification(false);
 		}
 		getContext().sendBroadcast(NotificationReceiver.sendIntent());
@@ -207,6 +211,17 @@ public class MapNavigationActivity extends FragmentActivity {
 		}
 	};
 	
+	private OnClickListener showTraceListener = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			if (builder != null) {
+				LatLngBounds bounds = builder.build();
+				mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100));
+			}
+		}
+	};
+	
 	private OnMarkerClickListener onMarkerClickListener = new OnMarkerClickListener() {
 		@Override
 		public boolean onMarkerClick(final Marker marker) {
@@ -251,6 +266,7 @@ public class MapNavigationActivity extends FragmentActivity {
 			flagTime = true;
 			startMarker = true;
 			distance = 0;
+			UsersService.getInstance().getUser().setUserLastRouteId(UsersService.getInstance().getUser().getUserLastRouteId() + 1);
 		}
 	};
 	
@@ -291,12 +307,12 @@ public class MapNavigationActivity extends FragmentActivity {
         	currentLocation = location;
 			
         	if(!flagTime) {
+        		LatLng point = new LatLng(Double.parseDouble(location.latitude), Double.parseDouble(location.longitude)); 
         		if(startMarker && lastLocation != null)	{
-    				LatLng point = new LatLng(Double.parseDouble(location.latitude), Double.parseDouble(location.longitude)); 
     				mMap.addMarker(new MarkerOptions().position(point).title("Start trasy"));
     				startMarker = false;
     			}
-        		
+        		builder.include(point);
         		sendToScreen(location);
         		lastLocation = location;
         		UserRoute userRoute = new UserRoute(userRouteName, preferencesProvider.getUserId(), new DefinedRoute("-1", location.latitude, location.longitude), String.valueOf(distance));
@@ -407,7 +423,7 @@ public class MapNavigationActivity extends FragmentActivity {
 				startMarker = false;
 				
 				PolylineOptions lineOptions = new PolylineOptions();
-				LatLngBounds.Builder builder = new LatLngBounds.Builder();
+				builder = new LatLngBounds.Builder();
 
 				LatLng point;
 				for(UserRoute route : userRoute){
@@ -420,20 +436,21 @@ public class MapNavigationActivity extends FragmentActivity {
 						.width(5)
 						.color(Color.BLUE));
 				LatLngBounds bounds = builder.build();
-				mMap.moveCamera(CameraUpdateFactory
-						.newLatLngBounds(bounds, 100));
+				mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100));
 				
 				LatLng lastPoint = userRoute.get(userRoute.size()-1).route.convertToLatLng();
 				MyLocation myLocation = new MyLocation();
 				myLocation.latitude = String.valueOf(lastPoint.latitude);
 				myLocation.longitude = String.valueOf(lastPoint.longitude);
 				lastLocation = myLocation;
+				UsersService.getInstance().getUser().setUserLastRouteId(UsersService.getInstance().getUser().getUserLastRouteId() + 1);
 			} else {
 				DateFormat df = new SimpleDateFormat("yyyy.MM.dd'-'HH.mm.ss");
 				String date = df.format(Calendar.getInstance().getTime());
 				userRouteName = preferencesProvider.getUserLogin()+ "-" +date;
 				distance = 0;
 				startMarker = true;
+				builder = new LatLngBounds.Builder();
 			}
 			
 			routeName.setText(userRouteName);

@@ -2,18 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" 
->
+    android:orientation="vertical" >
 
-    <!-- Product id (pid) - will be HIDDEN - used to pass to other activity -->
     <TextView
         android:id="@+id/idRoute"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:visibility="gone" />
 
-
-    <!-- Name Label -->
     <TextView
         android:id="@+id/nameRoute"
         android:layout_width="fill_parent"

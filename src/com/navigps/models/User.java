@@ -11,6 +11,7 @@ public class User implements Parcelable {
 	private String userPassword;
 	private int userLastRouteId;
 	private boolean isAdmin = false;
+	private boolean requestDefined = false;
 
 	public User() {
 	}
@@ -42,6 +43,10 @@ public class User implements Parcelable {
 	public void setAdmin(boolean admin) {
 		isAdmin = admin;
 	}
+	
+	public void setUserReuestDefined(boolean requestDefined) {
+		this.requestDefined = requestDefined;
+	}
 
 	public int getUserId() {
 		return userId;
@@ -66,6 +71,11 @@ public class User implements Parcelable {
 	public boolean isAdmin() {
 		return isAdmin;
 	}
+	
+	public boolean getUserReuestDefined() {
+		return requestDefined;
+	}
+
 
 	@Override
 	public int describeContents() {
@@ -98,5 +108,6 @@ public class User implements Parcelable {
 			return new User[size];
 		}
 	};
+
 
 }

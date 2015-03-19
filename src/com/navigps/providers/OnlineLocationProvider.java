@@ -25,36 +25,29 @@ public class OnlineLocationProvider implements LocationService {
 
     @Override
     public boolean saveLocation(MyLocation location) {
-    	///////
-    	// PUT YOUR CODE HERE
-    	/////////
     	
     	// Building Parameters
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("Route_Id", String.valueOf(location.userId)));
+		params.add(new BasicNameValuePair("User_Id", String.valueOf(location.userId)));
+		params.add(new BasicNameValuePair("Route_Id", String.valueOf(location.userRouteId)));
 		params.add(new BasicNameValuePair("Longitude", location.longitude));
 		params.add(new BasicNameValuePair("Latitude", location.latitude));
 		params.add(new BasicNameValuePair("Altitude", location.altitude));
+		params.add(new BasicNameValuePair("Velocity", location.velocity));
 		params.add(new BasicNameValuePair("Accuracy", location.accuracy));
 		params.add(new BasicNameValuePair("Time", location.date));
+		params.add(new BasicNameValuePair("Request_Defined", location.reuestDefined));
 		
 		Log.d("DANE", params.toString());
 		
-		// getting JSON Object
-		// Note that create product url accepts POST method
 		JSONObject json = jsonParser.makeHttpRequest(url_add_data, "POST", params);
 		
-		// check log cat fro response
 		Log.d("Create Response", json.toString());
 
-		// check for success tag
 		try {
 			int success = json.getInt(TAG_SUCCESS);
 
 			if (success != 1) {
-				// failed to create product
-				//Toast toast = Toast.makeText(getApplicationContext(),"Problem z zapisaniem danych!",Toast.LENGTH_SHORT);
-	            //toast.show();
 				return false;
 			}
 		} catch (JSONException e) {

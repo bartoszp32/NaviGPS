@@ -43,11 +43,17 @@
             	  android:screenOrientation="portrait"/>
         <activity android:name="com.navigps.MapNavigationActivity"
               	  android:screenOrientation="portrait"/>
+        <activity android:name="com.navigps.UsersTraceActivity"
+              	  android:screenOrientation="portrait"/>
+        <activity android:name="com.navigps.UsersTraceMapActivity"
+              	  android:screenOrientation="portrait"/>
         <activity android:name="com.navigps.SettingsActivity"
             	  android:screenOrientation="portrait"/>
         <activity android:name="com.navigps.CreateNewRouteActivity"
             	  android:screenOrientation="portrait"/>
         <activity android:name="com.navigps.DefinedRouteMapActivity"
+            	  android:screenOrientation="portrait"/>
+        <activity android:name="com.navigps.DefinedRouteDetailActivity"
             	  android:screenOrientation="portrait"/>
         <activity android:name="com.navigps.GpsNavigationActivity"
             	  android:screenOrientation="portrait"/>		

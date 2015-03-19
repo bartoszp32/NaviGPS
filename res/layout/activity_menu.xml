@@ -5,28 +5,53 @@
     android:orientation="vertical"
     android:background="@drawable/tlo">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="15" >
-
+        android:layout_weight="10" >
+        
         <CheckBox
             android:id="@+id/myBoxService"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginLeft="5dp"
-            android:button="@drawable/btn_service_service" />
+            android:button="@drawable/btn_service_service" 
+            android:visibility="gone"/>
 
         <CheckBox
             android:id="@+id/myLogout"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginRight="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="18dp"
+            android:minWidth="60dp"
             android:button="@drawable/btn_light_logout" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/tvLogged"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="18dp"
+            android:textStyle="bold"
+            android:text="Zalogowany:"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/textUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tvLogged"
+            android:layout_alignBottom="@+id/tvLogged"
+            android:layout_toRightOf="@+id/tvLogged"
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+    </RelativeLayout>
 
     <ScrollView
 	    android:id="@+id/scroller"
@@ -129,6 +154,17 @@
 		        android:layout_marginTop="20dp"
 		        android:layout_marginBottom="10dp"
 		        android:button="@drawable/btn_light_site"
+		        android:minWidth="150dp" />
+		    
+		    <CheckBox
+		        android:id="@+id/myAcceptTraces"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignLeft="@+id/mySite"
+		        android:layout_below="@+id/mySite"
+		        android:layout_marginTop="20dp"
+		        android:layout_marginBottom="10dp"
+		        android:button="@drawable/btn_trace_accepted"
 		        android:minWidth="150dp" />
 		
 		

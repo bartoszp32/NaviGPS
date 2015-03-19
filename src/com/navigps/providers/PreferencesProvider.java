@@ -1,11 +1,17 @@
 package com.navigps.providers;
 
+import com.navigps.models.User;
+
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 
 public class PreferencesProvider {
     private SharedPreferences sharedPreferences;
+    private Context context;
     private static final String prefsName = "navi_gps_prefs";
     private static final String IS_LOCATION_ENABLED = "location_enabled";
     private static final String MIN_DISTANCE_KEY = "min_distance";
@@ -24,6 +30,7 @@ public class PreferencesProvider {
 
     public PreferencesProvider(Context context) {
         sharedPreferences = context.getSharedPreferences(prefsName,0);
+        this.context = context;
     }
     public boolean getScreenOn()
     {
@@ -129,4 +136,20 @@ public class PreferencesProvider {
         editor.commit();
     }
 
+    public boolean isNetworkOnline() {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+    
+	public void setUser(User user) {
+		SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(LAST_USER_LOGIN_ID, String.valueOf(user.getUserId()));
+        editor.putString(LAST_USER_LOGIN, user.getUserLogin());
+        editor.putString(LAST_USER_NAME, user.getUserName());
+        editor.putBoolean(LAST_USER_IS_ADMIN, user.isAdmin());
+        editor.putBoolean(LAST_USER_IS_ADMIN, user.isAdmin());
+        editor.commit();
+		
+	}
 }

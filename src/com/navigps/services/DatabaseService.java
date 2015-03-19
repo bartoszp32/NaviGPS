@@ -35,6 +35,8 @@ public class DatabaseService {
     public static final String LOCATION_ALTITUDE = "altitude";
     public static final String LOCATION_VELOCITY = "velocity";
     public static final String LOCATION_USER_ID = "user_id";
+    public static final String LOCATION_ROUTE_ID = "user_route_id";
+    public static final String LOCATION_REQUEST_DEF = "request_defined";
     
     public static final String TABLE_TRACE = "Trace";
     public static final String TRACE_RECID = "recId";
@@ -77,6 +79,8 @@ public class DatabaseService {
             + ", " + LOCATION_VELOCITY + " " + OPTIONS_STRING
             + ", " + LOCATION_DATE + " " + OPTIONS_STRING
             + ", " + LOCATION_USER_ID + " " + OPTIONS_STRING
+            + ", " + LOCATION_ROUTE_ID + " " + OPTIONS_STRING
+            + ", " + LOCATION_REQUEST_DEF + " " + OPTIONS_STRING
             + ");";
     
     private static final String DROP_TABLE_LOCATIONS = "DROP TABLE IF EXISTS " + TABLE_LOCATIONS;

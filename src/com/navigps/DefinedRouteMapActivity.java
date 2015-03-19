@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
+import android.opengl.Visibility;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -46,6 +47,7 @@ import com.navigps.R.id;
 import com.navigps.managers.LocalDataManager;
 import com.navigps.models.DefinedRoute;
 import com.navigps.models.MyLocation;
+import com.navigps.models.Route;
 import com.navigps.models.Trace;
 import com.navigps.models.UserRoute;
 import com.navigps.providers.PreferencesProvider;
@@ -53,6 +55,7 @@ import com.navigps.providers.ScreenProvider;
 import com.navigps.receivers.LocationReceiver;
 import com.navigps.receivers.NotificationReceiver;
 import com.navigps.services.DateProvider;
+import com.navigps.services.UsersService;
 import com.navigps.tools.DataTools;
 import com.navigps.tools.Globals;
 import com.navigps.tools.TransparentProgressDialog;
@@ -77,13 +80,18 @@ public class DefinedRouteMapActivity extends FragmentActivity {
 	private RadioGroup btnMapType;
 	private Switch btnTraffic;
 	private TextView routeName; 
-	private Button btnNewTrace;
+	private Button btnCalcTrace;
+	private TextView textInfo; 
+	private CheckBox btnShowTrace;
 	
 	private boolean flagTime = true;
 	private boolean startMarker = true;
 	private String dateFirst;
 	private double distance = 0;
 	private String userRouteName;
+	private LatLng firsPosition;
+	private LatLng lastPosition;
+	private LatLngBounds.Builder builder;
 	
 	private MyLocation currentLocation = null;
 	private MyLocation lastLocation = null;
@@ -109,6 +117,8 @@ public class DefinedRouteMapActivity extends FragmentActivity {
 		mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
 		new LoadAllRoute().execute();
+		UsersService.getInstance().getUser().setUserReuestDefined(false);
+		UsersService.getInstance().getUser().setUserLastRouteId(UsersService.getInstance().getUser().getUserLastRouteId() + 1);
 	}
 	
 	@Override
@@ -134,14 +144,18 @@ public class DefinedRouteMapActivity extends FragmentActivity {
 		btnMapType = (RadioGroup) findViewById(id.mapType);
 		btnTraffic = (Switch) findViewById(id.switchTraffic);
 		routeName = (TextView) findViewById(R.id.routeName);
-		btnNewTrace = (Button) findViewById(id.btnNewTrace);
+		btnCalcTrace = (Button) findViewById(id.btnNewTrace);
+		textInfo = (TextView) findViewById(R.id.textInfo);
+		btnShowTrace = (CheckBox) findViewById(id.btnShowTrace);
 		
 		btnShowOptions.setOnClickListener(showOptionsListener);
 		btnHideOptions.setOnClickListener(hideOptionsListener);
 		btnMapType.setOnCheckedChangeListener(mapTypeListener);
 		btnTraffic.setOnCheckedChangeListener(trafficListener);
+		btnCalcTrace.setOnClickListener(calcTraceListener);
+		btnShowTrace.setOnClickListener(showTraceListener);
 		
-		btnNewTrace.setVisibility(View.INVISIBLE);
+		btnCalcTrace.setText("Prowadü na poczπtek szlaku");
 		tvSpeed.setText("0");
 		tvDistance.setText("0.0");
     }
@@ -153,11 +167,12 @@ public class DefinedRouteMapActivity extends FragmentActivity {
 				i.putExtra(NaviService.LOCATION_UPDATE,
 						NaviService.LOCATION_UPDATE_START);
 				preferencesProvider.setNotification(true);
-			} else {
-				i.putExtra(NaviService.LOCATION_UPDATE,
-						NaviService.LOCATION_UPDATE_STOP);
-				preferencesProvider.setNotification(false);
-			}
+			} 
+//			else {
+//				i.putExtra(NaviService.LOCATION_UPDATE,
+//						NaviService.LOCATION_UPDATE_STOP);
+//				preferencesProvider.setNotification(false);
+//			}
 			sendBroadcast(i);
 		} else {
 			Toast.makeText(getBaseContext(), "Uruchom GPS",
@@ -209,6 +224,28 @@ public class DefinedRouteMapActivity extends FragmentActivity {
 		public void onClick(View v) {
 			btnShowOptions.setVisibility(View.VISIBLE);
 			optionsPanel.setVisibility(View.GONE);
+		}
+	};
+	
+	private OnClickListener calcTraceListener = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			LatLng currentPosition = new LatLng(mMap.getMyLocation().getLatitude(), mMap.getMyLocation().getLongitude());
+			if (firsPosition != null && currentPosition != null) {
+				new CalcTrace().execute(currentPosition);
+			}
+			btnShowOptions.setVisibility(View.VISIBLE);
+			optionsPanel.setVisibility(View.GONE);
+		}
+	};
+	
+	private OnClickListener showTraceListener = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			LatLngBounds bounds = builder.build();
+			mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100));
 		}
 	};
 	
@@ -375,8 +412,8 @@ public class DefinedRouteMapActivity extends FragmentActivity {
 		 * **/
 		protected void onPostExecute(List<DefinedRoute> definedRoute) {
 			
-			LatLng firsPosition = definedRoute.get(0).convertToLatLng();
-			LatLng lastPosition = definedRoute.get(definedRoute.size()-1).convertToLatLng();
+			firsPosition = definedRoute.get(0).convertToLatLng();
+			lastPosition = definedRoute.get(definedRoute.size()-1).convertToLatLng();
 
 			Trace currentTrace = localDataManager.GetTrace(routeId);
 			
@@ -395,7 +432,7 @@ public class DefinedRouteMapActivity extends FragmentActivity {
 				.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 
 			PolylineOptions lineOptions = new PolylineOptions();
-			LatLngBounds.Builder builder = new LatLngBounds.Builder();
+			builder = new LatLngBounds.Builder();
 
 			LatLng point;
 			for(DefinedRoute route : localDataManager.DefinedTrace(routeId)){
@@ -408,12 +445,45 @@ public class DefinedRouteMapActivity extends FragmentActivity {
 					.width(5)
 					.color(Color.RED));
 			LatLngBounds bounds = builder.build();
-			mMap.moveCamera(CameraUpdateFactory
-					.newLatLngBounds(bounds, 100));
+			mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100));
 			
 			progressDialog.dismiss();
 
 		}
 		
+	}
+	
+	class CalcTrace extends AsyncTask<LatLng, Integer, Route> {
+		
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			progressDialog.setTitle("Wyznaczanie trasy...");
+			progressDialog.show();
+		}
+	
+		protected Route doInBackground(LatLng...currentPosition) {
+		    return localDataManager.CalculateTrace(currentPosition[0], firsPosition);
+		}
+	
+		protected void onPostExecute(Route route) {
+			LatLng last = null;
+			LatLng next = null;
+			for(LatLng point : route.getPoints()) {
+				last = next;
+				next = point;
+				builder.include(point);
+				if (last != null & next != null) {
+					mMap.addPolyline(DataTools.getPolyline(last, next, Color.GREEN));
+				}
+			}
+			textInfo.setVisibility(View.VISIBLE);
+			textInfo.setText("Do celu: " + route.getDistance() + ", " + route.getDuration());
+			
+			LatLngBounds bounds = builder.build();
+			mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100));
+			progressDialog.dismiss();
+	
+		}
 	}
 }

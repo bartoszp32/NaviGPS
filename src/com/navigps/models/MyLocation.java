@@ -16,6 +16,8 @@ public class MyLocation implements Parcelable{
     public String velocity;
     public String date;
     public int userId;
+    public int userRouteId;
+    public String reuestDefined;
 
     public MyLocation()
     {
@@ -33,14 +35,16 @@ public class MyLocation implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-            parcel.writeInt(id);
-            parcel.writeString(longitude);
-             parcel.writeString(latitude);
-             parcel.writeString(altitude);
-             parcel.writeString(accuracy);
-         parcel.writeString(velocity);
+    	parcel.writeInt(id);
+    	parcel.writeString(longitude);
+		parcel.writeString(latitude);
+		parcel.writeString(altitude);
+		parcel.writeString(accuracy);
+     	parcel.writeString(velocity);
         parcel.writeString(date);
-
+        parcel.writeInt(userId);
+        parcel.writeInt(userRouteId);
+        parcel.writeString(reuestDefined);
     }
     public LatLng getLatLng(){
     	return new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
@@ -55,8 +59,11 @@ public class MyLocation implements Parcelable{
         accuracy = parcel.readString();
         velocity = parcel.readString();
         date = parcel.readString();
+        userId = parcel.readInt();
+        userRouteId = parcel.readInt();
+        reuestDefined = parcel.readString();
     }
-    public static final Parcelable.Creator CREATOR = new Parcelable.Creator()
+    private static final Parcelable.Creator CREATOR = new Parcelable.Creator()
     { 
     	public MyLocation createFromParcel(Parcel in){ 
     		return new MyLocation(in); 

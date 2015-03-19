@@ -28,6 +28,7 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 import com.navigps.R.id;
@@ -43,6 +44,8 @@ import com.navigps.services.UsersService;
 import com.navigps.tools.Globals;
 
 public class MenuActivity extends Activity implements OnClickListener {
+	
+
 	private CheckBox btnMapNavigation;
 	private CheckBox btnGpsNavigation;
 	private CheckBox btnDefinedRoute;
@@ -51,8 +54,10 @@ public class MenuActivity extends Activity implements OnClickListener {
 	private CheckBox btnMyTraces;
 	private CheckBox btnToSite;
 	private CheckBox btnSettings;
+	private CheckBox btnAcceptTraces;
 	private CheckBox tbService;
 	private CheckBox btnLogout;
+	private TextView textUser;
 	
     private ServicesManager servicesManager;
     private PreferencesProvider preferencesProvider;
@@ -77,7 +82,9 @@ public class MenuActivity extends Activity implements OnClickListener {
 		btnMyTraces = (CheckBox) findViewById(id.myTraces);
 		btnToSite = (CheckBox) findViewById(id.mySite);
 		btnSettings = (CheckBox) findViewById(id.mySettings);
+		btnAcceptTraces = (CheckBox) findViewById(id.myAcceptTraces);
 		btnLogout = (CheckBox) findViewById(id.myLogout);
+		textUser = (TextView) findViewById(id.textUser);
 		
         servicesManager = new ServicesManager(this);
         localDataProvider = new LocalDataProvider(this);
@@ -93,7 +100,11 @@ public class MenuActivity extends Activity implements OnClickListener {
 		btnMyTraces.setOnClickListener(myTracesListener);
 		btnToSite.setOnClickListener(siteListener);
 		btnSettings.setOnClickListener(settingsListener);
+		btnAcceptTraces.setOnClickListener(acceptTracesListener);
 		btnLogout.setOnClickListener(logoutListener);
+		
+		if (!UsersService.getInstance().isUserAdmin())
+			btnAcceptTraces.setVisibility(View.GONE);
 
 		//tbGpsService = (CheckBox) findViewById(id.myBoxGps);
 		tbService = (CheckBox) findViewById(id.myBoxService);
@@ -103,6 +114,8 @@ public class MenuActivity extends Activity implements OnClickListener {
 
 		//tbGpsService.setOnClickListener(tbGpsServiceListener);
 		tbService.setOnClickListener(tbServiceListener);
+		
+		textUser.setText(preferencesProvider.getUserLogin());
 	}
 	
 	private Intent getServiceIntent()
@@ -114,6 +127,29 @@ public class MenuActivity extends Activity implements OnClickListener {
         return this;
     }
 
+    private boolean isGpsEnabled() {
+    	return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+    }
+    
+    private boolean isNetworkOnline() {
+    	return preferencesProvider.isNetworkOnline();
+    }
+    
+    @Override
+	public void onBackPressed() {
+		Intent i = new Intent(NaviService.REQUEST_LOCATION_UPDATE);
+		if (servicesManager.isServiceRunning(serviceClassName)) {
+			preferencesProvider.setNotification(false);
+			getContext().sendBroadcast(NotificationReceiver.sendIntent());
+			i.putExtra(NaviService.LOCATION_UPDATE,	NaviService.LOCATION_UPDATE_STOP);
+			sendBroadcast(i);
+			getContext().stopService(getServiceIntent());
+			tbService.setChecked(false);
+			preferencesProvider.setLocationEnabled(false);
+		}
+		super.onBackPressed();
+	}
+    
 	/*private OnClickListener tbGpsServiceListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
@@ -151,10 +187,8 @@ public class MenuActivity extends Activity implements OnClickListener {
 			if (servicesManager.isServiceRunning(serviceClassName)) {
 				preferencesProvider.setNotification(false);
 				getContext().sendBroadcast(NotificationReceiver.sendIntent());
-				i.putExtra(NaviService.LOCATION_UPDATE,
-						NaviService.LOCATION_UPDATE_STOP);
-						//tbGpsService.setChecked(false);
-						sendBroadcast(i);
+				i.putExtra(NaviService.LOCATION_UPDATE, NaviService.LOCATION_UPDATE_STOP);
+				sendBroadcast(i);
 				getContext().stopService(getServiceIntent());
 				tbService.setChecked(false);
 				preferencesProvider.setLocationEnabled(false);
@@ -169,6 +203,16 @@ public class MenuActivity extends Activity implements OnClickListener {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
+			Intent i = new Intent(NaviService.REQUEST_LOCATION_UPDATE);
+			if (servicesManager.isServiceRunning(serviceClassName)) {
+				preferencesProvider.setNotification(false);
+				getContext().sendBroadcast(NotificationReceiver.sendIntent());
+				i.putExtra(NaviService.LOCATION_UPDATE,	NaviService.LOCATION_UPDATE_STOP);
+				sendBroadcast(i);
+				getContext().stopService(getServiceIntent());
+				tbService.setChecked(false);
+				preferencesProvider.setLocationEnabled(false);
+			}
 			onBackPressed();
 		}
 	};
@@ -176,72 +220,110 @@ public class MenuActivity extends Activity implements OnClickListener {
 	private OnClickListener mapListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			Intent i = new Intent(MenuActivity.this, MapNavigationActivity.class);
-			startActivity(i);
+			if (!isGpsEnabled()) {
+				Toast.makeText(getBaseContext(), "Uruchom GPS",	Toast.LENGTH_SHORT).show();
+			} else if (!isNetworkOnline()) {
+				Toast.makeText(getBaseContext(), "Uruchom dane mobilne", Toast.LENGTH_SHORT).show();
+			} else {
+				Intent i = new Intent(MenuActivity.this, MapNavigationActivity.class);
+				startActivity(i);
+			}
 		}
 	};
 	
 	private OnClickListener dataListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
+			if (!isGpsEnabled()) {
+				Toast.makeText(getBaseContext(), "Uruchom GPS",	Toast.LENGTH_SHORT).show();
+			} else if (!isNetworkOnline()) {
+				Toast.makeText(getBaseContext(), "Uruchom dane mobilne", Toast.LENGTH_SHORT).show();
+			} else {
 				Intent i = new Intent(MenuActivity.this, GpsNavigationActivity.class);
 				startActivity(i);
+			}
 		}
 	};
 	
 	private OnClickListener definedRouteListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			Intent i = new Intent(MenuActivity.this, DefinedRouteActivity.class);
-			startActivity(i);
+			if (!isNetworkOnline()) {
+				Toast.makeText(getBaseContext(), "Uruchom dane mobilne", Toast.LENGTH_SHORT).show();
+			} else {
+				Intent i = new Intent(MenuActivity.this, DefinedRouteActivity.class);
+				startActivity(i);
+			}
 		}
 	};
 	
 	private OnClickListener createRouteListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			Intent i = new Intent(MenuActivity.this, CreateNewRouteActivity.class);
-			startActivity(i);
+			if (!isGpsEnabled()) {
+				Toast.makeText(getBaseContext(), "Uruchom GPS",	Toast.LENGTH_SHORT).show();
+			} else if (!isNetworkOnline()) {
+				Toast.makeText(getBaseContext(), "Uruchom dane mobilne", Toast.LENGTH_SHORT).show();
+			} else {
+				Intent i = new Intent(MenuActivity.this, CreateNewRouteActivity.class);
+				startActivity(i);
+			}
 		}
 	};
 	
 	private OnClickListener createRouteDescListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			//Intent i = new Intent(MenuActivity.this, CreateNewRouteActivity.class);
-			//startActivity(i);
-			Toast.makeText(getContext(), "Nie zaimplementowane jeszcze!", Toast.LENGTH_LONG).show();
+			if (!isNetworkOnline()) {
+				Toast.makeText(getBaseContext(), "Uruchom dane mobilne", Toast.LENGTH_SHORT).show();
+			} else {
+				//Intent i = new Intent(MenuActivity.this, CreateNewRouteActivity.class);
+				//startActivity(i);
+				Toast.makeText(getContext(), "Nie zaimplementowane jeszcze!", Toast.LENGTH_LONG).show();
+			}
 		}
 	};
 	
 	private OnClickListener myTracesListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			//Intent i = new Intent(MenuActivity.this, CreateNewRouteActivity.class);
-			//startActivity(i);
-			Toast.makeText(getContext(), "Nie zaimplementowane jeszcze!", Toast.LENGTH_LONG).show();
+			if (!isNetworkOnline()) {
+				Toast.makeText(getBaseContext(), "Uruchom dane mobilne", Toast.LENGTH_SHORT).show();
+			} else {
+				Intent i = new Intent(MenuActivity.this, UsersTraceActivity.class);
+				startActivity(i);
+			}
+		}
+	};
+	
+	private OnClickListener acceptTracesListener = new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			if (!isNetworkOnline()) {
+				Toast.makeText(getBaseContext(), "Uruchom dane mobilne", Toast.LENGTH_SHORT).show();
+			} else {
+				//Intent i = new Intent(MenuActivity.this, CreateNewRouteActivity.class);
+				//startActivity(i);
+				Toast.makeText(getContext(), "Nie zaimplementowane jeszcze!", Toast.LENGTH_LONG).show();
+			}
 		}
 	};
 	
 	private OnClickListener siteListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			Uri uri = Uri.parse("http://www.navigps.cba.pl");
-            startActivity(new Intent(Intent.ACTION_VIEW, uri));
+			if (!isNetworkOnline()) {
+				Toast.makeText(getBaseContext(), "Uruchom dane mobilne", Toast.LENGTH_SHORT).show();
+			} else {
+				Uri uri = Uri.parse("http://www.navigps.cba.pl");
+	            startActivity(new Intent(Intent.ACTION_VIEW, uri));
+			}
 		}
 	};
 	
 	private OnClickListener settingsListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
 			Intent i = new Intent(MenuActivity.this, SettingsActivity.class);
 			startActivity(i);
 		}

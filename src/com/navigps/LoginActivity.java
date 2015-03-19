@@ -1,6 +1,7 @@
 package com.navigps;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,13 +9,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.navigps.R;
+
+import com.google.android.gms.maps.model.LatLng;
 import com.navigps.managers.LocalDataManager;
 import com.navigps.managers.UserManager;
-import com.navigps.managers.UserManager.LogonResult;
-import com.navigps.models.UserModel;
 import com.navigps.models.User;
-import com.navigps.providers.LocalDataProvider;
+import com.navigps.models.UserModel;
 import com.navigps.providers.PreferencesProvider;
 import com.navigps.providers.ScreenProvider;
 import com.navigps.services.UsersService;
@@ -52,6 +52,15 @@ public class LoginActivity extends Activity implements OnClickListener{
 		/////----TO WYWALIÆ-----------------------------
 	}
 	
+	private Intent getServiceIntent()
+    {
+        return new Intent(this, NaviService.class);
+    }
+    private Context getContext()
+    {
+        return this;
+    }
+	
 	private OnClickListener newAccountListener = new OnClickListener() {
 		
 		@Override
@@ -63,19 +72,23 @@ public class LoginActivity extends Activity implements OnClickListener{
 	
 	
 	public void onClick(View v) {
-		String userName = loginText.getText().toString();
-	    String userPassword = passwordText.getText().toString();
-	    
-	    UserManager userManager = new UserManager(this, userName, userPassword);
-	    if (userManager.TryLoginUser() == Globals.LOGIN_RESULT.LOGGED){
-	    	User user = localDataManager.GetUser(userName);
-			UsersService.getInstance().setUser(new UserModel().getUser());//admin
-			preferencesProvider.setLogIn(true);
-			preferencesProvider.setUserLogin(user.getUserLogin(), user.getUserName(), String.valueOf(user.getUserId()), user.isAdmin());
-			
-			Intent i = new Intent(this, MenuActivity.class);
-	    	startActivity(i);
-	    }
+		if (preferencesProvider.isNetworkOnline()) {
+			String userName = loginText.getText().toString();
+		    String userPassword = passwordText.getText().toString();
+		   
+		    UserManager userManager = new UserManager(this, userName, userPassword);
+		    if (userManager.TryLoginUser() == Globals.LOGIN_RESULT.LOGGED){
+		    	User user = localDataManager.GetUser(userName);
+				UsersService.getInstance().setUser(user);//admin
+				preferencesProvider.setLogIn(true);
+				//preferencesProvider.setUser(user);
+				preferencesProvider.setUserLogin(user.getUserLogin(), user.getUserName(), String.valueOf(user.getUserId()), user.isAdmin());
+				getContext().startService(getServiceIntent());
+				Intent i = new Intent(this, MenuActivity.class);
+		    	startActivity(i);
+		    }
+		} else
+			Toast.makeText(this, "Problem z po³¹czeniem Internetowym!", Toast.LENGTH_LONG).show();
 	}
 
 	public void StartMenuActivity(){
