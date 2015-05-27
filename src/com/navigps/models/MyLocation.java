@@ -63,7 +63,7 @@ public class MyLocation implements Parcelable{
         userRouteId = parcel.readInt();
         reuestDefined = parcel.readString();
     }
-    private static final Parcelable.Creator CREATOR = new Parcelable.Creator()
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator()
     { 
     	public MyLocation createFromParcel(Parcel in){ 
     		return new MyLocation(in); 

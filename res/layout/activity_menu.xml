@@ -60,115 +60,89 @@
 	    android:layout_weight="85"
 	    android:fillViewport="true" >
 	    
-        <RelativeLayout 
-		    android:id="@+id/AbsoluteLayout1"
-		    android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_marginBottom="20dp">
-		
-		    <CheckBox
-		        android:id="@+id/myMap"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_marginLeft="18dp"
-		        android:layout_marginTop="20dp"
-		         android:layout_alignParentLeft="true"
-		        android:layout_alignParentTop="true"
-		        android:button="@drawable/btn_light_map"
-		        android:minWidth="150dp" />
-		    
-		    <CheckBox
-		        android:id="@+id/myGps"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_alignBaseline="@+id/myMap"
-		        android:layout_alignBottom="@+id/myMap"
-		        android:layout_alignRight="@+id/myRoute"
-		        android:layout_toRightOf="@+id/myMap"
-		        android:button="@drawable/btn_light_gps"
-		        android:minWidth="150dp" />
-		    
-		    <CheckBox
-		        android:id="@+id/myRoute"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_alignBaseline="@+id/myCreate"
-		        android:layout_alignBottom="@+id/myCreate"
-		        android:layout_alignParentRight="true"
-		        android:layout_marginRight="18dp"
-		        android:layout_toRightOf="@+id/myCreate"
-		        android:button="@drawable/btn_light_route"
-		        android:minWidth="150dp" />
-		    
-		    <CheckBox
-		        android:id="@+id/myCreate"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_alignLeft="@+id/myMap"
-		        android:layout_below="@+id/myMap"
-		        android:layout_marginTop="20dp"
-		        android:button="@drawable/btn_light_create"
-		        android:minWidth="150dp" />
-		    
-		    <CheckBox
-		        android:id="@+id/myTraces"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_alignBaseline="@+id/myRouteDescription"
-		        android:layout_alignBottom="@+id/myRouteDescription"
-		        android:layout_alignLeft="@+id/myRoute"
-		        android:layout_alignParentRight="true"
-		        android:layout_marginRight="18dp"
-		        android:button="@drawable/btn_light_my_traces"
-		        android:minWidth="150dp" />
-		
-		    <CheckBox
-		        android:id="@+id/myRouteDescription"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_alignLeft="@+id/myCreate"
-		        android:layout_below="@+id/myCreate"
-		        android:layout_marginTop="20dp"
-		        android:button="@drawable/btn_light_route_description"
-		        android:minWidth="150dp" />
-		    
-		    <CheckBox
-		        android:id="@+id/mySettings"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_alignBaseline="@+id/mySite"
-		        android:layout_alignBottom="@+id/mySite"
-		        android:layout_alignLeft="@+id/myTraces"
-		        android:layout_alignParentRight="true"
-		        android:layout_marginRight="18dp"
-		        android:layout_marginBottom="10dp"
-		        android:button="@drawable/btn_light_settings"
-		        android:minWidth="150dp" />
-		
-		    <CheckBox
-		        android:id="@+id/mySite"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_alignLeft="@+id/myRouteDescription"
-		        android:layout_below="@+id/myRouteDescription"
-		        android:layout_marginTop="20dp"
-		        android:layout_marginBottom="10dp"
-		        android:button="@drawable/btn_light_site"
-		        android:minWidth="150dp" />
-		    
-		    <CheckBox
-		        android:id="@+id/myAcceptTraces"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_alignLeft="@+id/mySite"
-		        android:layout_below="@+id/mySite"
-		        android:layout_marginTop="20dp"
-		        android:layout_marginBottom="10dp"
-		        android:button="@drawable/btn_trace_accepted"
-		        android:minWidth="150dp" />
-		
-		
-		</RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/AbsoluteLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp" >
+
+            <CheckBox
+                android:id="@+id/myMap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="20dp"
+                android:button="@drawable/btn_light_map"
+                android:minWidth="150dp" />
+
+            <CheckBox
+                android:id="@+id/myGps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/myMap"
+                android:layout_alignBottom="@+id/myMap"
+                android:layout_alignRight="@+id/myRoute"
+                android:layout_toRightOf="@+id/myMap"
+                android:button="@drawable/btn_light_gps"
+                android:minWidth="150dp" />
+
+            <CheckBox
+                android:id="@+id/myRoute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/myCreate"
+                android:layout_alignBottom="@+id/myCreate"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="18dp"
+                android:layout_toRightOf="@+id/myCreate"
+                android:button="@drawable/btn_light_route"
+                android:minWidth="150dp" />
+
+            <CheckBox
+                android:id="@+id/myCreate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/myMap"
+                android:layout_below="@+id/myMap"
+                android:layout_marginTop="20dp"
+                android:button="@drawable/btn_light_create"
+                android:minWidth="150dp" />
+
+            <CheckBox
+                android:id="@+id/mySite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/myCreate"
+                android:layout_below="@+id/myCreate"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:button="@drawable/btn_light_site"
+                android:minWidth="150dp" />
+
+            <CheckBox
+                android:id="@+id/mySettings"
+                  android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/mySite"
+                android:layout_below="@+id/mySite"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:button="@drawable/btn_light_settings"
+                android:minWidth="150dp" />
+
+            <CheckBox
+                android:id="@+id/myTraces"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/mySite"
+                android:layout_alignBottom="@+id/mySite"
+                android:layout_toRightOf="@+id/mySite"
+                android:button="@drawable/btn_light_my_traces"
+                android:minWidth="150dp" />
+
+        </RelativeLayout>
 	    
 	</ScrollView>
 	

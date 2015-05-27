@@ -244,8 +244,10 @@ public class DefinedRouteMapActivity extends FragmentActivity {
 		
 		@Override
 		public void onClick(View v) {
-			LatLngBounds bounds = builder.build();
-			mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100));
+			if (builder != null) {
+				LatLngBounds bounds = builder.build();
+				mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100));
+			}
 		}
 	};
 	

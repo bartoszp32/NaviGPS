@@ -423,5 +423,11 @@ public class LocalDataManager {
 		}
 		return definedTrace;
 	}
+
+	public boolean SaveDescriptionRoute(String userId, String traceName, String userRouteId, String traceStart, String traceEnd, String traceWay, String traceDistance, 
+			String traceDesignation, String traceDescription) {
+
+		return false;
+	}
 	
 }

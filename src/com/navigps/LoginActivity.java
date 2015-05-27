@@ -66,7 +66,7 @@ public class LoginActivity extends Activity implements OnClickListener{
 		@Override
 		public void onClick(View v) {
 			Intent i = new Intent(LoginActivity.this, NewAccountActivity.class);
-			startActivityForResult(i, 1);
+			startActivity(i);
 		}
 	};
 	
@@ -82,7 +82,7 @@ public class LoginActivity extends Activity implements OnClickListener{
 				UsersService.getInstance().setUser(user);//admin
 				preferencesProvider.setLogIn(true);
 				//preferencesProvider.setUser(user);
-				preferencesProvider.setUserLogin(user.getUserLogin(), user.getUserName(), String.valueOf(user.getUserId()), user.isAdmin());
+				preferencesProvider.setUserLogin(String.valueOf(user.getUserId()), user.getUserLogin(), user.getUserName(), user.isAdmin());
 				getContext().startService(getServiceIntent());
 				Intent i = new Intent(this, MenuActivity.class);
 		    	startActivity(i);

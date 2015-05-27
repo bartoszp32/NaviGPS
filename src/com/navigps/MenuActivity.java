@@ -50,11 +50,9 @@ public class MenuActivity extends Activity implements OnClickListener {
 	private CheckBox btnGpsNavigation;
 	private CheckBox btnDefinedRoute;
 	private CheckBox btnCreateRoute;
-	private CheckBox btnCreateRouteDesc;
 	private CheckBox btnMyTraces;
 	private CheckBox btnToSite;
 	private CheckBox btnSettings;
-	private CheckBox btnAcceptTraces;
 	private CheckBox tbService;
 	private CheckBox btnLogout;
 	private TextView textUser;
@@ -78,11 +76,9 @@ public class MenuActivity extends Activity implements OnClickListener {
 		btnGpsNavigation = (CheckBox) findViewById(id.myGps);
 		btnDefinedRoute = (CheckBox) findViewById(id.myRoute);
 		btnCreateRoute = (CheckBox) findViewById(id.myCreate);
-		btnCreateRouteDesc = (CheckBox) findViewById(id.myRouteDescription);
 		btnMyTraces = (CheckBox) findViewById(id.myTraces);
 		btnToSite = (CheckBox) findViewById(id.mySite);
 		btnSettings = (CheckBox) findViewById(id.mySettings);
-		btnAcceptTraces = (CheckBox) findViewById(id.myAcceptTraces);
 		btnLogout = (CheckBox) findViewById(id.myLogout);
 		textUser = (TextView) findViewById(id.textUser);
 		
@@ -96,15 +92,10 @@ public class MenuActivity extends Activity implements OnClickListener {
 		btnGpsNavigation.setOnClickListener(dataListener);
 		btnDefinedRoute.setOnClickListener(definedRouteListener);
 		btnCreateRoute.setOnClickListener(createRouteListener);
-		btnCreateRouteDesc.setOnClickListener(createRouteDescListener);
 		btnMyTraces.setOnClickListener(myTracesListener);
 		btnToSite.setOnClickListener(siteListener);
 		btnSettings.setOnClickListener(settingsListener);
-		btnAcceptTraces.setOnClickListener(acceptTracesListener);
 		btnLogout.setOnClickListener(logoutListener);
-		
-		if (!UsersService.getInstance().isUserAdmin())
-			btnAcceptTraces.setVisibility(View.GONE);
 
 		//tbGpsService = (CheckBox) findViewById(id.myBoxGps);
 		tbService = (CheckBox) findViewById(id.myBoxService);
@@ -271,18 +262,6 @@ public class MenuActivity extends Activity implements OnClickListener {
 		}
 	};
 	
-	private OnClickListener createRouteDescListener = new OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			if (!isNetworkOnline()) {
-				Toast.makeText(getBaseContext(), "Uruchom dane mobilne", Toast.LENGTH_SHORT).show();
-			} else {
-				//Intent i = new Intent(MenuActivity.this, CreateNewRouteActivity.class);
-				//startActivity(i);
-				Toast.makeText(getContext(), "Nie zaimplementowane jeszcze!", Toast.LENGTH_LONG).show();
-			}
-		}
-	};
 	
 	private OnClickListener myTracesListener = new OnClickListener() {
 		@Override
@@ -296,18 +275,6 @@ public class MenuActivity extends Activity implements OnClickListener {
 		}
 	};
 	
-	private OnClickListener acceptTracesListener = new OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			if (!isNetworkOnline()) {
-				Toast.makeText(getBaseContext(), "Uruchom dane mobilne", Toast.LENGTH_SHORT).show();
-			} else {
-				//Intent i = new Intent(MenuActivity.this, CreateNewRouteActivity.class);
-				//startActivity(i);
-				Toast.makeText(getContext(), "Nie zaimplementowane jeszcze!", Toast.LENGTH_LONG).show();
-			}
-		}
-	};
 	
 	private OnClickListener siteListener = new OnClickListener() {
 		@Override

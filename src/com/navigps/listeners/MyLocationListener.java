@@ -23,7 +23,7 @@ public class MyLocationListener implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
-        MyLocation  myLocation = new MyLocation();
+        MyLocation myLocation = new MyLocation();
         myLocation.longitude = String.valueOf(location.getLongitude());
         myLocation.latitude = String.valueOf(location.getLatitude());
         myLocation.accuracy = String.valueOf(location.getAccuracy());

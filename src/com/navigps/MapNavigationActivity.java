@@ -84,6 +84,7 @@ public class MapNavigationActivity extends FragmentActivity {
 	private double distance = 0;
 	private String userRouteName;
 	private LatLngBounds.Builder builder;
+	private boolean isAnyPoint = false;
 	
 	private MyLocation currentLocation = null;
 	private MyLocation lastLocation = null;
@@ -215,7 +216,7 @@ public class MapNavigationActivity extends FragmentActivity {
 		
 		@Override
 		public void onClick(View v) {
-			if (builder != null) {
+			if (builder != null && isAnyPoint) {
 				LatLngBounds bounds = builder.build();
 				mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100));
 			}
@@ -312,6 +313,7 @@ public class MapNavigationActivity extends FragmentActivity {
     				mMap.addMarker(new MarkerOptions().position(point).title("Start trasy"));
     				startMarker = false;
     			}
+        		isAnyPoint = true;
         		builder.include(point);
         		sendToScreen(location);
         		lastLocation = location;
@@ -423,6 +425,7 @@ public class MapNavigationActivity extends FragmentActivity {
 				startMarker = false;
 				
 				PolylineOptions lineOptions = new PolylineOptions();
+				isAnyPoint = false;
 				builder = new LatLngBounds.Builder();
 
 				LatLng point;
@@ -430,6 +433,7 @@ public class MapNavigationActivity extends FragmentActivity {
 					point = route.route.convertToLatLng();
 					lineOptions.add(point);
 					builder.include(point);
+					isAnyPoint = true;
 				}
 				
 				mMap.addPolyline(lineOptions
@@ -451,6 +455,7 @@ public class MapNavigationActivity extends FragmentActivity {
 				distance = 0;
 				startMarker = true;
 				builder = new LatLngBounds.Builder();
+				isAnyPoint = false;
 			}
 			
 			routeName.setText(userRouteName);

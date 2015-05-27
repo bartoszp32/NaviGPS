@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.navigps.models.MyLocation;
 import com.navigps.services.ClassService;
@@ -22,9 +23,14 @@ public abstract  class LocationReceiver extends BroadcastReceiver  implements Re
    @Override
    public void onReceive(Context context, Intent intent) {
 
-       Bundle bundle =  intent.getExtras();
-       MyLocation location = bundle.getParcelable(MyLocation.LOCATION_KEY);
-       onLocationChange(location);
+       try {
+    	   Bundle bundle =  intent.getExtras();
+		   MyLocation location = bundle.getParcelable(MyLocation.LOCATION_KEY);
+		   onLocationChange(location);
+	   } catch (Exception e) {
+		   Log.d("MyLocation", e.toString());
+		   e.printStackTrace();
+	   }
 
    }
 

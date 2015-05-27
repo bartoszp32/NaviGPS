@@ -75,4 +75,16 @@ public class NewAccountActivity extends Activity{
 			finish();			
 		}
 	};
+	
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
+	}
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+	}
 }
