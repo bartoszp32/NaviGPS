@@ -58,7 +58,7 @@ public class CreatePictureRouteActivity extends Activity {
 		btnSkipPicture.setOnClickListener(skipPictureListener);
 		
 		routeId = getIntent().getStringExtra(Globals.DEFINED_ROUTE_MAP.TAG_ROUTE_ID);
-		upLoadServerUri = "http://www.navigps.cba.pl/menu/UploadToServer.php";
+		upLoadServerUri = "http://www.navigps.esy.es/menu/UploadToServer.php";
 		preferencesProvider = new PreferencesProvider(this);
 		progressDialog = new TransparentProgressDialog(this, R.drawable.progress);
 	}

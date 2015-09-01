@@ -282,7 +282,7 @@ public class MenuActivity extends Activity implements OnClickListener {
 			if (!isNetworkOnline()) {
 				Toast.makeText(getBaseContext(), "Uruchom dane mobilne", Toast.LENGTH_SHORT).show();
 			} else {
-				Uri uri = Uri.parse("http://www.navigps.cba.pl");
+				Uri uri = Uri.parse("http://www.navigps.esy.es");
 	            startActivity(new Intent(Intent.ACTION_VIEW, uri));
 			}
 		}
@@ -332,7 +332,7 @@ public class MenuActivity extends Activity implements OnClickListener {
 	// Creating JSON Parser object
 	JSONParser jParser = new JSONParser();
 	// url to get all routes list
-	private static String url_all_route = "http://www.navigps.cba.pl/menu/get_all_routes.php";
+	private static String url_all_route = "http://www.navigps.esy.es/menu/get_all_routes.php";
 	
 	// routes JSONArray
 	JSONArray route = null;

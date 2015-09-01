@@ -17,7 +17,7 @@ import com.navigps.services.LocationService;
 
 public class OnlineLocationProvider implements LocationService {
 	JSONParser jsonParser = new JSONParser();
- 	private static String url_add_data = "http://www.navigps.cba.pl/menu/add_data.php";
+ 	private static String url_add_data = "http://www.navigps.esy.es/menu/add_data.php";
  	private static final String TAG_SUCCESS = "success";
  	
 	public OnlineLocationProvider() {

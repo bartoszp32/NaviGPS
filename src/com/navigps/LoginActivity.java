@@ -46,10 +46,6 @@ public class LoginActivity extends Activity implements OnClickListener{
 		buttonLogin.setOnClickListener((OnClickListener) this);
 		buttonNewAccount.setOnClickListener(newAccountListener);
 		
-		/////----TO WYWALIÆ-----------------------------
-		loginText.setText("admin");
-		passwordText.setText("admin");
-		/////----TO WYWALIÆ-----------------------------
 	}
 	
 	private Intent getServiceIntent()
@@ -78,8 +74,8 @@ public class LoginActivity extends Activity implements OnClickListener{
 		   
 		    UserManager userManager = new UserManager(this, userName, userPassword);
 		    if (userManager.TryLoginUser() == Globals.LOGIN_RESULT.LOGGED){
-		    	User user = localDataManager.GetUser(userName);
-				UsersService.getInstance().setUser(user);//admin
+		    	User user = UsersService.getInstance().getUser();//localDataManager.GetUser(userName);
+				//UsersService.getInstance().setUser(user);//admin
 				preferencesProvider.setLogIn(true);
 				//preferencesProvider.setUser(user);
 				preferencesProvider.setUserLogin(String.valueOf(user.getUserId()), user.getUserLogin(), user.getUserName(), user.isAdmin());

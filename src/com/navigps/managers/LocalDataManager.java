@@ -39,6 +39,7 @@ import com.navigps.providers.JSONParser;
 import com.navigps.providers.LocalDataProvider;
 import com.navigps.providers.OnlineLocationProvider;
 import com.navigps.services.DatabaseService;
+import com.navigps.services.UsersService;
 import com.navigps.tools.DataTools;
 import com.navigps.tools.Globals;
 
@@ -57,15 +58,15 @@ public class LocalDataManager {
 	
 	private JSONParser jParser = new JSONParser();
 	private JSONArray jArray = null;
-	private static String url_all_route = "http://www.navigps.cba.pl/menu/get_all_routes.php";
-	private static String url_all_user_route = "http://www.navigps.cba.pl/menu/get_all_user_routes.php";
-	private static String url_route_details = "http://www.navigps.cba.pl/menu/get_route_details.php";
-	private static String url_route_user_details = "http://www.navigps.cba.pl/menu/get_users_route_details.php";
-	private static String url_check_user = "http://www.navigps.cba.pl/menu/check_user.php";
-	private static String url_data_route = "http://www.navigps.cba.pl/menu/get_data_route.php";
-	private static String url_create_user = "http://www.navigps.cba.pl/menu/create_user.php";
+	private static String url_all_route = "http://www.navigps.esy.es/menu/get_all_routes.php";
+	private static String url_all_user_route = "http://www.navigps.esy.es/menu/get_all_user_routes.php";
+	private static String url_route_details = "http://www.navigps.esy.es/menu/get_route_details.php";
+	private static String url_route_user_details = "http://www.navigps.esy.es/menu/get_users_route_details.php";
+	private static String url_check_user = "http://www.navigps.esy.es/menu/check_user.php";
+	private static String url_data_route = "http://www.navigps.esy.es/menu/get_data_route.php";
+	private static String url_create_user = "http://www.navigps.esy.es/menu/create_user.php";
 	private static String url_calculate_trace = "http://maps.googleapis.com/maps/api/directions/json";
-	private static String url_image_for_route = "http://www.navigps.cba.pl/image/";
+	private static String url_image_for_route = "http://www.navigps.esy.es/image/";
 	
 	public LocalDataManager(Context context) {
 		this.context = context;
@@ -246,6 +247,7 @@ public class LocalDataManager {
 							user.setAdmin("Y".equals(isAdminDB));
 							
 							localDataProvider.insertUserToDB(user);
+							UsersService.getInstance().setUser(user);
 						}
 					}
 					
